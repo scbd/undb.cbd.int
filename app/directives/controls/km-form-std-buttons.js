@@ -205,7 +205,7 @@ define(['app', 'angular', 'text!./km-form-std-buttons.html','jquery'], function(
 				//====================
 				$scope.publishRequest = function()
 				{
-	console.log('publish request');
+
 					$q.when($scope.onPrePublishFn()).then(function(result) {
 
 						return $scope.closeDialog().then(function() {

@@ -70,7 +70,7 @@
   display: table-cell;
   max-width: 75%;
   vertical-align: middle;
-  text-align: center;
+  text-align: left;
   font-size: 16px;
   line-height: 120%;
 }

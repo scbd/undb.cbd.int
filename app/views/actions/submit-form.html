@@ -204,7 +204,7 @@
                 <div class="form-group" ng-class="{ 'has-warning': form.facebook.$invalid, 'has-error' : form.$submitted && form.facebook.$invalid}">
                     <label for="facebook" class="col-sm-3 control-label">Facebook</label>
                     <div class="col-sm-6">
-                        <input type="url" class="form-control" name="facebook" id="facebook" ng-model="document.facebook" ng-pattern="patterns.facebook" ng-focus="onFocusStart('facebook','https://www.facebook.com/')" placeholder="https://www.facebook.com/organisation">
+                        <input type="url" class="form-control" name="facebook" id="facebook" ng-model="document.facebook" ng-pattern="patterns.facebook" ng-focus="onFocusStart('facebook','https://www.facebook.com/')" placeholder="https://www.facebook.com/organization">
                         <p class="help-block error" ng-show="form.facebook.$error.url">This is not a valid web address, you are most likely missing (http:// or https:// or .com) portions</p>
                         <p class="help-block error" ng-show="form.facebook.$error.pattern">Facebook address is invalid. It should look like: <em>https://www.facebook.com/your-facebook-page</em></p>
                     </div>
@@ -213,7 +213,7 @@
                 <div class="form-group" ng-class="{ 'has-warning': form.twitter.$invalid, 'has-error' : form.$submitted && form.twitter.$invalid}">
                     <label for="twitter" class="col-sm-3 control-label" >Twitter</label>
                     <div class="col-sm-6">
-                        <input type="url" class="form-control" name="twitter" id="twitter" ng-model="document.twitter" ng-pattern="patterns.twitter" ng-focus="onFocusStart('twitter','https://www.twitter.com/')" placeholder="https://twitter.com/organisation">
+                        <input type="url" class="form-control" name="twitter" id="twitter" ng-model="document.twitter" ng-pattern="patterns.twitter" ng-focus="onFocusStart('twitter','https://www.twitter.com/')" placeholder="https://twitter.com/organization">
                         <p class="help-block error" ng-show="form.twitter.$error.url">This is not a valid web address, you are most likely missing (http:// or https:// or .com) portions</p>
                         <p class="help-block error" ng-show="form.twitter.$error.pattern">Twitter address is invalid. It should look like: <em>https://twitter.com/your-twitter-account</em></p>
                     </div>
@@ -222,7 +222,7 @@
                 <div class="form-group" ng-class="{ 'has-warning': form.youtube.$invalid, 'has-error' : form.$submitted && form.youtube.$invalid}">
                     <label for="twitter" class="col-sm-3 control-label" required>Youtube</label>
                     <div class="col-sm-6">
-                        <input type="url" class="form-control" name="youtube" id="youtube" ng-model="document.youtube" ng-pattern="patterns.youtube" ng-focus="onFocusStart('youtube','https://www.youtube.com/')" placeholder="https://www.youtube.com/user/organisation">
+                        <input type="url" class="form-control" name="youtube" id="youtube" ng-model="document.youtube" ng-pattern="patterns.youtube" ng-focus="onFocusStart('youtube','https://www.youtube.com/')" placeholder="https://www.youtube.com/user/organization">
                         <p class="help-block error" ng-show="form.youtube.$error.url">This is not a valid web address, you are most likely missing (http:// or https:// or .com) portions</p>
                         <p class="help-block error" ng-show="form.youtube.$error.pattern">Youtube address is invalid. It should look like: <em>https://www.youtube.com/user/your-youtube-channel</em></p>
                     </div>
@@ -231,7 +231,7 @@
                 <div class="form-group" ng-class="{ 'has-warning': form.description.$invalid, 'has-error' : form.$submitted && form.description.$invalid}">
                     <label for="description" class="col-sm-3 control-label required" style="line-height:20px;">Short description of your Action in one of the 6 United Nations languages: Arabic, Chinese, English, French, Russian, or Spanish (max. 1000 characters) </label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" name="description" id="description" ng-model="document.description" cols="30" rows="10" required placeholder="Briefly describe your organisation and your work related to the United Nations Decade on Biodiversity (max. 1000 characters)"></textarea>
+                        <textarea class="form-control" name="description" id="description" ng-model="document.description" cols="30" rows="10" required placeholder="Briefly describe your organization and your work related to the United Nations Decade on Biodiversity (max. 1000 characters)"></textarea>
                         <p class="help-block error" ng-show="form.description.$invalid" style="margin-top:2px">This field is mandatory</p>
                     </div>
                 </div>
@@ -239,7 +239,7 @@
                 <div class="form-group">
                     <label for="descriptionNative" class="col-sm-3 control-label" style="line-height:20px;">Short description of your Action in your official language (max. 1000 characters)</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" id="descriptionNative" ng-model="document.descriptionNative" cols="30" rows="10" placeholder="Briefly describe your organisation and your work related to the United Nations Decade on Biodiversity (max. 1000 characters)"></textarea>
+                        <textarea class="form-control" id="descriptionNative" ng-model="document.descriptionNative" cols="30" rows="10" placeholder="Briefly describe your organization and your work related to the United Nations Decade on Biodiversity (max. 1000 characters)"></textarea>
                     </div>
                 </div>
 
