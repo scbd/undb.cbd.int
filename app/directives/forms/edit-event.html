@@ -273,7 +273,7 @@
 					        <div class="form-group" ng-class="{ 'has-warning': !loading && form.facebook.$invalid, 'has-error' : form.$submitted && form.facebook.$invalid }">
 					          <label for="facebook" class="control-label"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</label>
 
-					          <input ng-change="updateWebsites('facebook',facebook)" ng-disabled="disabled()" type="url" class="form-control" name="facebook" id="facebook" ng-model="facebook" ng-pattern="patterns.facebook" placeholder="https://www.facebook.com/organisation" on-focus-helper
+					          <input ng-change="updateWebsites('facebook',facebook)" ng-disabled="disabled()" type="url" class="form-control" name="facebook" id="facebook" ng-model="facebook" ng-pattern="patterns.facebook" placeholder="https://www.facebook.com/organization" on-focus-helper
 					                  start="https://www.facebook.com/">
 					          <p class="help-block error" ng-show="!loading && form.facebook.$error.url">This is not a valid web address</p>
 					          <p class="help-block error" ng-show="!loading && form.facebook.$error.pattern">Facebook address is invalid. It should look like: <em>https://www.facebook.com/your-facebook-page</em></p>
@@ -283,7 +283,7 @@
 					      <div class="col-md-6 col-xs-12">
 					        <div class="form-group" ng-class="{ 'has-warning': !loading && form.twitter.$invalid, 'has-error' : form.$submitted && form.twitter.$invalid }">
 					          <label for="twitter" class="control-label"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</label>
-					          <input ng-change="updateWebsites('twitter',twitter)" ng-disabled="disabled()" type="url" class="form-control" name="twitter" id="twitter" ng-model="twitter" ng-pattern="patterns.twitter" placeholder="https://twitter.com/organisation" on-focus-helper start="https://twitter.com/">
+					          <input ng-change="updateWebsites('twitter',twitter)" ng-disabled="disabled()" type="url" class="form-control" name="twitter" id="twitter" ng-model="twitter" ng-pattern="patterns.twitter" placeholder="https://twitter.com/organization" on-focus-helper start="https://twitter.com/">
 					          <p class="help-block error" ng-show="!loading && form.twitter.$error.url">This is not a valid web address</p>
 					          <p class="help-block error" ng-show="!loading && form.twitter.$error.pattern">Twitter address is invalid. It should look like: <em>https://twitter.com/your-twitter-account</em></p>
 					        </div>

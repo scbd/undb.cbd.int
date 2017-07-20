@@ -137,7 +137,7 @@
 
 
               <div class="form-group" ng-class="{ 'has-warning': !loading && form.orgName.$invalid, 'has-error' : form.$submitted && form.orgName.$invalid }">
-                  <label for="name" class="col-sm-3 control-label required">Organisation</label>
+                  <label for="name" class="col-sm-3 control-label required">organization</label>
                   <div class="col-sm-6">
                       <input type="text" class="form-control" name="orgName" id="orgName" ng-model="document.orgName" placeholder="Org. name" required  >
                       <p class="help-block error" ng-show="!loading && form.orgName.$invalid">This field is mandatory</p>
@@ -147,7 +147,7 @@
               <div class="form-group" ng-class="{ 'has-warning': !loading && form.mandate.$invalid, 'has-error' : form.$submitted && form.mandate.$invalid }">
                   <label for="description" class="col-sm-3 control-label" style="line-height:20px;" required>Mandate and Objectives (max. 1000 characters)</label>
                   <div class="col-sm-6">
-                      <textarea class="form-control" name="mandate" id="mandate" ng-model="document.mandate" cols="30" rows="10" required placeholder="Briefly describe your organisation mandate and objectives (max. 1000 characters)" ></textarea>
+                      <textarea class="form-control" name="mandate" id="mandate" ng-model="document.mandate" cols="30" rows="10" required placeholder="Briefly describe your organization mandate and objectives (max. 1000 characters)" ></textarea>
                       <p class="help-block error" ng-show="!loading && form.mandate.$invalid" style="margin-top:2px">This field is mandatory</p>
                   </div>
               </div>
