@@ -13,7 +13,7 @@ define(['text!./undb-map.html',
 ], function(template, app, _,ccc) {
     'use strict';
 
-    app.directive('undbMap', ['$http', 'realm', '$q', '$timeout', '$location', '$filter', function($http, realm, $q, $timeout, $location, $filter) {
+    app.directive('undbMap', ['$http', 'realm', '$q', '$timeout', '$location', '$filter','$document', function($http, realm, $q, $timeout, $location, $filter,$document) {
         return {
             restrict: 'E',
             template: template,
@@ -27,7 +27,12 @@ define(['text!./undb-map.html',
                 $scope.message = '';
                 $scope.link = '';
                 $scope.toggleCaption = 1;
+                $scope.loadingObj ={};
+                $scope.loading = true;
 
+
+
+                setLoading('countries',true);
                 $http.get("/api/v2015/countries", {
                     cache: true
                 }).then(function(o) {
@@ -59,19 +64,18 @@ define(['text!./undb-map.html',
 
                             }
                           }
+                          setLoading('countries',false);
                     });
                     return;
                 });
 
 
-                $scope.toggleCaption = 1;
-                activateFilter();
-                if ($attr.schema === 'actions')
-                  getEvents().then(getActors);
+
                 //=======================================================================
                 //
                 //=======================================================================
                 function getEvents() {
+                  setLoading('event',true);
                 return $http.get("/api/v2013/index", {
                     params: {
                         'q': 'schema_s:event',
@@ -83,19 +87,27 @@ define(['text!./undb-map.html',
                     }
                 }).then(function(o) {
                     $scope.actions = o.data.response.docs;
+
                    $scope.actions=$scope.actions.concat(ccc);
+
                     if ($attr.schema === 'actions') {
                         activateFilter();
                         $scope.message = "actions";
+
+                        $scope.link="/actions/worldwide";
+
                     }
+                    $timeout(function () {
+                      setLoading('event',false);
+                    }, 750);
                 });
               }
-                if ($attr.schema !== 'actions')
-                getActors().then(getEvents);
+
                 //=======================================================================
                 //
                 //=======================================================================
                 function getActors() {
+                    setLoading('undbActor',true);
                     return $http.get("/api/v2013/index", {
                         params: {
                             'q': 'schema_s:undbActor',
@@ -113,12 +125,28 @@ define(['text!./undb-map.html',
                             activateFilter();
                             $scope.message = "actors";
                             $scope.link="/actors";
-                        }
 
+                        }
+                        $timeout(function () {
+                          setLoading('undbActor',false);
+                        }, 750);
                     });
                 }
+                //=======================================================================
+                //
+                //=======================================================================
+                function setLoading(schema,isLoading) {
 
-
+                  $scope.loadingObj[schema] =isLoading;
+                  var isL = false;
+                  for (var variable in $scope.loadingObj)
+                     if ($scope.loadingObj[variable])
+                          {isL = true;console.log('$scope.loading',$scope.loading);}
+console.log($scope.loadingObj);
+                  $scope.loading= isL;
+//console.log('$scope.loading',$scope.loading);
+                } //progressToNumber(progress)
+                $scope.setLoading=setLoading;
                 //=======================================================================
                 //
                 //=======================================================================
@@ -145,6 +173,7 @@ define(['text!./undb-map.html',
                         $timeout(function() {
                             $scope.selectedSchema = $attr.schema;
                             reportingDisplay.search();
+console.log($scope.selectedSchema);
                         }, 1000);
                     }
                 }
@@ -157,6 +186,18 @@ define(['text!./undb-map.html',
                     $location.url(link);
                 }
                 $scope.goTo=goTo;
+
+
+              function init(){
+                $scope.toggleCaption = 1;
+                activateFilter();
+                if ($attr.schema === 'actions')
+                  getEvents().then(getActors);
+                if ($attr.schema !== 'actions')
+                  getActors().then(getEvents);
+              }
+
+              init();
             }, //link
 
 
@@ -164,6 +205,7 @@ define(['text!./undb-map.html',
             //
             //=======================================================================
             controller: ["$scope", function($scope) {
+
                     var queryScheduled;
                     $scope.filters = {
                         'parties': {
@@ -267,13 +309,14 @@ define(['text!./undb-map.html',
                     //=======================================================================
                     function sendQuery() {
 
-
                         if (_.isEmpty($scope.subQueries)) return;
+                        $scope.setLoading($scope.selectedSchema,true);
+
                         var queryParameters = {
                             'q': $scope.buildQuery(),
                             'sort': 'createdDate_dt desc',
                             'wt': 'json',
-                        'fl':'progress_EN_s,id,startDate_dt,endDate_dt,identifier_s,country_s,title_s, description_s,lat_d,lng_d',
+                        'fl':'progress_EN_s,id,logo_s,startDate_dt,endDate_dt,identifier_s,country_s,title_s, description_s,lat_d,lng_d',
                             'start': 0,
                             'rows': 1000000,
                         };
@@ -284,11 +327,16 @@ define(['text!./undb-map.html',
                         }).success(function(data) {
 
                             $scope.documents = data.response.docs;
-                            if($scope.selectedSchema === 'actions')
+                            if($scope.selectedSchema === 'actions' && $scope.buildQuery().indexOf('2010')==-1)
                               $scope.documents =$scope.documents.concat(ccc);
 
 
                             $scope.count = data.response.numFound;
+                            $timeout(function () {
+
+                              if($scope.selectedSchema==='actions')$scope.setLoading('actions',false);
+                              $scope.setLoading($scope.selectedSchema,false);
+                            }, 1250);
                         });
                     } // query
 

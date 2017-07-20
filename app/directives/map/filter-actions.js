@@ -26,11 +26,23 @@ define(['text!./filter-actions.html', 'app', 'lodash', 'moment'], function(templ
                     //
                     //=======================================================================
                     $scope.loadRecords = function() {
-                      if ($scope.searchYear) {
-                          var startD = moment('01-01-' + $scope.searchYear, "DD-MM-YYYY").toISOString();
-                          var endD = moment('31-12-' + $scope.searchYear, "DD-MM-YYYY").toISOString();
-                          var q = ['[' + startD + ' TO * ]'];
+                      var startD, endDate;
+                      var q ;
+                      delete($scope.queries.actions.endDate_dt);
+                      delete($scope.queries.actions.startDate_dt);
+                      if ($scope.searchYear && $scope.searchYear!=='past') {
+                          startD = moment('01-01-' + $scope.searchYear, "DD-MM-YYYY").toISOString();
+                          q = ['[' + startD + ' TO * ]'];
                           $scope.queries.actions.endDate_dt = q;
+                      } else if($scope.searchYear==='past'){
+                        startD = moment('01-01-2010', "DD-MM-YYYY").toISOString();
+
+                        var y = new Date().getFullYear()-1;
+                          console.log('30-12-'+y);
+                        endDate = moment('30-12-'+y, "DD-MM-YYYY").toISOString();
+                          q = ['[' + startD + ' TO ' +  endDate + ']'];
+                        $scope.queries.actions.endDate_dt = q;
+
                       } else {
                           undbMap.deleteSubQuery('actions');
                           if ($scope.queries.actions.endDate_dt)

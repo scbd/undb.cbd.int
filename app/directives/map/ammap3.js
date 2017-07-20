@@ -26,7 +26,8 @@ var images=[];
             scope: {
                 items: '=ngModel',
                 schema: '=schema',
-                debug: '=debug'
+                debug: '=debug',
+                loading:'=loading'
             },
             link: function($scope, $element, $attr, requiredDirectives) {
 
@@ -152,11 +153,12 @@ var images=[];
                             "selectedColor": "#004844",
                             "rollOverColor": "#004844",
                             "selectable": true,
-                            "color": "#009B48"
+                            "color": "#069554"
                         },
 
                         "zoomControl": {
                             "right": 20,
+                            "top": 150,
                             "maxZoomLevel": 262144,
                             "zoomFactor":8,
                             "panStepSize":.2//jshint ignore:line
@@ -297,13 +299,10 @@ var images=[];
 
                     var img = document.createElement('img');
                     img.setAttribute('src', imagePath);
-                    if($scope.map.dataProvider.images[imageIndex].isCCC){
-                      img.className = 'ccc-image';
-                      pin.appendChild(img);
-                    }else{
-                      img.className = 'leaf-image';
-                      pin.appendChild(img);
-                    }
+
+                    img.className = 'leaf-image';
+                    pin.appendChild(img);
+
 
                     //append the marker to the map container
                     $scope.map.dataProvider.images[imageIndex].chart.chartDiv.appendChild(holder);
@@ -580,7 +579,7 @@ var images=[];
                 //
                 //=======================================================================
                 function resetMap(country,grey) {
-                    var color = "#009B48";
+                    var color = "#069554";//24a071 +30 -11 +39
                     if(grey)color = '#c1ccd1';
 
                     if (country.code !== 'EU' && country.code !== 'divider1')
