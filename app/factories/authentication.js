@@ -1,13 +1,13 @@
 /* jshint sub:true */
 
-define(['app', 'angular', 'jquery'], function (app, ng, $) { 'use strict';
+define(['app', 'angular', 'jquery','utilities/editFormUtility'], function (app, ng, $) { 'use strict';
 
     var accountsBaseUrl = (function(){
 
         var domain = window.location.hostname.replace(/[^\.]+\./, '');
 
         if(domain=='localhost')
-            domain = 'staging.cbd.int';
+            domain = 'cbddev.xyz';
 
         return 'https://accounts.'+domain;
 
@@ -307,4 +307,56 @@ define(['app', 'angular', 'jquery'], function (app, ng, $) { 'use strict';
 			}
 		};
 	}]);
+
+    app.factory('realmHttpIntercepter', ['realm','$injector', function(realm,$injector) {
+
+        return {
+            request: function(config) {
+
+
+                if(config.method==='GET') return config; // no realm on gets
+
+                var trusted = /^https:\/\/api.cbd.int\//i .test(config.url) ||
+                              /^https:\/\/localhost[:\/]/i.test(config.url) ||
+                              /^\/\w+/i                   .test(config.url);
+
+                var hasRealmParam = !!(trusted && realm && config.params && config.params.realm && config.params.realm != realm);
+
+                if(hasRealmParam) {
+                    config.headers = angular.extend(config.headers || {}, { realm : config.params.realm });
+                }
+                else if(trusted && realm ) {
+                    config.headers = angular.extend(config.headers || {}, { realm : realm });
+                }
+
+                var docExists = !!(config.data && config.data.header && config.data.header.identifier);
+                var sharedRefRecord = !!(config.data && config.data.header && config.data.header.schema==='organization');
+
+                if(docExists && sharedRefRecord && !hasRealmParam) // share reference records between realms
+                    return $injector.get('editFormUtility').getRealm(config.data.header.identifier).then(function(res){
+
+                            if(res) {
+                                if(sameEnv(realm, res))
+                                    config.headers = angular.extend(config.headers || {}, { realm : res });
+                            }
+
+                            console.log('resssss:',res);
+                            alert(res);
+                            return config;
+                    });
+
+                return config;
+            }
+        };
+    }]);
+
+    function sameEnv(realmOne, realmTwo){
+        var isRealmOneDev = !!(realmOne.indexOf('dev')>-1 || realmOne.indexOf('DEV')>-1);
+        var isRealmTwoDev = !!(realmTwo.indexOf('dev')>-1 || realmTwo.indexOf('DEV')>-1);
+
+        if(isRealmOneDev && isRealmTwoDev) return true;
+        if(!isRealmOneDev && !isRealmTwoDev) return true;
+
+        return false;
+    }
 });
