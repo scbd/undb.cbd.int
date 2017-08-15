@@ -339,9 +339,6 @@ define(['app', 'angular', 'jquery','utilities/editFormUtility'], function (app, 
                                 if(sameEnv(realm, res))
                                     config.headers = angular.extend(config.headers || {}, { realm : res });
                             }
-
-                            console.log('resssss:',res);
-                            alert(res);
                             return config;
                     });
 
