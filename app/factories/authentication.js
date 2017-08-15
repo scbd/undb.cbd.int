@@ -314,7 +314,7 @@ define(['app', 'angular', 'jquery','utilities/editFormUtility'], function (app, 
             request: function(config) {
 
 
-                if(config.method==='GET') return config; // no realm on gets
+                if(config.method!=='PUT' && config.method!=='POST') return config; // no realm on gets
 
                 var trusted = /^https:\/\/api.cbd.int\//i .test(config.url) ||
                               /^https:\/\/localhost[:\/]/i.test(config.url) ||

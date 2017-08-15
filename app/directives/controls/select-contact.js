@@ -178,7 +178,7 @@ function(template,app,_) {
                                          'address_EN_t, city_EN_t, state_EN_t, postalCode_EN_t, country_s, phones:phones_ss, faxes:faxes_ss, emails:emails_ss, websites:websites_ss' +
                                          ',designation:designation_t,organization:organization_t,organizationAcronym:organizationAcronym_t,department:department_t'
 
-                        var q = 'realm_ss:'+realm+' AND '; //'realm_ss:' + 'chm-dev' +
+                        var q = '';//'realm_ss:'+realm+' AND '; //'realm_ss:' + 'chm-dev' +
                         if($scope.search.keyword){
                             var qFields = ['text_EN_txt', 'title_s', 'acronym_s', 'organizationType_EN_s', 'address_s', 'state_s', 'postalCode_s', 'country_EN_s', 'emails_ss']
                             q += '(' + qFields.join(':"*' + $scope.search.keyword + '*" OR ') + ':" *'
