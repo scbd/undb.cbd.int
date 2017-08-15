@@ -729,42 +729,6 @@ app.directive('editOrganization', ['$http',"$rootScope", "Enumerable", "$filter"
 					$scope.error = error;
 			};
 
-			//==================================
-			//
-			//==================================
-			$scope.loadRecords = function(identifier, schema) {
-
-				if (identifier) { //lookup single record
-					var deferred = $q.defer();
-
-					storage.documents.get(identifier, { info: "" })
-						.then(function(r) {
-							deferred.resolve(r.data);
-						}, function(e) {
-							if (e.status == 404) {
-								storage.drafts.get(identifier, { info: "" })
-									.then(function(r) { deferred.resolve(r.data);},
-										  function(e) { deferred.reject (e);});
-							}
-							else {
-								deferred.reject (e);
-							}
-						});
-					return deferred.promise;
-				}
-
-				//Load all record of specified schema;
-
-				var sQuery = "type eq '" + encodeURI(schema) + "'";
-
-				return $q.all([storage.documents.query(sQuery, null, { cache: true }),
-							   storage.drafts   .query(sQuery, null, { cache: true })])
-					.then(function(results) {
-						var qResult = Enumerable.from (results[0].data.Items)
-												.union(results[1].data.Items, "$.identifier");
-						return qResult.ToArray();
-					});
-			};
 
 			$scope.init();
 		}
