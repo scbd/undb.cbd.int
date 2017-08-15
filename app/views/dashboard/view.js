@@ -30,14 +30,14 @@ define(['app', 'lodash',
             var promise = null;
             var config ={};
 
-            config.headers = {realm : undefined};
+
 
             if (identifier ){
-                promise = storage.documents.get(identifier,{ cache : false},config);
+                promise = storage.documents.get(identifier,{ cache : false});
                 promise.then(
                     function(doc) {
                         _ctrl.document = doc.data;
-                        var header = storage.documents.get(identifier,{ info:'',cache : false},config);
+                        var header = storage.documents.get(identifier,{ info:'',cache : false});
                         header.then(function(h){
                           _ctrl.header = h.data;
                         });
