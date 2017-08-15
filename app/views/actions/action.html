@@ -59,7 +59,7 @@
 			</iframe> -->
 
 			<div class="img-container" ng-if="action.logo_s">
-						<img ng-src="{{action.logo_s}}?v=<%=gitVersion%>"  class="img-responsive" style="width:100%;" ></img>
+						<img ng-src="{{action.logo_s}}"  class="img-responsive" style="width:100%;" ></img>
 			</div>
 			<zoom-map zoom-to="action.country_s" ng-if="!action.logo_s" ></zoom-map>
 <br><br>
@@ -89,7 +89,7 @@
 						<span class="action-labels">Country</span>
 						<span class="detail">
 							<a href="" ng-click="goTo('/actions/countries/',action.country_s.toUpperCase());" style="margin-left:15px;" >
-								<img ng-src="{{getCountryFlag(action.country_s)}}?v=<%=gitVersion%>"></a>
+								<img ng-src="{{getCountryFlag(action.country_s)}}"></a>
 						</span>
 					</div>
 

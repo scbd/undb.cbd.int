@@ -13,11 +13,8 @@
 			max-width: 1200px;
 			overflow: hidden;
 		}
-.map-button{
-	position:absolute;
-	top:15px;
-	right:15px;
-}
+
+
 		.sideSelection {
 			display: inline-block;
 			padding: 15px 0;
@@ -94,32 +91,49 @@
 		.mapPopup{
 			cursor:pointer;
 		}
+		@media (max-width : 990px){
+			.map-button{
+				position:absolute;
+				top:37%;
+				right:1%;
+			}
+	}
+	@media (min-width : 991px){
+		.map-button{
+			position:absolute;
+			top:15px;
+			right:1%;
+		}
+}
+.vertical_center {
+		display: flex;
+		align-items: center;
+}
 	</style>
 
 	<div id="map">
 		<div class="col-md-2 col-xs-12" style="margin-right:0px;padding:0 0 0 0;">
 			<div class="row sideSelection">
 				<h5>UNDB Network</h5>
+				<filter-actions title='Actions' active='filters.actions.active' message='message' link="link"></filter-actions>
 				<filter-actors title='Actors' active='filters.actors.active' message='message' link="link"></filter-actors>
 				<filter-parties title='Parties to the CBD and other Governments' active='filters.parties.active' message='message' link="link"></filter-parties>
 				<filter-aichi title='Aichi Biodiversity Targets' active='filters.aichi.active' message='message' link="link"></filter-aichi>
-				<!-- <filter-bio-champs title='Biodiversity Champions' active='filters.bioChamps.active' message='message'></filter-bio-champs> -->
-<!-- <filter-coalitions title='Coalitions' active='filters.coalitions.active' message='message'></filter-coalitions>  -->
-				<filter-actions title='Actions' active='filters.actions.active' message='message' link="link"></filter-actions>
+
 			</div>
 		</div>
 		<div class="col-md-10 col-xs-12" style="padding:0 0 0 0;margin-left:0px;">
-			<ammap3 ng-model='documents' schema='selectedSchema'></ammap3>
-			<div class="mapPopup" ng-class="{'mapPopupParties':(selectedSchema==='parties' && selectedSchema==='aichi')}"   ng-show="toggleCaption " ng-click="goTo(link)">
+			<ammap3 ng-model='documents' loading="loading" schema='selectedSchema'></ammap3>
+			<div class="mapPopup" ng-class="{'mapPopupParties':message==='parties'}"   ng-show="toggleCaption " ng-click="goTo(link)">
 
-				<p ng-if="message==='actions'">Actions and Commitments: All around the world people are taking action to safeguard biodiversity. See how you can participate!</p>
+				<p  ng-if="message==='actions'"><img src="app/img/pointer-undb-green.png" style="height:20px;"> Actions  and <img src="app/img/pointer-undb-orange.png" style="height:20px;"> Commitments: All around the world people are taking action to safeguard biodiversity. See how you can participate!</p>
 				<p ng-if="message==='parties'">Parties to the CBD and other Governments: With 196 Parties, the Convention on Biological Diversity has near universal participation among countries.</p>
-				<p ng-if="message==='actors'"> Actors: The UNDB Network includes a wide variety of Actors contributing to the implementation of the Strategic Plan for Biodiversity 2011-2020. </p>
+				<p ng-if="message==='undbActor'"> <img src="app/img/pointer-undb-blue.png" style="height:20px;"> Actors: The UNDB Network includes a wide variety of Actors contributing to the implementation of the Strategic Plan for Biodiversity 2011-2020. </p>
 				<!-- <p ng-if="message==='aichi'"> Aichi Biodiversity Targets: Each party or government's best Aichi Biodiversity Target assessment. </p> -->
 				<button type="button" class="closeButton" ng-click="toggleCaption=!toggleCaption;$event.stopPropagation();"></button>
 			</div>
 		</div>
 	</div>
-	<a href="dashboard/submit/undb-actor/new" class="btn map-button" style="background-color:#0081c6;color:white;" ng-if="selectedSchema=='actors'"> Become a Partner <i class="fa fa-chevron-right"></i></a>
+	<a href="dashboard/submit/undb-actor/new" class="btn map-button" style="background-color:#0081c6;color:white;" ng-if="selectedSchema=='undbActor'"> Become a Partner <i class="fa fa-chevron-right"></i></a>
 	<a href="dashboard/submit/event/new"      class="btn bg-cbdgreen map-button" ng-if="selectedSchema=='actions'"> Register your Action <i class="fa fa-chevron-right"></i></a>
 </div>

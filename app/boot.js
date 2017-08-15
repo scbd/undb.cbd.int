@@ -21,6 +21,7 @@ require.config({
         'moment-timezone'           : 'libs/moment-timezone/builds/moment-timezone-with-data-2010-2020.min',
         'ngCookies'                 : 'libs/angular-cookies/angular-cookies.min',
         'ngSmoothScroll'            : 'libs/ngSmoothScroll/lib/angular-smooth-scroll',
+        'realm'                     : 'utilities/realm',
         'shim'                      : 'libs/require-shim/src/shim',
         'text'                      : 'libs/requirejs-text/text',
         'toastr'                    : 'libs/angular-toastr/dist/angular-toastr.tpls.min',

@@ -1,48 +1,59 @@
 <div>
-<div id="dialogDisclaimer" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h2 class="modal-title" style="color:black;">Disclaimer</h2>
+    <div id="dialogDisclaimer" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title" style="color:black;">Disclaimer</h2>
+                </div>
+                <div class="modal-body" style="color:black;line-height:125%;">
+
+                    The designations employed and the presentation of material in this map do not imply the expression of any opinion whatsoever on the part of the Secretariat concerning the legal status of any country, territory, city or area or of its authorities, or concerning
+                    the delimitation of its frontiers or boundaries.Upon its Approval of the Nagoya Protocol on Access and Benefit Sharing, the Government of Denmark notified the Secretary-General that the Protocol shall not apply in respect of Greenland
+                    and the Faroe Islands.
+
+                </div>
+                <div class="modal-footer" style="text-align:left;">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body" style="color:black;line-height:125%;">
-
-          The designations employed and the presentation of material in this map do not imply the expression of any opinion whatsoever on the part of the Secretariat concerning the legal status of any country, territory, city or area or of its authorities, or concerning
-          the delimitation of its frontiers or boundaries.Upon its Approval of the Nagoya Protocol on Access and Benefit Sharing, the Government of Denmark notified the Secretary-General that the Protocol shall not apply in respect of Greenland and the
-          Faroe Islands.
-
-        </div>
-        <div class="modal-footer" style="text-align:left;">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="disclaimer tooltip" data-toggle="modal" href="#dialogDisclaimer">Disclaimer</div>
-  <div id="mapdiv" style="width: 100%; height:530px; Background:#99CDE8;padding-bottom:0px;margin-bottom:0px;"></div>
-
-  <div class="panel panel-default" style="margin-bottom:0;" ng-if="schema==='parties' || schema==='aichi'">
-    <style>
-      .disclaimer {
-        bottom: 12%;
-        left:47%
-      }
-    </style>
-
-    <div class="panel-body" >
-
-      <div ng-if="schema==='parties'" class="col-xs-3 leggendItem" ng-repeat="item in leggends.parties" ng-click="legendHide(item);" ng-class="{'col-xs-offset-3':!$last}">
-        <i class="fa fa-times fa-2x square" ng-if="!item.visible" style="display: block;"></i>
-        <div class="square" ng-style="{'background-color':item.color}" ng-if="item.visible"></div> {{item.title}}
-      </div>
-      <div ng-if="schema==='aichi'" class="col-xs-2 leggendItem" ng-repeat="item in leggends.aichi" ng-click="legendHide(item);" >
-        <i class="fa fa-times fa-2x square" ng-if="!item.visible" style="display: block;"></i>
-        <div class="square" ng-style="{'background-color':item.color}" ng-if="item.visible"></div> {{item.title}}
-      </div>
     </div>
 
-  </div>
+    <div class="disclaimer tooltip" data-toggle="modal" href="#dialogDisclaimer">Disclaimer</div>
+    <div style="position:relative;">
+        <div id="mapdiv" style="width: 100%; height:530px; Background:#99CDE8;padding-bottom:0px;margin-bottom:0px;">here</div>
+        <div ng-if="loading" style="width: 100%; height:530px; Background:rgba(10, 10, 10,.6);position:absolute;top:1px;color:#fff;z-index:10000;">
+            <div class="row">
+                <div class="vertical_center" style="height:530px;">
+                  <div class="col-xs-12 text-center" >
+                    <i style="color:#069554;" class="fa fa-circle-o-notch fa-spin fa-5x fa-fw"></i>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel panel-default" style="margin-bottom:0;" ng-if="schema==='parties' || schema==='aichi'">
+        <style>
+            .disclaimer {
+                bottom: 12%;
+                left: 47%
+            }
+        </style>
+
+        <div class="panel-body">
+
+            <div ng-if="schema==='parties'" class="col-xs-3 leggendItem" ng-repeat="item in leggends.parties" ng-click="legendHide(item);" ng-class="{'col-xs-offset-3':!$last}">
+                <i class="fa fa-times fa-2x square" ng-if="!item.visible" style="display: block;"></i>
+                <div class="square" ng-style="{'background-color':item.color}" ng-if="item.visible"></div> {{item.title}}
+            </div>
+            <div ng-if="schema==='aichi'" class="col-xs-2 leggendItem" ng-repeat="item in leggends.aichi" ng-click="legendHide(item);">
+                <i class="fa fa-times fa-2x square" ng-if="!item.visible" style="display: block;"></i>
+                <div class="square" ng-style="{'background-color':item.color}" ng-if="item.visible"></div> {{item.title}}
+            </div>
+        </div>
+
+    </div>
 
 </div>

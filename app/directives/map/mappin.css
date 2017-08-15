@@ -70,7 +70,7 @@
   display: table-cell;
   max-width: 75%;
   vertical-align: middle;
-  text-align: center;
+  text-align: left;
   font-size: 16px;
   line-height: 120%;
 }
@@ -114,8 +114,8 @@ body.modal-open div.modal-backdrop {
 }
 ;
 .map-marker {
-  margin-left: 12px;
-  margin-top: -13px;
+  margin-left: 1px;
+  margin-top: 1px;
 }
 .pin {
   width: 30px;
@@ -131,7 +131,7 @@ body.modal-open div.modal-backdrop {
   transform: rotate(-45deg);
   left: 50%;
   top: 50%;
-  margin: -20px 0 0 -20px;
+  margin: -30px 0 0 -15px;
   z-index: 10;
 }
 .pin-cbd {
@@ -143,10 +143,23 @@ body.modal-open div.modal-backdrop {
 .pin-action {
   /*background: #05483a;*/
 }
-.pin-champ{
-  /*background: #f58426;*/
+.pin-ccc{
+  margin: -37px 0 0 -22px;
 }
+.ccc-image {
 
+  position: absolute;
+  left: 7%;
+  top: 15%;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  height: 120%;
+  width: 90%;
+  z-index: 20;
+}
 .leaf-image {
 
   position: absolute;

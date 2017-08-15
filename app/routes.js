@@ -9,7 +9,9 @@ define(['app', 'lodash', 'text!views/index.html','text!./redirect-dialog.html', 
             when('/',                             { template:    rootTemplate,  label:'Home',  resolveController: 'views/index', reloadOnSearch : false }).
             when('/home', { redirectTo: '/' }).
             //////////////////depreciated
-
+when('/default.shtml', { redirectTo: '/' }).
+when('/events', { redirectTo: '/actions' }).
+when('/country/partner.shtml?country=us&partner=2296', { redirectTo: '/actors/partners' }).
                         when('/actions/submit',               { templateUrl: 'views/actions/submit.html',           label:'Participate',          resolveController: true, resolve : { user : securize(['User']) }, reloadOnSearch : false }).
                         when('/actions/register/:uid?',       { templateUrl: 'views/actions/submit-form.html',      label:'Form',                 resolveController: true, resolve : { user : securize(['User']) } }).
                         when('/actions/submit-form/:uid?',    { templateUrl: 'views/actions/submit-form.html',      label:'Form',                 resolveController: true, resolve : { user : securize(['User']) } }).
@@ -40,7 +42,7 @@ define(['app', 'lodash', 'text!views/index.html','text!./redirect-dialog.html', 
             when('/actions/worldwide',            { templateUrl: 'views/actions/worldwide.html',        label:'Worldwide',            resolveController: true , reloadOnSearch : false}).
             when('/actions/country',              { templateUrl: 'views/actions/country.html',          label:'By Country',           resolveController: true }).
             when('/actions/countries/:code',      { templateUrl: 'views/actions/country-profile.html',  label :'Profile',             resolveController: true }).
-            // when('/actions/countries/edit/:code', { templateUrl: 'views/actions/country-profile-form.html', label:'Edit Party Profile',   resolveController: true, resolve : { user : securize(["UNDBPublishingAuthority", "undb-administrator"]) } }).
+            // when('/actions/countries/edit/:code', { templateUrl: 'views/actions/country-profile-form.html', label:'Edit Country Profile',   resolveController: true, resolve : { user : securize(["UNDBPublishingAuthority", "undb-administrator"]) } }).
 
            // when('/actions/un',                 { templateUrl: 'views/actions/un.html',               label:'By UN Organization',   resolveController: true }).
 
@@ -61,8 +63,6 @@ define(['app', 'lodash', 'text!views/index.html','text!./redirect-dialog.html', 
             when('/resources',                   { templateUrl: 'views/resources/index.html',           label:'Resources'         }).
             when('/resources/logo',              { templateUrl: 'views/resources/logo.html',            label:'Logo',                  resolveController: true}).
             when('/resources/materials',         { templateUrl: 'views/resources/materials.html',       label:'Printed Materials' }).
-            when('/resources/multimedia',        { templateUrl: 'views/resources/multimedia.html',      label:'Multimedia',            resolveController: true}).
-            when('/resources/multimedia/edit',   { templateUrl: 'views/resources/multimedia-form.html', label:'Multimedia',            resolveController: true}).
             when('/resources/waiver',            { templateUrl: 'views/resources/waiver.html',          label:'Waiver',                resolveController: true}).
             when('/resources/waiver/submit',     { templateUrl: 'views/resources/submit-waiver.html',   label:'Submit Waiver',         resolveController: true, resolve : { user : securize(['User']) } }).
             when('/resources/waiver/submit-done',{ templateUrl: 'views/resources/submit-form-done.html',label:'Submit Waiver done' }).
@@ -70,11 +70,11 @@ define(['app', 'lodash', 'text!views/index.html','text!./redirect-dialog.html', 
             when('/resources/contact',           { templateUrl: 'views/resources/contact.html',         label:'Contact Us' }).
 
             when('/dashboard',                   { templateUrl: 'views/dashboard/index-dash.html',    controllerAs: 'dashCtrl',    resolveController: true ,resolve : { user : securize(['User']) }}).
-            when('/dashboard/submit/:schema',         { templateUrl: 'views/dashboard/record-list.html',  controllerAs: 'submitCtrl',  resolveController: true,resolve : { user : securize(['User']) } }).
-            when('/dashboard/submit/:schema/:id',     { templateUrl: 'views/dashboard/edit.html',         controllerAs: 'editCtrl',    resolveController: true ,resolve : { user : securize(['User']) }}).
+            when('/dashboard/submit/', { redirectTo: '/dashboard' }).
+
             when('/dashboard/submit/:schema/:id/view',{ templateUrl: 'views/dashboard/view.html',    controllerAs: 'viewCtrl',    resolveController: true,resolve : { user : securize(['Everyone']) } }).
-
-
+            when('/dashboard/submit/:schema/:id',     { templateUrl: 'views/dashboard/edit.html',         controllerAs: 'editCtrl',    resolveController: true ,resolve : { user : securize(['User']) }}).
+            when('/dashboard/submit/:schema',         { templateUrl: 'views/dashboard/record-list.html',  controllerAs: 'submitCtrl',  resolveController: true,resolve : { user : securize(['User']) } }).
 
 
 

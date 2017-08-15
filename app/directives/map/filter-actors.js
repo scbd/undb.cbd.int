@@ -16,7 +16,7 @@ define(['text!./filter-actors.html', 'app', 'lodash'], function(template, app, _
       link: function($scope, $element, $attr,undbMap) {
           $scope.queries = {
             'actors': {
-              'schema_s': ['undbPartner'],
+              'schema_s': ['undbActor'],
               '_state_s':['public']
             }
           };
@@ -25,11 +25,11 @@ define(['text!./filter-actors.html', 'app', 'lodash'], function(template, app, _
           //
           //=======================================================================
           $scope.loadRecords = function() {
-            $scope.message = "actions";
+            $scope.message = "undbActor";
             $scope.link="/actors";
             undbMap.filterActive('actors');
 
-            undbMap.addSubQuery(_.cloneDeep($scope.queries), 'actors');
+            undbMap.addSubQuery(_.cloneDeep($scope.queries), 'undbActor');
 
             undbMap.search();
           }; // loadRecords

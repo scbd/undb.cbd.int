@@ -2,12 +2,16 @@
   <div class="arrow"></div>
   <h2 class="popover-title"></h2>
   <div style="color:black;min-height:100px;padding: 6px 6px 6px 6px; ">
-     {{description_s}}
-
+     {{currImage.description_s | truncate:350:'...'}} <a ng-href="{{currImage.links_s}}" target="blank" ng-if="currImage.links_s && !currImage.isCCC"> More</a>
+     <br>
+     <div class="center" ng-if="currImage.isCCC">
+        <br ng-if="currImage.isCCC"><a ng-href="{{currImage.links_s}}" target="blank" ng-if="currImage.isCCC"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Actions or Commintments</a>
+        <br ng-if="currImage.isCCC && currImage.draft"><a ng-href="{{currImage.draft}}" target="blank" ng-if="currImage.isCCC && currImage.draft"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  Draft Statment</a>
+     </div>
   </div>
   <div class="popover-footer text-nowrap" style="clear:both;height:38px;vertical-align:center; ">
     <span class="text-nowrap" style="color:black;float:left;font-size:18px;">
-      
+
     </span>
     <span class="text-nowrap" style="color:black;float:right;font-size:18px;">
       &nbsp;

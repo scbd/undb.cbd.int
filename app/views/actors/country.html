@@ -7,7 +7,6 @@
                 <li ng-mouseover="highlightLink='abttf'" ng-mouseleave="highlightLink=''"><a href="actors/abttf">ABTTF</a> <i ng-if="highlightLink=='abttf' || path=='/actors/abttf'" style="position:relative;top:-4px;left:18px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
                 <li ng-mouseover="highlightLink='blg'" ng-mouseleave="highlightLink=''"><a href="actors/blg">BLG</a> <i ng-if="highlightLink=='blg' ||  path=='/actors/blg'" style="position:relative;top:-4px;left:8px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
                 <li ng-mouseover="highlightLink='jlg'" ng-mouseleave="highlightLink=''"><a href="actors/jlg">JLG</a> <i ng-if="highlightLink=='jlg' ||  path=='/actors/jlg'" style="position:relative;top:-4px;left:5px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
-                <li ng-mouseover="highlightLink='champions'" ng-mouseleave="highlightLink=''"><a href="actors/champions">Champions</a> <i ng-if="highlightLink=='champions' ||  path=='/actors/champions'" style="position:relative;top:-4px;left:25px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
                 <li ng-mouseover="highlightLink='partners'" ng-mouseleave="highlightLink=''"><a href="actors/partners">UNDB Partners</a> <i ng-if="highlightLink=='partners' ||  path=='/actors/partners'" style="position:relative;top:-4px;left:35px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
                 <li ng-mouseover="highlightLink='participate'" ng-mouseleave="highlightLink=''"><a href="actions/participate">Participate</a> <i ng-if="highlightLink=='participate' ||  path=='/actions/participate'" style="position:relative;top:-4px;left:25px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
             </ul>
@@ -72,8 +71,8 @@
                         <a ng-href="actions/countries/{{country.code}}">
                             <!-- <div class="flag-icon-background listCountriesFlag" ng-class="country.cssClass" ng-attr-title="{{country.name}}" ng-if="country.code!='eu'"></div> -->
                             <!-- <img src="app/img/Flag_of_Europe.svg" class="listCountriesFlag" ng-attr-title="{{country.name}}" ng-if="country.code==='eu'"> -->
-                            <img ng-src="{{getCountryFlag(country.code)}}?v=<%=gitVersion%>" class="pull-left" ng-attr-title="{{country.name}}" style="position:absolute;top:0;bottom:0;margin:auto;left:0px;" ng-if="country.code!=='eu'">
-                            <img ng-src="{{getCountryFlag('eur')}}?v=<%=gitVersion%>" class="pull-left" ng-attr-title="{{country.name}}" style="position:absolute;top:0;bottom:0;margin:auto;left:0px;" ng-if="country.code==='eu'">
+                            <img ng-src="{{getCountryFlag(country.code)}}" class="pull-left" ng-attr-title="{{country.name}}" style="position:absolute;top:0;bottom:0;margin:auto;left:0px;" ng-if="country.code!=='eu'">
+                            <img ng-src="{{getCountryFlag('eur')}}" class="pull-left" ng-attr-title="{{country.name}}" style="position:absolute;top:0;bottom:0;margin:auto;left:0px;" ng-if="country.code==='eu'">
                             <div class="listCountriesName pull-left" style="margin-left:25px;">
                                 &nbsp;&nbsp;
                                 <span>{{country.name}}</span>

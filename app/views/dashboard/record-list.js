@@ -411,7 +411,7 @@ define(['lodash',
 
                 query.push("schema_s:" + escape(options.schema));
                 query.push(["realm_ss:" + realm, "(*:* NOT realm_ss:*)"]);
-
+        
                 // Apply ownership/contributor
 
                 query.push(_.union(["_contributor_is:" + user.userID],

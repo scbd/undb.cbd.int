@@ -35,7 +35,7 @@ app.directive('editUndbParty', ['$http',"$rootScope", "Enumerable", "$filter", "
 			$scope.status   = "";
 			$scope.error    = null;
 			$scope.document = null;
-			$scope.tab      = 'general';
+			$scope.tab      = 'detail';
 			$scope.review   = { locale: "en" };
 			var qsParams = {
 					"q": 'schema_s:undbParty AND _state_s:public',

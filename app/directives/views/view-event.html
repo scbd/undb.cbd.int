@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-xs-2" ng-if="document.logo">
                     <label class="view">Logo</label>
-                    <div class="km-value" style="background-color:#fff;"><img width="100%" ng-src="{{document.logo}}?v=<%=gitVersion%>"></img>
+                    <div class="km-value" style="background-color:#fff;"><img width="100%" ng-src="{{document.logo}}"></img>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                         {{document.address.city | lstring:locale}}<span ng-show="document.city">, </span>
                         {{document.address.state | lstring:locale}}<br ng-show="document.city || document.state" />
                         {{document.address.postalCode | lstring:locale}}<span ng-show="document.postalCode">, </span>
-                        <b>{{document.address.country | term:locale}}</b> <image style="height:15px;;" ng-src="https://www.cbd.int/images/flags/96/flag-{{document.country.identifier}}-96.png?v=<%=gitVersion%>"></image>
+                        <b>{{document.address.country | term:locale}}</b> <image style="height:15px;;" ng-src="https://www.cbd.int/images/flags/96/flag-{{document.country.identifier}}-96.png"></image>
                       </address>
                   </div>
               </div>
@@ -227,7 +227,7 @@
                           {{contactOrganization.document.city | lstring:locale}}<span ng-show="contactOrganization.document.city">, </span>
                           {{contactOrganization.document.state | lstring:locale}}<br ng-show="contactOrganization.document.city || document.state" />
                           {{contactOrganization.document.postalCode | lstring:locale}}<span ng-show="contactOrganization.document.postalCode">, </span>
-                          <b>{{contactOrganization.document.country | term:locale}}</b> <image style="height:15px;;" ng-src="https://www.cbd.int/images/flags/96/flag-{{contactOrganization.document.country.identifier}}-96.png?v=<%=gitVersion%>"></image>
+                          <b>{{contactOrganization.document.country | term:locale}}</b> <image style="height:15px;;" ng-src="https://www.cbd.int/images/flags/96/flag-{{contactOrganization.document.country.identifier}}-96.png"></image>
                           <br>
                           <span ng-if="contactOrganization.document.emails"><br> </span>
                           <span ng-repeat="item in contactOrganization.document.emails">
@@ -278,14 +278,16 @@
 
                         <div class="col-xs-2" ng-show="contactOrganization.logo">
                             <div>
-                                <img width="100%" ng-src="{{contactOrganization.logo.url}}?v=<%=gitVersion%>"></img>
+                                <img width="100%" ng-src="{{contactOrganization.logo.url}}"></img>
                             </div>
                         </div>
               </div>
             </div>
 
-            <div ng-if="organizations">
-<legend class="view" ng-if="organizations" && ng-if="contactOrganization.document.header.identifier !== organization.document.header.identifier">Contributing Host Organization(s)</legend>
+            <legend class="view" ng-if="organizations && organizations.length>1">Contributing Host Organization(s)</legend>
+
+            <div  class="container" ng-if="organizations && organizations.length>1">
+              <div class="row">
                 <div class="col-xs-12 km-value" ng-repeat="organization in organizations" ng-if="contactOrganization.document.header.identifier !== organization.document.header.identifier">
                           <div ng-class="{'col-xs-10':organization.logo,'col-xs-12':!organization.logo}">
                               <div>
@@ -295,7 +297,7 @@
                             {{organization.document.city | lstring:locale}}<span ng-show="organization.document.city">, </span>
                             {{organization.document.state | lstring:locale}}<br ng-show="organization.document.city || document.state" />
                             {{organization.document.postalCode | lstring:locale}}<span ng-show="organization.document.postalCode">, </span>
-                            <b>{{organization.document.country | term:locale}}</b> <image style="height:15px;;" ng-src="https://www.cbd.int/images/flags/96/flag-{{organization.document.country.identifier}}-96.png?v=<%=gitVersion%>"></image>
+                            <b>{{organization.document.country | term:locale}}</b> <image style="height:15px;;" ng-src="https://www.cbd.int/images/flags/96/flag-{{organization.document.country.identifier}}-96.png"></image>
                             <br>
                             <span ng-if="organization.document.emails"><br> </span>
                             <span ng-repeat="item in organization.document.emails">
@@ -346,9 +348,10 @@
 
                           <div class="col-xs-2" ng-show="organization.logo">
                               <div>
-                                  <img width="100%" ng-src="{{organization.logo.url}}?v=<%=gitVersion%>"></img>
+                                  <img width="100%" ng-src="{{organization.logo.url}}"></img>
                               </div>
                           </div>
+                            </div>
                 </div>
             </div>
 
@@ -369,7 +372,7 @@
             <label class="view">Related Aichi Biodiversity Target(s)</label>
             <div class="km-value">
                 <div ng-repeat="term in document.aichiTargets">
-                    <img style="height: 20px;  width: 20px; margin-bottom:5px; " ng-src="https://www.cbd.int/images/aichi/48/abt-{{getAichiNumber(term)}}-48.png?v=<%=gitVersion%>">
+                    <img style="height: 20px;  width: 20px; margin-bottom:5px; " ng-src="https://www.cbd.int/images/aichi/48/abt-{{getAichiNumber(term)}}-48.png">
                     <a ng-href="https://www.cbd.int/aichi-targets/target/{{getAichiNumber(term)}}">{{term | term:locale}}</a>
                 </div>
             </div>

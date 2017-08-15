@@ -46,7 +46,6 @@
 			<li ng-mouseover="highlightLink='abttf'" ng-mouseleave="highlightLink=''"><a href="actors/abttf">ABTTF</a> <i ng-if="highlightLink=='abttf' || path=='/actors/abttf'" style="position:relative;top:-4px;left:18px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
 			<li ng-mouseover="highlightLink='blg'" ng-mouseleave="highlightLink=''"><a href="actors/blg">BLG</a> <i ng-if="highlightLink=='blg' ||  path=='/actors/blg'" style="position:relative;top:-4px;left:8px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
 			<li ng-mouseover="highlightLink='jlg'" ng-mouseleave="highlightLink=''"><a href="actors/jlg">JLG</a> <i ng-if="highlightLink=='jlg' ||  path=='/actors/jlg'" style="position:relative;top:-4px;left:5px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
-			<li ng-mouseover="highlightLink='champions'" ng-mouseleave="highlightLink=''"><a href="actors/champions">Champions</a> <i ng-if="highlightLink=='champions' ||  path=='/actors/champions'" style="position:relative;top:-4px;left:25px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
 			<li ng-mouseover="highlightLink='partners'" ng-mouseleave="highlightLink=''"><a href="actors/partners">UNDB Partners</a> <i ng-if="highlightLink=='partners' ||  path=='/actors/partners'" style="position:relative;top:-4px;left:35px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
 			<li ng-mouseover="highlightLink='participate'" ng-mouseleave="highlightLink=''"><a href="actions/participate">Participate</a> <i ng-if="highlightLink=='participate' ||  path=='/actions/participate'" style="position:relative;top:-4px;left:25px;" class="color-white fa-lg fa fa-caret-up"></i> </li>
 		</ul>
@@ -66,7 +65,7 @@
 			<div class="profile-column">
 				<div class="img-container" ng-if="partner.logo_s">
 
-					<img ng-src="{{partner.logo_s}}?v=<%=gitVersion%>" class="img-responsive"></img>
+					<img ng-src="{{partner.logo_s}}" class="img-responsive"></img>
 
 				</div>
 

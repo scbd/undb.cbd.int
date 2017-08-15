@@ -60,7 +60,7 @@
 
         <p>
           <a href="{{doc.uri}}">
-            <img ng-src="{{doc.thumb || doc.uri}}?v=<%=gitVersion%>" ng-show="(doc.thumb  && !isMovie()) || faClass==='fa-image'" style="max-width:100px;max-height:100px;">
+            <img ng-src="{{doc.thumb || doc.uri}}" ng-show="(doc.thumb  && !isMovie()) || faClass==='fa-image'" style="max-width:100px;max-height:100px;">
             <i class="fa {{faClass}}  fa-5x" ng-if="(!doc.thumb && !isMovie(doc.uri) && faClass!=='fa-image') "></i>
             <iframe width="150px" height="100px" ng-if="isYoutube(doc.uri)" ng-src="{{trustSrc(doc.uri)}}">
             </iframe>

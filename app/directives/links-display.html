@@ -59,7 +59,7 @@ padding-left: 2px;
   <li ng-if="doc.website_s || doc.website">
     <a href="{{doc.website || doc.website_s}}" class="text-nowrap">
 
-      <img class="www-icon" src="app/img/icon-www.png?v=<%=gitVersion%>" style="width:10px;height:10px;margin:0 13px 0 13px;"></img>
+      <img class="www-icon" src="app/img/icon-www.png" style="width:10px;height:10px;margin:0 13px 0 13px;"></img>
       <span>{{parseURL(doc.website ||doc.website_s ).host| trunc:'30':'...'}}</span>
     </a>
   </li>

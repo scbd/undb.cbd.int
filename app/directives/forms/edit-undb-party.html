@@ -7,15 +7,15 @@
 
 	<div id="view-header" class="panel-heading " style="background-color:#004844;margin-top:20px;">
 			<div class="row">
-					<div class="col-xs-12 col-sm-2">
-							<h2 style="color:white;">Party Profile </h2>
+					<div class="col-xs-12 col-sm-3">
+							<h2 style="color:white;">Country Profile </h2>
 					</div>
-					<div class="col-xs-12 col-sm-10 text-right hidden-xs" >
+					<div class="col-xs-12 col-sm-9 text-right hidden-xs" >
 							<span km-form-languages  ng-model="document.header.languages"></span>
 							<span km-form-std-buttons document="document" on-post-close="onPostClose()" on-error="onError(error, errorCode)" on-post-workflow="onPostWorkflow(data)" on-post-publish="onPostPublish(data)" on-post-save-draft="onPostSaveDraft(data)" on-pre-save-draft="onPreSaveDraft()"
 									on-pre-publish="onPrePublish()"></span>
 					</div>
-					<div class="col-xs-12 col-sm-10 small visible-xs" >
+					<div class="col-xs-12 col-sm-9 small visible-xs" >
 							<span km-form-languages xs ng-model="document.header.languages"></span>
 							<span km-form-std-buttons xs  document="document" on-post-close="onPostClose()" on-error="onError(error, errorCode)" on-post-workflow="onPostWorkflow(data)" on-post-publish="onPostPublish(data)" on-post-save-draft="onPostSaveDraft(data)" on-pre-save-draft="onPreSaveDraft()"
 									on-pre-publish="onPrePublish()"></span>
@@ -33,15 +33,13 @@
 					<div class="col-xs-12">
 						<ul class="pagination hidden-xs">
 							<li ng-class="{ disabled: tab=='general' }"><a href="" ng-click="prevTab()">&laquo;</a></li>
-							<li ng-class="{ active  : tab=='general' }"><a href="" ng-click="tab='general'">Party</a></li>
-							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">UNDB Profile</a></li>
+							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Profile</a></li>
 							<li ng-class="{ active  : tab=='review'  }"><a href="" ng-click="tab='review';validate();">Review</a></li>
 							<li ng-class="{ disabled: tab=='review'  }"><a href="" ng-click="nextTab()">&raquo;</a></li>
 						</ul>
 						<ul class="pagination small visible-xs">
 							<li ng-class="{ disabled: tab=='general' }"><a href="" ng-click="prevTab()">&laquo;</a></li>
-							<li ng-class="{ active  : tab=='general' }"><a href="" ng-click="tab='general'">Party</a></li>
-							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">UNDB Profile</a></li>
+							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Profile</a></li>
 							<li ng-class="{ active  : tab=='review'  }"><a href="" ng-click="tab='review';validate();">Review</a></li>
 							<li ng-class="{ disabled: tab=='review'  }"><a href="" ng-click="nextTab()">&raquo;</a></li>
 						</ul>
@@ -53,15 +51,15 @@
 				<div km-document-validation ng-model="validationReport"></div>
 				<form name="editForm" style="margin-top:10px" novalidate>
 
-					<div km-tab="general">
+					<div km-tab="detail">
 						<div class="col-md-8 col-xs-12">
-								<div class="km-control-group" name="government" required caption="Party or Governemnt ">
+								<div class="km-control-group" name="government" required caption="Select Governemnt ">
 								<div km-select  required name="government" ng-model="document.government" items="options.countries()"></div>
 							</div>
 						</div>
-					</div>
 
-					<div km-tab="detail">
+
+
 						<div class="col-xs-12">
 								<div class="km-control-group" name="description" caption="Description">
 										<div class="help-info small">Briefly describe your government's  work related to the United Nations Decade on Biodiversity (max. 1000 characters) in one or more of the 6 United Nations languages<span class="pull-right small red" style="color:red;" ng-if="document.collaborationAreas.en.length">Word Count: {{wordCount(document.collaborationAreas.en)}}</span></div>
@@ -71,8 +69,8 @@
 						<br>
 						<div class="col-xs-12">
 								<div class="km-control-group" name="descriptionNative">
-										<label class="control-label">Description native language</label>
-										<div class="help-info small">Briefly describe your government's  work related to the United Nations Decade on Biodiversity (max. 1000 characters) in your native language<span class="pull-right small red" style="color:red;" ng-if="document.collaborationAreas.en.length">Word Count: {{wordCount(document.collaborationAreas.en)}}</span></div>
+										<label class="control-label">Description official language(s)</label>
+										<div class="help-info small">Briefly describe your government's  work related to the United Nations Decade on Biodiversity (max. 1000 characters) in your official language(s)<span class="pull-right small red" style="color:red;" ng-if="document.collaborationAreas.en.length">Word Count: {{wordCount(document.collaborationAreas.en)}}</span></div>
 										<textarea class="form-control" rows="4" name="descriptionNative" ng-model="document.descriptionNative"  ></textarea>
 								</div>
 						</div>
@@ -116,16 +114,14 @@
 
 					<div class="col-xs-12">
 						<ul class="pagination hidden-xs">
-							<li ng-class="{ disabled: tab=='general' }"><a href="" ng-click="prevTab()">&laquo;</a></li>
-							<li ng-class="{ active  : tab=='general' }"><a href="" ng-click="tab='general'">Party</a></li>
-							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">UNDB Profile</a></li>
+							<li ng-class="{ disabled: tab=='detail' }"><a href="" ng-click="prevTab()">&laquo;</a></li>
+							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Profile</a></li>
 							<li ng-class="{ active  : tab=='review'  }"><a href="" ng-click="tab='review';validate();">Review</a></li>
 							<li ng-class="{ disabled: tab=='review'  }"><a href="" ng-click="nextTab()">&raquo;</a></li>
 						</ul>
 						<ul class="pagination small visible-xs">
-							<li ng-class="{ disabled: tab=='general' }"><a href="" ng-click="prevTab()">&laquo;</a></li>
-							<li ng-class="{ active  : tab=='general' }"><a href="" ng-click="tab='general'">Party</a></li>
-							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">UNDB Profile</a></li>
+							<li ng-class="{ disabled: tab=='detail' }"><a href="" ng-click="prevTab()">&laquo;</a></li>
+							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Profile</a></li>
 							<li ng-class="{ active  : tab=='review'  }"><a href="" ng-click="tab='review';validate();">Review</a></li>
 							<li ng-class="{ disabled: tab=='review'  }"><a href="" ng-click="nextTab()">&raquo;</a></li>
 						</ul>
@@ -136,15 +132,15 @@
 
 		<div id="view-header" class="panel-heading" style="background-color:#004844;color:white;">
 				<div class="row">
-						<div class="col-xs-12 col-sm-2">
-								<h2 style="color:white;">Party Profile</h2>
+						<div class="col-xs-12 col-sm-3">
+								<h2 style="color:white;">Country Profile</h2>
 						</div>
-						<div class="col-xs-12 col-sm-10 text-right hidden-xs" >
+						<div class="col-xs-12 col-sm-9 text-right hidden-xs" >
 								<span km-form-languages  ng-model="document.header.languages"></span>
 								<span km-form-std-buttons document="document" on-post-close="onPostClose()" on-error="onError(error, errorCode)" on-post-workflow="onPostWorkflow(data)" on-post-publish="onPostPublish(data)" on-post-save-draft="onPostSaveDraft(data)" on-pre-save-draft="onPreSaveDraft()"
 										on-pre-publish="onPrePublish()"></span>
 						</div>
-						<div class="col-xs-12 col-sm-10 small visible-xs" >
+						<div class="col-xs-12 col-sm-9 small visible-xs" >
 								<span km-form-languages xs ng-model="document.header.languages"></span>
 								<span km-form-std-buttons xs  document="document" on-post-close="onPostClose()" on-error="onError(error, errorCode)" on-post-workflow="onPostWorkflow(data)" on-post-publish="onPostPublish(data)" on-post-save-draft="onPostSaveDraft(data)" on-pre-save-draft="onPreSaveDraft()"
 										on-pre-publish="onPrePublish()"></span>

@@ -49,8 +49,8 @@
 		<div class="row">
 			<div class="col-xs-12 flag">
 				<h1 style="line-height:40px;"><i class="fa fa-edit"></i> Edit Profile for {{document.name}}
-					<img class="pull-right" ng-src="{{getCountryFlag(document.code)}}?v=<%=gitVersion%>" ng-attr-title="{{country.name}}" style="max-height:40px;display:inline;margin-left:5px;" ng-if="document.code && document.code!=='eu'">
-					<img class="pull-right" ng-src="{{getCountryFlag('eur')}}?v=<%=gitVersion%>" ng-attr-title="{{country.name}}" style="max-height:40px;display:inline;margin-left:5px;" ng-if="document.code && document.code==='eu'">
+					<img class="pull-right" ng-src="{{getCountryFlag(document.code)}}" ng-attr-title="{{country.name}}" style="max-height:40px;display:inline;margin-left:5px;" ng-if="document.code && document.code!=='eu'">
+					<img class="pull-right" ng-src="{{getCountryFlag('eur')}}" ng-attr-title="{{country.name}}" style="max-height:40px;display:inline;margin-left:5px;" ng-if="document.code && document.code==='eu'">
 				</h1>
 				<button type="button" class="btn btn-default  pull-right" ng-click="close();"><i class="fa fa-times"></i></button>
 			</div>
@@ -84,7 +84,7 @@
 				<div class="form-group" ng-class="{ 'has-warning': form.facebook.$invalid }" style="margin-top:20px;">
 					<label for="title" class="col-sm-2  control-label required">Facebook</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="facebook" name="facebook" ng-model="document.facebook" ng-pattern="patterns.facebook" placeholder="https://www.facebook.com/organisation" ng-focus="onFocusStart('facebook','https://www.facebook.com/')">
+						<input type="text" class="form-control" id="facebook" name="facebook" ng-model="document.facebook" ng-pattern="patterns.facebook" placeholder="https://www.facebook.com/organization" ng-focus="onFocusStart('facebook','https://www.facebook.com/')">
 						<p class="help-block error" ng-show="facebook.$error.url">This is not a valid web address</p>
 						<p class="help-block error" ng-show="form.facebook.$error.pattern">Facebook address is invalid. It should look like:
 							<em>https://www.facebook.com/your-facebook-page</em>
@@ -94,7 +94,7 @@
 				<div class="form-group" ng-class="{ 'has-warning': form.twitter.$invalid, 'has-error' : form.$submitted && form.twitter.$invalid}">
 					<label for="twitter" class="col-sm-2  control-label">Twitter</label>
 					<div class="col-sm-6">
-						<input type="url" class="form-control" name="twitter" id="twitter" ng-model="document.twitter" ng-pattern="patterns.twitter" placeholder="https://twitter.com/organisation" ng-focus="onFocusStart('twitter','https://www.twitter.com/')">
+						<input type="url" class="form-control" name="twitter" id="twitter" ng-model="document.twitter" ng-pattern="patterns.twitter" placeholder="https://twitter.com/organization" ng-focus="onFocusStart('twitter','https://www.twitter.com/')">
 						<p class="help-block error" ng-show="form.twitter.$error.url">This is not a valid web address</p>
 						<p class="help-block error" ng-show="form.twitter.$error.pattern">Twitter address is invalid. It should look like:
 							<em>https://twitter.com/your-twitter-account</em>
@@ -105,7 +105,7 @@
 				<div class="form-group" ng-class="{ 'has-warning': form.youtube.$invalid, 'has-error' : form.$submitted && form.youtube.$invalid}">
 					<label for="twitter" class="col-sm-2  control-label" required>Youtube</label>
 					<div class="col-sm-6">
-						<input type="url" class="form-control" name="youtube" id="youtube" ng-model="document.youtube" ng-pattern="patterns.youtube" placeholder="https://www.youtube.com/user/organisation" ng-focus="onFocusStart('youtube','https://www.youtube.com/')">
+						<input type="url" class="form-control" name="youtube" id="youtube" ng-model="document.youtube" ng-pattern="patterns.youtube" placeholder="https://www.youtube.com/user/organization" ng-focus="onFocusStart('youtube','https://www.youtube.com/')">
 						<p class="help-block error" ng-show="form.youtube.$error.url">This is not a valid web address</p>
 						<p class="help-block error" ng-show="form.youtube.$error.pattern">Youtube address is invalid. It should look like:
 							<em>https://www.youtube.com/user/your-youtube-channel</em>

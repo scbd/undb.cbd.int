@@ -31,7 +31,7 @@
                           {{organization.city | lstring:locale}}<span ng-show="organization.city">, </span>
                           {{organization.state | lstring:locale}}<br ng-show="organization.city || document.state" />
                           {{organization.postalCode | lstring:locale}}<span ng-show="organization.postalCode">, </span>
-                          <b>{{organization.country | term:locale}}</b> <image style="height:15px;;" ng-src="https://www.cbd.int/images/flags/96/flag-{{organization.country.identifier}}-96.png?v=<%=gitVersion%>"></image>
+                          <b>{{organization.country | term:locale}}</b> <image style="height:15px;;" ng-src="https://www.cbd.int/images/flags/96/flag-{{organization.country.identifier}}-96.png"></image>
                           <br>
                           <span ng-if="organization.emails"><br> </span>
                           <span ng-repeat="item in organization.emails">
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-xs-2" ng-show="organization.logo">
                             <div>
-                                <img width="100%" ng-src="{{organization.logo.url}}?v=<%=gitVersion%>"></img>
+                                <img width="100%" ng-src="{{organization.logo.url}}"></img>
                             </div>
                         </div>
         </div>
@@ -96,7 +96,7 @@
       <div class="col-xs-12" ng-show="document.governments">
           <legend class="view">Related Parties & Governments</legend>
           <div class="km-value" ng-repeat="gov in document.governments">
-              <image style="height:15px;;" ng-src="https://www.cbd.int/images/flags/96/flag-{{gov.identifier}}-96.png?v=<%=gitVersion%>"></image> <span ng-bind="gov | term:locale"><br/></span>
+              <image style="height:15px;;" ng-src="https://www.cbd.int/images/flags/96/flag-{{gov.identifier}}-96.png"></image> <span ng-bind="gov | term:locale"><br/></span>
           </div>
   </div>
       <div class="col-xs-12" ng-show="document.description">

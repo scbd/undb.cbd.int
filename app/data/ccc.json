@@ -1,12 +1,183 @@
-{
-	"cccs":[{
-			"endDate_dt":"2020-12-01T05:00:00.000Z",
-			"startDate_dt":"2016-12-20T05:00:00.000Z",
-			"title_s":"CCC",
-			"lat_d" : "14.2350",
-			"lng_d" : "51.9253",
-			"description_s":"sssssss  ssss s s ss"
-	}
- 
+[{
+			"lng_d" : -50.814707,
+			"lat_d" : -10.026016,
+			"title_s":"Invasive Alien Species Prevention, Control and Monitoring ",
+			"description_s":"Ministry of Environment, Chico Mendes Institute for Biodiversity Conservation (ICMBio), Rio de Janeiro Botanical Garden (JBRJ), Brazilian Institute of Environment and Renewable Natural Resources (IBAMA) responsible for coordination and planning actions and for public policies. State Governments, NGOs and local stakeholders involved in actions implementation.",
+			"country_s":"br",
+			"link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/576c60a7d92788845ce33582/Brazil.pdf",
+			"isCCC":"true",
+			"logo_s":"https://www.cbd.int/images/flags/48/flag-br-48.png"
+	},
+	{
+				"lng_d" : 5.290002,
+				"lat_d" : 52.284883,
+				"title_s":"Declaration on the Coalition of the Willing on Pollinators ",
+				"description_s":"Recalling that pollinators are fundamental for the conservation of biological diversity and the maintenance of natural terrestrial ecosystems and key ecosystem services, including food production, and for the adaptation of our food production systems to climate change, thereby providing a compelling example of how biodiversity underpins sustainable development, including the improvement of food security for the world’s population;",
+				"country_s":"nl",
+				"link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a08e/ccc.pdf",
+				"draft":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a08e/draft_statement.pdf",
+				"isCCC":"true",
+				"logo_s":"https://www.cbd.int/images/flags/48/flag-nl-48.png"
+		},
+		{
+		      "lng_d" : -83.99322,
+		      "lat_d" : 10.009572,
+		      "title_s":"National payment for environmental services on biodiversity ",
+		      "description_s":"Launch of a national base PES on biodiversity, responding to Costa Rica’s NBSAP and resource mobilization plans. It the first of its kind PES on biodiversity in the world at a national scale directly responding to Costa Rica Aichi targets implementing plan. ",
+		      "country_s":"cr",
+		      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/576c60e4d92788845ce33586/Costa-Rica.pdf",
+		      "isCCC":"true",
+		      "logo_s":"https://www.cbd.int/images/flags/48/flag-cr-48.png"
+		  },
+			{
+			      "lng_d" : 25.668892,
+			      "lat_d" : 58.771918,
+			      "title_s":"Estonian commitments on Aichi targets",
+			      "description_s":"1. Environmental awareness is increasing. 2. Protected areas coverage is above the Aichi target. 3. Adopted policy instrument for biodiversity conservation in 2012 Nature Conservation Development Plan.",
+			      "country_s":"ee",
+			      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a00d/Estonia.pdf",
+			      "isCCC":"true",
+			      "logo_s":"https://www.cbd.int/images/flags/48/flag-ee-48.png"
+			  },
+				{
+				      "lng_d" : 10.265905,
+				      "lat_d" : 51.066629,
+				      "title_s":"A funding instrument in support of the implementation of the Aichi Biodiversity Targets ",
+				      "description_s":"The German federal IKI projects The IKI is an The IKI was established in government is committed to are normally ongoing initiative. 2008. It is now reliably funded supporting the implementation selected on a It has no time through the federal budget on a of the Strategic Plan 2011 - yearly basis limit. Projects are yearly basis. 2020 of the CBD and its Aichi following a normally requested targets and sustainable call for and selected on a development with our partner countries. In 2008 German proposals along with the yearly basis. Chancellor Angela Merkel corresponding All biodiversity-announced that Germany will support relevant projects permanently provide 500 information. funded by the IKI million Euros per year from 2013 onwards for the global In past years, biodiversity form part of Germany's conservation of forests and projects were international other important ecosystems. requested to correspond to biodiversity financing. ",
+				      "country_s":"de",
+				      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a004/Germany.pdf",
+				      "isCCC":"true",
+				      "logo_s":"https://www.cbd.int/images/flags/48/flag-de-48.png"
+				  },
+					{
+					      "lng_d" : 78.894236,
+					      "lat_d" : 22.133348,
+					      "title_s":"Road maps for achieving Aichi target 11 by South, Central and West Asian countries ",
+					      "description_s":"India hosted CBD’s subregional capacity building workshop on Aichi Biodiversity Targets 11 and 12 in December 2015 in New Delhi for South, Central and West Asian countries. Following this workshop, India through a consultative process had compiled and submitted information on status, gaps, opportunities and actions for Aichi Targets 11 and 12 to CBD Secretariat. As per this, India has already surpassed the quantitative element of Aichi target 11 of conserving at least 17% terrestrial areas through protected areas and other areabased conservation measures. Similar road maps were submitted by other countries of the region as well. Further, as the host country for this workshop, the Indian Minister had jointly signed letters with the Executive Secretary, CBD Secretariat, addressed to all Ministers of Environment for South, Central and West Asian countries to seek political support and leadership for implementation of their road maps on achieving Aichi Targets 11 and 12.",
+					      "country_s":"in",
+					      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a02c/India.pdf",
+					      "isCCC":"true",
+					      "logo_s":"https://www.cbd.int/images/flags/48/flag-in-48.png"
+					  },
+						{
+						      "lng_d" : 138.729525,
+						      "lat_d" : 36.416179,
+						      "title_s":"Support for Capacity-Building Activities towards achieving Aichi Biodiversity Target in Developing Countries by the Japan Biodiversity Fund ",
+						      "description_s":"Japan has established the Japan Biodiversity Fund (with 59million$) in the Secretariat of the Convention on Biological Diversity (SCBD), as the president of COP10, and has supported capacity-building activities for developing countries to achieve Aichi Biodiversity targets in cooperation with the SCBD. It has contributed to, for instance, the submission of newly developed or updated NBSAPs from 130 countries since COP10. Now that the year of 2017 is coming and prompt actions are needed towards 2020, it is required for each party to accelerate the implementation of their NBSAPs intensely and urgently. Japan is willing to strengthen its support of those activities with the SCBD by the remaining 16 million$. The JBF activities are expected to be co-financed with other resources for rippling and long-lasting effects of the intervention. As well, the JBF continues to support participation of developing countries to CBD-related meetings, including this UN Biodiversity Conference. ",
+						      "country_s":"jp",
+						      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/576c614bd92788845ce3358e/Japan.pdf",
+						      "isCCC":"true",
+						      "logo_s":"https://www.cbd.int/images/flags/48/flag-jp-48.png"
+						  },
+							{
+							      "lng_d" :  -90.216649,
+							      "lat_d" : 15.50674,
+							      "title_s":"LMMC Carta to Achieve Aichi Biodiversity Target 11",
+							      "description_s": "Recalling that our Group of Likeminded Megadiverse Countries (LMMC) was formed in Cancun 14 years ago, in 2002, as a mechanism for consultation and cooperation to promote interests related to the conservation and sustainable use of biological diversity, and the fair and equitable sharing of benefits derived from the utilization of genetic resources, at the behest of an initiative taken by the Government of Mexico; and, recalling also, the Cancun, Cusco and New Delhi Declarations of our Group; Recalling further the continuing support of the LMMC to the benefit sharing provisions of the Convention and its Nagoya Protocol on Access to Genetic Resources and the Fair and Equitable Sharing of Benefits Arising from their Utilization; Noting that with 12% global surface, the LMMC harbour at least 70% of the planet’s terrestrial biological diversity as well as rich marine biodiversity, over 45% of the population of the world, and an extraordinarily rich cultural diversity and associated traditional knowledge; Acknowledging that protected areas and other effective area-based conservation measures, in addition to conserving ecosystems, are essential for life, support livelihoods and offer naturebased solutions for the complex challenges faced by the world today. They protect unique, ecological, socio-economic and cultural practices. They are also important vehicles for facilitating integration of biodiversity into comprehensive sustainable development policies; ",
+							      "country_s":"gt",
+							      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a020/Guatemala.pdf",
+							      "isCCC":"true",
+							      "logo_s":"https://www.cbd.int/images/flags/48/flag-gt-48.png"
+							  },
+								{
+								      "lng_d" : 84.107899,
+								      "lat_d" : 28.124627,
+								      "title_s":"Nepal’s commitment on meeting Aichi Targets",
+								      "description_s":"By 2020, Nepal will put at least 10 % of our forest land under sustainable management, by 2022, we are expecting to double the population of wild Tiger. On Target 14, Policy for Payment for Ecosystem Services will be in place. On Target 15, we will implement REDD plus strategy and about 15 % of degraded forests will be restored by 2020. On Nagoya Protocol, we will ratify and National Legislation will be put on place. Documentation of biological resources and associated traditional knowledge has been started and we plan to complete it by 2020. ",
+								      "country_s":"np",
+								      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a04e/Nepal.pdf",
+								      "isCCC":"true",
+								      "logo_s":"https://www.cbd.int/images/flags/48/flag-np-48.png"
+								  },
+									{
+									      "lng_d" : 171.959902,
+									      "lat_d" : -42.857749,
+									      "title_s":"Achievement of increased efforts in invasive alien species management and control on to enhance implementation of Aichi Targets 9 and 12 and give impetus to the Honolulu Challenge on Invasive Species",
+									      "description_s":"To stimulate development of partnerships at all scales with the purpose of increasing the rate of eradications of invasive alien species at landscape and nation scales. To bring together willing countries, public and private sector organizations, international organizations, academia and scientists, and citizen groups to develop new initiatives, methodologies and techniques to increase the quantum and effectiveness of activity to control invasive alien species. To undertake activities to increase capacity and capability to undertake invasive alien species control activity. ",
+									      "country_s":"nz",
+									      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a054/New-Zealand.pdf",
+									      "isCCC":"true",
+									      "logo_s":"https://www.cbd.int/images/flags/48/flag-nz-48.png"
+									  },
+										{
+										      "lng_d" : 12.453988,
+										      "lat_d" : 64.876466,
+										      "title_s":"Establishment of protected marine areas ",
+										      "description_s":"In 2016, Norway has designated ten new areas to protect cold water coral reefs in Norwegian waters against impact from bottom fisheries gear (adding up to a total of 18 coral areas). • Three new marine protected areas (cross-sectoral) were designated in June 2016, including an estuary, a coral reef and an open coastal area (adding up to a total of six crosssectoral marine protected areas). 15 additional crosssectoral MPA's are in 11 2016 2016 national legislation national legislation process. ",
+										      "country_s":"no",
+										      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a067/Norway.pdf",
+										      "isCCC":"true",
+										      "logo_s":"https://www.cbd.int/images/flags/48/flag-no-48.png"
+										  },
+											{
+											      "lng_d" : -74.934363,
+											      "lat_d" : -10.2312,
+											      "title_s":"Towards the Implementation of Aichi Target 13 in centers of origin for food and agriculture countries",
+											      "description_s":"Development of proper conditions in order to conserve a representative sample of the national agrobiodiversity species under ex situ conditions, including genetic resources of animals, plants and microorganisms associated.  Promotion of research and knowledge generation regarding centers of origin and diversification of species used for food and agriculture, of at least 5 species. Initiate the implementation of a national inventory of species for food and agriculture, along with their wild relatives, to be included in a national database that will allow strategic conservation planning.",
+											      "country_s":"pe",
+											      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a049/Mexico.pdf",
+											      "isCCC":"true",
+											      "logo_s":"https://www.cbd.int/images/flags/48/flag-pe-48.png"
+											  },
+												{
+												      "lng_d" : -101.157993,
+												      "lat_d" : 21.513181,
+												      "title_s":"Towards the Implementation of Aichi Target 13 in centers of origin for food and agriculture countries",
+												      "description_s":"Development of proper conditions in order to conserve a representative sample of the national agrobiodiversity species under ex situ conditions, including genetic resources of animals, plants and microorganisms associated.  Promotion of research and knowledge generation regarding centers of origin and diversification of species used for food and agriculture, of at least 5 species. Initiate the implementation of a national inventory of species for food and agriculture, along with their wild relatives, to be included in a national database that will allow strategic conservation planning.",
+												      "country_s":"mx",
+												      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a049/Mexico.pdf",
+												      "isCCC":"true",
+												      "logo_s":"https://www.cbd.int/images/flags/48/flag-mx-48.png"
+												  },
+													{
+													      "lng_d" : 166.875421,
+													      "lat_d" : 11.108471,
+													      "title_s":"Actions to implement national roadmap for Target 11 on protected areas",
+													      "description_s":"Implementation of the key activities outlined in Marshall Islands draft Roadmap for Target 11",
+													      "country_s":"mh",
+													      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a042/Republic-of-Marshall-Islands.pdf",
+													      "isCCC":"true",
+													      "logo_s":"https://www.cbd.int/images/flags/48/flag-mh-48.png"
+													  },
+														{
+														      "lng_d" : 28.609155,
+														      "lat_d" : 47.224184,
+														      "title_s":"Approval of the Strategy on Biological Diversity of the Republic of Moldova for 2015-2020 and the Action Plan for enforcing the Strategy on Biological Diversity of the Republic of Moldova for 2015-2020",
+														      "description_s":"The Strategy on Biological Diversity of the Republic of Moldova for 2015-2020 and the Action Plan for enforcing the Strategy on Biological Diversity of the Republic of Moldova for 2015-2020 were approved by Government Decision No.. 274 from May 18, 2015. The Strategy comprises stipulations regarding the implementation of the Aichi biodiversity objectives approved in Nagoya (Japan) at the CBD Conference of Parties (2010).",
+														      "country_s":"md",
+														      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a03d/Moldova.pdf",
+														      "isCCC":"true",
+														      "logo_s":"https://www.cbd.int/images/flags/48/flag-md-48.png"
+														  },
+															{
+															      "lng_d" : 23.968707,
+															      "lat_d" : -29.740223,
+															      "title_s":"South Africa is committed to the full achievement of Target 16 of the Aichi Targets and up-scaling the implementation of The Nagoya Protocol ",
+															      "description_s":"Our aspiration is to develop and improve the bioprospecting industry to create a sustainable, inclusive and commercially viable sector adding 10 000 new jobs and contributing R1.7 billion (125 Million USD) to GDP at 10% p.a. by 2030. We have developed detailed implementation plans in this regard. ",
+															      "country_s":"za",
+															      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a086/South-Africa.pdf",
+															      "isCCC":"true",
+															      "logo_s":"https://www.cbd.int/images/flags/48/flag-za-48.png"
+															  },
+																{
+																      "lng_d" : 185.626385,
+																      "lat_d" : -19.872175,
+																      "title_s":"Evaluation à mi-parcours des progres accomplis dans la mise en oeuvre du plan stratégique 2011-2020 : niveau de réalisation des 20 objectifs : 2011- 2016 et perspectives 2017-2020 au Togo ",
+																      "description_s":"Prendre des mesures courageuses pour diminuer les pressions actuelles sur les ressources biologiques et en particulier sécuriser les aires protégées et mobilier les moyens techniques et financiers nécessaires pour conserver la biodiversité nationale",
+																      "country_s":"to",
+																      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a076/Togo.pdf",
+																      "isCCC":"true",
+																      "logo_s":"https://www.cbd.int/images/flags/48/flag-to-48.png"
+																  },
+																	{
+																	      "lng_d" : 2.723277,
+																	      "lat_d" : 46.747252,
+																	      "title_s":"Reduce pressure on coral reefs and associated ecosystems",
+																	      "description_s":"Promote : - the adoption of quantified targets for the protection of coral reef and associated ecosystems; - the reduction of plastic microbeads pollution in marine environment, including through encouraging a ban on plastic microbeads in cosmetic products; - the limitation of dragging and construction projects in coral reef areas; - the harmonization of bleaching monitoring methods; - climate vulnerability assesments and long-term management activities to enhance global coral reef resilience; - the introduction of immediate site management measures in response to bleaching events, such as temporary ban on activities that increase sedimentation and reduce water quality. Encourage the industry to develop alternatives to endocrine disrupters present in most sunscreens. Encourage financing for projects and initiatives which help protect and restore coral reefs, mangroves and seagrasses.",
+																	      "country_s":"fr",
+																	      "link_s":"https://s3.amazonaws.com/mongo.document.attachments/undb-party-profile/57b71725aad99ba2df43a01b/ccc-france.pdf",
+																	      "isCCC":"true",
+																	      "logo_s":"https://www.cbd.int/images/flags/48/flag-fr-48.png"
+																	  }
+
 	]
-}

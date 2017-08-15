@@ -165,7 +165,7 @@
                                           	</div>
                                             <div >
                                               <span ng-repeat="term in contact.aichiTarget_ss" ng-if="contact.aichiTarget_ss">
-                                                <img  style="height: 20px;  width: 20px; margin-bottom:5px; " ng-src="https://www.cbd.int/images/aichi/48/abt-{{getAichiNumber(term)}}-48.png?v=<%=gitVersion%>" >
+                                                <img  style="height: 20px;  width: 20px; margin-bottom:5px; " ng-src="https://www.cbd.int/images/aichi/48/abt-{{getAichiNumber(term)}}-48.png" >
                                               </span>
                                               <span class="text-danger" ng-if="!contact.aichiTarget_ss && contact.schema_s==='organization'"> <br>NO AICHI BIODIVERSITY TARGETS SELECTED PLEASE UPDATE</span>
                                               <span class="text-danger" ng-if="!contact.thematicArea_ss && contact.schema_s==='organization'"> <br>NO CBD SUBJECT AREAS SELECTED PLEASE UPDATE</span>

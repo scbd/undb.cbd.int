@@ -64,8 +64,8 @@
           <a ng-href="actions/countries/{{country.code}}" >
             <!-- <div class="flag-icon-background listCountriesFlag" ng-class="country.cssClass" ng-attr-title="{{country.name}}" ng-if="country.code!='eu'"></div> -->
             <!-- <img src="app/img/Flag_of_Europe.svg" class="listCountriesFlag" ng-attr-title="{{country.name}}" ng-if="country.code==='eu'"> -->
-            <img style="max-height:70px;" ng-src="{{getCountryFlag(country.code)}}?v=<%=gitVersion%>"  ng-attr-title="{{country.name}}"  ng-if="country.code!=='eu'">
-            <img ng-src="{{getCountryFlag('eur')}}?v=<%=gitVersion%>" ng-attr-title="{{country.name}}" ng-if="country.code==='eu'">
+            <img style="max-height:70px;" ng-src="{{getCountryFlag(country.code)}}"  ng-attr-title="{{country.name}}"  ng-if="country.code!=='eu'">
+            <img ng-src="{{getCountryFlag('eur')}}" ng-attr-title="{{country.name}}" ng-if="country.code==='eu'">
 
 
           </a>

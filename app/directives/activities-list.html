@@ -50,8 +50,8 @@
 
       <span class="color-grey" ng-if="!hideCountryReference" >
         <a href=""  ng-href="actions/countries/{{action.country_s}}" >{{action.country_EN_t}}</a> <i ng-if="action.country_s">
-          <img ng-src="{{getCountryFlag(action.country_s)}}?v=<%=gitVersion%>" style="max-height:15px;" ng-if="action.country_s!=='eu'"/>
-          <img ng-src="{{getCountryFlag('eur')}}?v=<%=gitVersion%>" style="max-height:15px;" ng-if="action.country_s==='eu'"/>
+          <img ng-src="{{getCountryFlag(action.country_s)}}" style="max-height:15px;" ng-if="action.country_s!=='eu'"/>
+          <img ng-src="{{getCountryFlag('eur')}}" style="max-height:15px;" ng-if="action.country_s==='eu'"/>
         </i>
       <span ng-if="!action.country_s"> <i  class="fa fa-globe" aria-hidden="true"></i>Global </span> </span>
     </td>
