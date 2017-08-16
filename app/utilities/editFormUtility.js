@@ -1,4 +1,4 @@
-define(['app','linqjs', 'utilities/realm','utilities/workflows'], function(app,Enumerable) {
+define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-storage'], function(app,Enumerable) {
   'use strict';
   app.factory('guid', function() {
   	function S4() {
@@ -81,7 +81,36 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows'], function(app,E
     };
 
     var _self = {
+        //==================================
+        //
+        //==================================
+        getRealm: function(identifier) {
 
+          return storage.drafts.get(identifier, {
+            info: ""
+          }).then(
+            function(success) {
+              return success;
+            },
+            function(error) {
+              if (error.status == 404)
+                return storage.documents.get(identifier, {
+                  info: ""
+                });
+              throw error;
+            }).then(
+            function(success) {
+              var info = success.data;
+              if(!info.Realm) return false;
+              return info.Realm;
+
+          },
+          function(error) {
+              if (error.status == 404)
+                return false;
+              throw error;
+          });
+        },
       //==================================
       //
       //==================================
@@ -339,12 +368,12 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows'], function(app,E
         throw "No workflow type defined for this record type: " + draftInfo.type;
 
       var workflowData = {
-        "realm": realm,
-        "documentID": draftInfo.documentID,
-        "identifier": draftInfo.identifier,
-        "title": draftInfo.workingDocumentTitle,
-        "abstract": draftInfo.workingDocumentSummary,
-        "metadata": draftInfo.workingDocumentMetadata,
+        "realm":        draftInfo.Realm || realm,
+        "documentID":   draftInfo.documentID,
+        "identifier":   draftInfo.identifier,
+        "title":        draftInfo.workingDocumentTitle,
+        "abstract":     draftInfo.workingDocumentSummary,
+        "metadata":     draftInfo.workingDocumentMetadata,
         "additionalInfo": additionalInfo
       };
 

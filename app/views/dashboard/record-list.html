@@ -155,7 +155,7 @@
                                     <!-- </td>
                                     <td > -->
                                         <div class="btn-group btn-group-xs text-right">
-                                            <a title="View" ng-if="record._state_s == 'public' || record._state_s=='published'" type="button" class="btn btn-default" ng-href="/dashboard/submit/{{record.schema_s}}/{{record.identifier_s}}/view" ><i class="fa fa-search"></i></a>
+                                            <a title="View" ng-if="record._state_s == 'public' || record._state_s=='published'" type="button" class="btn btn-default" ng-href="dashboard/submit/{{record.schema_s}}/{{record.identifier_s}}/view" ><i class="fa fa-search"></i></a>
                                             <!-- <button ng-show="record._state_s=='workflow' " title="Locked for edit" type="button" class="btn btn-default" ng-click="onWorkflow(record)"><i class="fa fa-lock"></i></button> -->
                                             <button ng-show="record._state_s!=='workflow' || isAdmin" title="Edit" type="button" class="btn btn-default" ng-click="onEdit(record)"><i class="fa fa-edit"></i></button>
                                             <button ng-show="(record._state_s==='public' && isAdmin) || (record._state_s==='draft' ) " title="Delete" type="button" class="btn btn-default" ng-click="onDelete(record, $event,$index);delLoader[$index]=true;"><i class="fa fa-trash-o"></i></button>
