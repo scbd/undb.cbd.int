@@ -368,12 +368,12 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-st
         throw "No workflow type defined for this record type: " + draftInfo.type;
 
       var workflowData = {
-        "realm": draftInfo.Realm || realm,
-        "documentID": draftInfo.documentID,
-        "identifier": draftInfo.identifier,
-        "title": draftInfo.workingDocumentTitle,
-        "abstract": draftInfo.workingDocumentSummary,
-        "metadata": draftInfo.workingDocumentMetadata,
+        "realm":        draftInfo.Realm || realm,
+        "documentID":   draftInfo.documentID,
+        "identifier":   draftInfo.identifier,
+        "title":        draftInfo.workingDocumentTitle,
+        "abstract":     draftInfo.workingDocumentSummary,
+        "metadata":     draftInfo.workingDocumentMetadata,
         "additionalInfo": additionalInfo
       };
 
