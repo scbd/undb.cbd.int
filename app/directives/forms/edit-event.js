@@ -1,4 +1,4 @@
-define(['text!./edit-event.html', 'text!./undb-records-dialog.html','app', 'angular', 'lodash', 'authentication',
+define(['text!./edit-event.html', 'text!./undb-records-dialog.html','app', 'angular', 'lodash', 'moment-timezone','authentication',
 'utilities/editFormUtility',
 'utilities/km-storage',
 'utilities/workflows',
@@ -21,7 +21,8 @@ define(['text!./edit-event.html', 'text!./undb-records-dialog.html','app', 'angu
 'directives/views/view-event',
 'directives/bootstrap-date-time-picker',
 'filters/moment'
-], function(template,bbiRecordsDialog, app, angular, _) { 'use strict';
+
+], function(template,bbiRecordsDialog, app, angular, _,moment) { 'use strict';
 
 app.directive('editEvent', ['$http',"$rootScope", "Enumerable", "$filter", "$q", "guid", "$location", "Thesaurus", 'authentication', 'editFormUtility',  'IStorage', '$route','$timeout','locale','userSettings','ngDialog', function ($http, $rootScope, Enumerable, $filter, $q, guid, $location, thesaurus, authentication, editFormUtility, storage, $route,$timeout,locale,userSettings,ngDialog) {
 	return {
@@ -179,7 +180,24 @@ app.directive('editEvent', ['$http',"$rootScope", "Enumerable", "$filter", "$q",
 			// 		userSettings.setting('bbi.recordsNotice',value);
 			// }//bbiRecordsNoticeChange
 			// $scope.bbiRecordsNoticeChange=bbiRecordsNoticeChange;
+			//============================================================
+			//
+			//============================================================
+			$scope.isAdmin= function() {
+					 return !!_.intersection($scope.user.roles, ["Administrator","UNDBPublishingAuthority","undb-administrator"]).length;
+			};
+			console.log('in event',$scope.isAdmin());
+			//============================================================
+			//
+			//============================================================
+			$scope.showIdb = function() {
+				var thisYear = moment().year();
 
+				if(moment().isBefore(thisYear+'-05-17') && moment().isAfter(thisYear+'-03-16'))
+					return true;
+				else
+					return false;
+			};
 
 			//============================================================
 			//
