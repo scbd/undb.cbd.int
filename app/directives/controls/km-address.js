@@ -9,12 +9,14 @@ define(['app', 'text!./km-address.html','lodash', 'directives/controls/km-inputt
 			transclude: true,
 			scope: {
 				placeholder: '@',
-        ngDisabledFn: '&ngDisabled',
-        binding: '=ngModel',
-        locales: '=',
-        required: "@",
-        ngChange: "&",
-	      validate: "&"
+		        ngDisabledFn: '&ngDisabled',
+		        binding: '=ngModel',
+		        locales: '=',
+		        required: "@",
+		        ngChange: "&",
+			    validate: "&",
+				validationReport:"=",
+				form:"="
 			},
 			link: function ($scope, $element,$attr)//, $element, $attr
 			{
@@ -34,6 +36,7 @@ define(['app', 'text!./km-address.html','lodash', 'directives/controls/km-inputt
 									$scope.mapsUrl=_.find($scope.binding.websites,{name:'Google Maps'}).url;
 								killWatch();
 								if(!isEmpty)$scope.useGoogle=false;
+								else clearSlacesSearch ();
 						});
 
 						$scope.$watch("binding.websites", function() {
@@ -60,10 +63,27 @@ define(['app', 'text!./km-address.html','lodash', 'directives/controls/km-inputt
 												$scope.validate();
 											});
 									 });
-				         });
+				         		});
+
 
 							},100);
 						}  //initMap
+//ng-change="placesSearch()"
+function placesSearch() {
+	if(!$scope.placeSearch || $scope.placeSearch===' '){
+		  $scope.clearSlacesSearch();
+		   return;
+		 }
+	  var service = new google.maps.places.AutocompleteService();
+		service.getQueryPredictions({input:$scope.placeSearch},function(predictions, status) {
+			if (status != google.maps.places.PlacesServiceStatus.OK)
+			   $timeout(function(){$scope.noPredictions = true})
+			 else
+						   $timeout(function(){$scope.noPredictions = false;});
+				   }
+		);
+}
+$scope.placesSearch = placesSearch;
 
 						//==================================
 						//
@@ -202,6 +222,7 @@ define(['app', 'text!./km-address.html','lodash', 'directives/controls/km-inputt
 								 $scope.selectedPlace='';
 								 $scope.placeSearch='';
 								 $scope.noPredictions=false;
+								 if(!$scope.binding)$scope.binding={};
 								 delete($scope.binding.address);
 								 delete($scope.binding.city);
 								 delete($scope.binding.state);

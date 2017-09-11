@@ -1,14 +1,55 @@
 <div>
+	<style>
+
+		@media (max-width: 767px){
+			.overlayOne{
+				width: 100%;
+				height:450px;
+
+				Background:rgba(10, 10, 10,.2);
+				position:absolute;
+				top:1px;
+				color:#fff;
+				z-index:10000;}
+			.overlayTwo{
+				width: 100%;
+				height:450px;
+				Background:rgba(10, 10, 10,.2);
+				position:absolute;
+				top:1px;
+				color:#fff;
+				z-index:10000;}
+		}
+
+	.overlayOne{
+		width: 100%;
+		height:300px;
+
+		Background:rgba(10, 10, 10,.2);
+		position:absolute;
+		top:140px;
+		color:#fff;
+		z-index:10000;}
+	.overlayTwo{
+		width: 100%;
+		/*height:300px;*/
+		Background:rgba(10, 10, 10,.2);
+		position:absolute;top:240px;
+		color:#fff;
+		z-index:10000;}
+	
+	</style>
 	<section ng-show="isEmpty() || useGoogle">
 		<div class="col-md-12">
 			<div class="panel panel-default" style="padding:10ppx 10px 10px 10px; background:#ddd;">
 				<div class="form-group" style="padding:10px 10px 10px 10px;">
 
-					<label for="placesSearch" class="control-label">Search google maps to prefill your address's details</label>
+					<label for="placesSearch" class="control-label">Please use this google maps search in order prefill your address's details</label>
 					<div class="input-group">
-						<input id="google-ac-input" name="placesSearch" class="form-control" ng-model="placeSearch" type="text" placeholder="secretariat of the convention on biological diversity" ng-change="placesSearch()">
+						<input id="google-ac-input" name="placesSearch" class="form-control" ng-model="placeSearch" type="text" placeholder="Secretariat of the Convention on Biological Diversity" ng-change="placesSearch()">
 						<span class="input-group-addon pointer" ng-click="clearSlacesSearch();"><i class="fa fa-search" ng-if="!selectedPlace && (!placeSearch || placeSearch.length===0)"></i><i class="fa fa-close" ng-if="selectedPlace || placeSearch.length" ></i></span>
 					</div>
+					<div ng-if="noPredictions" style="color:#a94442;"><br> <strong>No results found for: {{placeSearch}}</strong><br><br> If you are having trouble finding the exact address please search: <br><ol><li>the closest land mark</li><li>or the city only</li></ol> then input the rest of the information manually. </div>
 				</div>
 			</div>
 		</div>
@@ -23,7 +64,7 @@
 			</div>
 		</div>
 	</div>
-	<section ng-if="!isEmpty()">
+	<div style="position:relative;overflow:hidden:">
 		<div class="col-md-12">
 			<div class="km-control-group" name="address" caption="Address">
 				<div km-textbox-ml ng-model="binding.address" rows="2" placeholder="example: 413 St-Jacques Ouest, Suite 800" locales="locales"></div>
@@ -81,17 +122,24 @@
 					</div>
 				</div>
 				<div class="col-xs-3">
-					<div class="km-control-group" name="lat" caption="Latitude">
-						<input type="number" class="form-control" name="lat" id="lat" ng-model="binding.coordinates.lat">
+					<div class="km-control-group" name="lat" caption="Latitude" required>
+						<input type="number" class="form-control" name="lat" id="lat" ng-model="binding.coordinates.lat" required>
+
+
 					</div>
 				</div>
 
 				<div class="col-xs-3">
-					<div class="km-control-group" name="lng" caption="Longitude">
+					<div class="km-control-group" required   name="lng" caption="Longitude">
+						<input type="number" class="form-control" name="lng" id="lng" ng-model="binding.coordinates.lng" required>
 
-						<input type="number" class="form-control" name="lng" id="lng" ng-model="binding.coordinates.lng">
 					</div>
 				</div>
 		</section>
-	</section>
+		<div ng-if="isEmpty()" class="overlayOne" ng-class="{'overlayTwo':noPredictions}">
+			<div class="row">
+				&nbsp;
+			</div>
+		</div>
+	</div>
 </div>

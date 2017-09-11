@@ -635,6 +635,8 @@ app.directive('editOrganization', ['$http',"$rootScope", "Enumerable", "$filter"
 				if (/^\s*$/g.test(document.notes))
 					document.notes = undefined;
 
+				if (document.coordinates && document.coordinates.lat && document.coordinates.lng)
+					delete(document.coordinates);
 				return $q.when(false);
 			};
 
@@ -686,6 +688,7 @@ app.directive('editOrganization', ['$http',"$rootScope", "Enumerable", "$filter"
 					if($scope.editForm.$error && $scope.editForm.$error.required && $scope.editForm.$error.required.length){
 							report = {};
 							report.errors=[];
+
 							for(var i=0; i<$scope.editForm.$error.required.length;i++)
 								if($scope.editForm.$error.required[i].$name!=='linkForm' && $scope.editForm.$error.required[i].$name)
 										report.errors.push({code:'Error.Mandatory',property:$scope.editForm.$error.required[i].$name});
