@@ -1,19 +1,22 @@
 ﻿<ul>
 	<script type="text/ng-template"  id="term-check-tree-renderer.html">
-		<label>
+		<!-- <span ng-if="(term.identifier ==='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A' && isAdmin() ) || (term.identifier !='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A') "> -->
+		<label  ng-if="(term.identifier ==='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A' && isAdmin() ) || (term.identifier !='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A') ">
 			<input type="checkbox" ng-model="identifiers[term.identifier]" ng-click="save()" ng-required="IsRequired()" value="{{term.identifier}}" />
-				{{term.title||term.name | lstring:locale}}			
+				{{term.title||term.name | lstring:locale}}
 		</label>
-		<div class="km-select-description" ng-if="showDescription && term.description" 
-			style="padding: 3px 25px;">
+		<div class="km-select-description" ng-if="showDescription && term.description"
+			style="padding: 3px 25px;"  ng-if="(term.identifier ==='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A' && isAdmin() ) || (term.identifier !='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A') ">
 			{{term.description}}
 		</div>
-		<ul style="list-style:none">
+		<ul style="list-style:none"  ng-if="(term.identifier ==='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A' && isAdmin() ) || (term.identifier !='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A') ">
 			<li ng:repeat="term in term.narrowerTerms" ng-include="'term-check-tree-renderer.html'">
 		</ul>
+	<!-- </span> -->
 	</script>
 
-	<li ng:repeat="term in rootTerms" ng-include="'term-check-tree-renderer.html'"></li>
+	<li ng:repeat="term in rootTerms" ng-include="'term-check-tree-renderer.html'" ></li>
+	<!-- //ng-if="(term.identifier ==='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A' && isAdmin() ) || (term.identifier !='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A') " -->
 
 	<li ng-show="error">
 		<div class="alert">

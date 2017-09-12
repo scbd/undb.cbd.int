@@ -1,6 +1,8 @@
 <div style="color:#333;">
-    <div class="col-xs-2"><img ng-src="{{currImage.logo_s}}" style="max-width:50px;max-height:50px; margin: 5px 5px 5px 5px;"></div>
-    <div class="col-xs-10"><h3 style="display:inline;"><strong>{{currImage.title}}</strong></h3></div>
+    <div ng-show="currImage.logo_s" class="col-xs-2">
+        <img ng-src="{{currImage.logo_s}}" style="max-width:100%; margin: 5px 5px 5px 5px;">
+    </div>
+    <div ng-class="{'col-xs-12':!currImage.logo_s,'col-xs-10':currImage.logo_s}"><h3 style="display:inline;"><strong>{{currImage.title}}</strong></h3></div>
 
     <span class="pull-right text-nowrap" style="line-height:60px;font-size:18px;" ng-if="currImage.startDate_dt"><span style="color:#333;text-align:right;">Start: {{currImage.startDate_dt | moment:'format':'YYYY-MM-DD HH:mm'}} </span>
 

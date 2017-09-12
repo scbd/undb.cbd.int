@@ -80,7 +80,7 @@ define(['text!./undb-map.html',
                     params: {
                         'q': 'schema_s:event',
                         'sort': 'createdDate_dt desc',
-                        'fl':'id,identifier_s,country_s,title_s, description_s,lat_d,lng_d',
+                        'fl':'logo*,id,identifier_s,country_s,title_s, description_s,lat_d,lng_d',
                         'wt': 'json',
                         'start': 0,
                         'rows': 1000000,
@@ -141,11 +141,11 @@ define(['text!./undb-map.html',
                   var isL = false;
                   for (var variable in $scope.loadingObj)
                      if ($scope.loadingObj[variable])
-                          {isL = true;console.log('$scope.loading',$scope.loading);}
-console.log($scope.loadingObj);
+                          isL = true;
+
                   $scope.loading= isL;
-//console.log('$scope.loading',$scope.loading);
-                } //progressToNumber(progress)
+
+                } //
                 $scope.setLoading=setLoading;
                 //=======================================================================
                 //
@@ -173,7 +173,6 @@ console.log($scope.loadingObj);
                         $timeout(function() {
                             $scope.selectedSchema = $attr.schema;
                             reportingDisplay.search();
-console.log($scope.selectedSchema);
                         }, 1000);
                     }
                 }
