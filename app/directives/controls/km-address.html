@@ -1,14 +1,32 @@
-<div>
+<div >
 	<style>
+	/*.overlayOne{
 
-		@media (max-width: 767px){
+		position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+
+
+		Background:rgba(10, 10, 10,.2);
+
+		color:#fff;
+		z-index:10000;}
+	.overlayTwo{
+		width: 100%;
+		Background:rgba(10, 10, 10,.2);
+		position:absolute;top:240px;
+		color:#fff;
+		z-index:10000;}*/
+		/*@media (max-width: 767px){
 			.overlayOne{
 				width: 100%;
 				height:450px;
 
 				Background:rgba(10, 10, 10,.2);
 				position:absolute;
-				top:1px;
+				top:100px;
 				color:#fff;
 				z-index:10000;}
 			.overlayTwo{
@@ -19,26 +37,13 @@
 				top:1px;
 				color:#fff;
 				z-index:10000;}
-		}
+		}*/
 
-	.overlayOne{
-		width: 100%;
-		height:300px;
 
-		Background:rgba(10, 10, 10,.2);
-		position:absolute;
-		top:140px;
-		color:#fff;
-		z-index:10000;}
-	.overlayTwo{
-		width: 100%;
-		/*height:300px;*/
-		Background:rgba(10, 10, 10,.2);
-		position:absolute;top:240px;
-		color:#fff;
-		z-index:10000;}
-	
+
 	</style>
+
+
 	<section ng-show="isEmpty() || useGoogle">
 		<div class="col-md-12">
 			<div class="panel panel-default" style="padding:10ppx 10px 10px 10px; background:#ddd;">
@@ -137,9 +142,10 @@
 				</div>
 		</section>
 		<div ng-if="isEmpty()" class="overlayOne" ng-class="{'overlayTwo':noPredictions}">
-			<div class="row">
+			<div style="height:100%;">
 				&nbsp;
 			</div>
 		</div>
 	</div>
+
 </div>
