@@ -1,20 +1,27 @@
 <div class="popover" style="width: 800px;">
   <div class="arrow"></div>
   <h2 class="popover-title"></h2>
-  <div style="color:black;min-height:100px;padding: 6px 6px 6px 6px; ">
+
+  <div style="color:black;min-height:30px;padding: 10px 15px 10px 6px; ">
      {{currImage.description_s | truncate:350:'...'}} <a ng-href="{{currImage.links_s}}" target="blank" ng-if="currImage.links_s && !currImage.isCCC"> More</a>
-     <br>
+
      <div class="center" ng-if="currImage.isCCC">
         <br ng-if="currImage.isCCC"><a ng-href="{{currImage.links_s}}" target="blank" ng-if="currImage.isCCC"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Actions or Commintments</a>
         <br ng-if="currImage.isCCC && currImage.draft"><a ng-href="{{currImage.draft}}" target="blank" ng-if="currImage.isCCC && currImage.draft"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  Draft Statment</a>
      </div>
   </div>
-  <div class="popover-footer text-nowrap" style="clear:both;height:38px;vertical-align:center; ">
-    <span class="text-nowrap" style="color:black;float:left;font-size:18px;">
+  <div class="popover-footer text-nowrap " >
+      <span class="text-nowrap" style="font-size:12px;" ng-if="currImage.startDate_dt"><span style="color:#333;">{{currImage.startDate_dt | moment:'format':'YYYY-MM-DD'}} </span>
 
-    </span>
-    <span class="text-nowrap" style="color:black;float:right;font-size:18px;">
+      <span style="color:#333;" ng-if="currImage.endDate_dt">&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp; {{currImage.endDate_dt | moment:'format':'YYYY-MM-DD' }} </span></span>
+    <span class="text-nowrap" >
       &nbsp;
     </span>
+    <div class="pull-right">
+
+        <span ng-repeat="term in currImage.aichiTarget_ss track by $index" ng-show="currImage.aichiTarget_ss">
+            <img  style="height: 20px;  width: 20px; margin-bottom:5px; " ng-src="https://www.cbd.int/images/aichi/48/abt-{{term.slice(-2)}}-48.png" >
+        </span>
+    </div>
   </div>
 </div>

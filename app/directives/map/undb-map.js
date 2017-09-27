@@ -80,7 +80,7 @@ define(['text!./undb-map.html',
                     params: {
                         'q': 'schema_s:event',
                         'sort': 'createdDate_dt desc',
-                        'fl':'logo*,id,identifier_s,country_s,title_s, description_s,lat_d,lng_d',
+                        'fl':'logo*,id,identifier_s,country_s,title_s, description_s,lat_d,lng_d,endDate_dt,startDate_dt,aichiTarget_ss,thematicArea_ss',
                         'wt': 'json',
                         'start': 0,
                         'rows': 1000000,
