@@ -65,6 +65,14 @@ app.directive('viewEvent', ["IStorage","$location","locale","$sce", function (st
 
 			});
 
+			$scope.$watch("document.images", function()
+			{
+				if($scope.document){
+					if($scope.document && $scope.document.images && _.find($scope.document.images,{name:'cover'}))
+						$scope.cover=_.find($scope.document.images,{name:'cover'}).url;
+				}
+			});
+
 			//====================
 			//
 			//====================
