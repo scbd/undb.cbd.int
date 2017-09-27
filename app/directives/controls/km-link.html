@@ -1,7 +1,7 @@
 ﻿<div>
 	<div>
 		<table class="table table-hover" ng-show="links||links.length">
-			<tr ng-repeat="link in links" >
+			<tr ng-repeat="link in links" ng-if="hideAttr(link.name)">
 				<td>
 					<a target="_blank" ng-href="{{link.url}}">{{link.name||link.url}}</a>
 					<span ng-repeat="ext in extensions">

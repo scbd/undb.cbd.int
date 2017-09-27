@@ -17,7 +17,8 @@ app.directive('kmLink', function() {
 						allowFile: '@',
 						identifier: '=',
 						mimeTypes: "@",
-						extensions: "="
+						extensions: "=",
+						hideSocial:"="
 				},
 				link: function($scope, $element, $attr, ngModelController) {
 						// init
@@ -97,7 +98,18 @@ app.directive('kmLink', function() {
 						$scope.isAllowFile = function() {
 								return $scope.allowFile != "false";
 						};
-
+						$scope.hideAttr = function(name) {
+							if($scope.hideSocial){
+								if(name==='Google Maps') return false
+								if(name==='website') return false
+								if(name==='facebook') return false
+								if(name==='twitter') return false
+								if(name==='youtube') return false
+								if(name==='logo') return false
+								if(name==='cover') return false					
+							}
+							return true
+						};
 						//==============================
 						//
 						//==============================
