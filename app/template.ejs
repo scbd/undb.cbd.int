@@ -3,6 +3,7 @@
 <head>
     <base href="<%=baseUrl%>">
     <script> //Analytics
+    if(~document.location.hostname.indexOf('cbd.int')){
         window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
         ga('create', 'UA-1996573-1', 'auto');//RCPUA-1996573-15
       //  ga('create', 'RCPUA-1996573-15  ', 'auto');//     test analytics
@@ -14,6 +15,7 @@
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-NL82D37');
+    }
     </script>
     <script src="https://cdn.slaask.com/chat.js"></script>
     <script>
@@ -26,7 +28,7 @@
     </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
     <title ng-bind="$root.page.title">United Nations Decade on Biodiversity</title>
 
@@ -429,7 +431,7 @@
         </div>
     </footer>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyD6f0w00dLyl1iU39Pd9MpVVMOtfEuNI&libraries=places"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyD6f0w00dLyl1iU39Pd9MpVVMOtfEuNI&libraries=places"></script>
 
 </body>
 

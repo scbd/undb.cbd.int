@@ -187,12 +187,10 @@ app.directive('editOrganization', ['$http',"$rootScope", "Enumerable", "$filter"
 				else
 					 $scope.document.websites.push({name:name,url:value,type:'link'});
 				if(name==='website'){
-					$scope.website=value;
-					if(!$scope.document.profileLink || !Array.isArray($scope.document.profileLink ))
-					$scope.document.profileLink =[];
-					$scope.document.profileLink.push({name:name,url:value,type:'link'});
+					$timeout(function(){$scope.updateProfileLink(name,value)});
 				}
 				$scope.document.websites=_.compact($scope.document.websites);
+
 			};
 			//============================================================
 			//
@@ -200,6 +198,7 @@ app.directive('editOrganization', ['$http',"$rootScope", "Enumerable", "$filter"
 			$scope.updateProfileLink = function(name,value) {
 				if(!$scope.document.profileLink) $scope.document.profileLink =[];
 				var site = _.find($scope.document.profileLink,{'name':name});
+
 				if(site)
 						if(value)
 							site.url=value;
@@ -209,6 +208,7 @@ app.directive('editOrganization', ['$http',"$rootScope", "Enumerable", "$filter"
 				else
 					 $scope.document.profileLink.push({name:name,url:value,type:'link'});
 				$scope.document.profileLink=_.compact($scope.document.profileLink);
+				if(!value) delete($scope.document.profileLink)
 			};
 			//============================================================
 			//

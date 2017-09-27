@@ -186,7 +186,7 @@ app.directive('editEvent', ['$http',"$rootScope", "Enumerable", "$filter", "$q",
 			$scope.isAdmin= function() {
 					 return !!_.intersection($scope.user.roles, ["Administrator","UNDBPublishingAuthority","undb-administrator"]).length;
 			};
-			console.log('in event',$scope.isAdmin());
+
 			//============================================================
 			//
 			//============================================================
@@ -206,16 +206,12 @@ app.directive('editEvent', ['$http',"$rootScope", "Enumerable", "$filter", "$q",
 				var next = 'review';
 
 
-				if($scope.tab=='general') 	{ next = 'detail';}
-				if($scope.tab=='detail')	  { next = 'social';   }
+				if($scope.tab=='hosts') 	{ next = 'detail';}
+				if($scope.tab=='detail')	  { next = 'duration';   }
+				if($scope.tab=='duration')    { next = 'location';   }
+				if($scope.tab=='location')    { next = 'social';   }
 				if($scope.tab=='social')    { next = 'chm';   }
-				if($scope.tab=='chm' && $scope.isAbs($scope.document)	) { next = 'absch'; }
-				if($scope.tab=='chm' && $scope.isBCH($scope.document)	&& !$scope.isAbs($scope.document)) { next = 'bch'; }
-				if($scope.tab=='chm' && !$scope.isBCH($scope.document)	&& !$scope.isAbs($scope.document)) { next = 'members'; }
-				if($scope.tab=='absch'	) { next = 'members'; }
-				if($scope.tab=='absch' && $scope.isBCH($scope.document)	) { next = 'bch'; }
-				if($scope.tab=='bch') 			{ next = 'members';   }
-				if($scope.tab=='members'	) { next = 'review';$scope.validate();}
+				if($scope.tab=='chm' ) { next = 'review';$scope.validate(); }
 
 				$scope.tab = next;
 			};
@@ -226,16 +222,12 @@ app.directive('editEvent', ['$http',"$rootScope", "Enumerable", "$filter", "$q",
 			$scope.prevTab = function() {
 				var prev;
 
-				if($scope.tab=='review' ) { prev = 'members';}
-				if($scope.tab=='members'&& $scope.isBCH($scope.document)) { prev = 'bch';  }
-				if($scope.tab=='members'&& !$scope.isBCH($scope.document) && $scope.isAbs($scope.document)	) { prev = 'absch';  }
-				if($scope.tab=='members'&& !$scope.isBCH($scope.document) && !$scope.isAbs($scope.document)	) { prev = 'chm';  }
-				if($scope.tab=='bch'	&& $scope.isAbs($scope.document)) { prev = 'absch';  }
-				if($scope.tab=='bch'	&& !$scope.isAbs($scope.document)) { prev = 'chm';  }
-				if($scope.tab=='absch'	) { prev = 'chm'; 	 }
-				if($scope.tab=='chm'	) { prev = 'social';}
-				if($scope.tab=='social'	) { prev = 'detail';}
-				if($scope.tab=='detail'	) { prev = 'general';}
+				if($scope.tab=='review' 	) { prev = 'chm';}
+				if($scope.tab=='chm'		) { prev = 'social'; 	 }
+				if($scope.tab=='social'		) { prev = 'location';}
+				if($scope.tab=='location'	) { prev = 'duration';}
+				if($scope.tab=='duration'	) { prev = 'detail';}
+				if($scope.tab=='detail'		) { prev = 'hosts';}
 				 $scope.tab = prev;
 			};
 
@@ -260,7 +252,7 @@ app.directive('editEvent', ['$http',"$rootScope", "Enumerable", "$filter", "$q",
 			//============================================================
 			//
 			//============================================================
-			$scope.logoUpload = function(name,value) {
+			$scope.coverUpload = function(name,value) {
 
 				if(!$scope.document.images) $scope.document.images =[];
 				var site = _.find($scope.document.images,{'name':name});
@@ -294,7 +286,7 @@ app.directive('editEvent', ['$http',"$rootScope", "Enumerable", "$filter", "$q",
 			//
 			//
 			//==============================
-			$scope.upload = function(files) {
+			$scope.upload = function(files,cover) {
 
 					if(!files[0])
 							return;
@@ -305,7 +297,7 @@ app.directive('editEvent', ['$http',"$rootScope", "Enumerable", "$filter", "$q",
 					$q.when(files[0]).then(function(file) {
 
 							if(!/^image\//.test(file.type)) throw { code : "invalidImageType" };
-							if(file.size>1024*500)          throw { code : "fileSize" };
+							if(file.size>1024*800)          throw { code : "fileSize" };
 
 							var uid  = $scope.document.header.identifier;
 							var url  = '/api/v2013/documents/'+uid+'/attachments/'+encodeURIComponent(file.name);
@@ -313,9 +305,12 @@ app.directive('editEvent', ['$http',"$rootScope", "Enumerable", "$filter", "$q",
 							return $http.put(url, file, { headers : { "Content-Type": file.type } }).then(res_Data);
 
 					}).then(function(attachInfo) {
-
+						if(!cover)
 							$scope.document.logo  = '/api/v2013/documents/'+attachInfo.documentUID+'/attachments/'+encodeURIComponent(attachInfo.filename);
-
+						else{
+							$scope.cover = '/api/v2013/documents/'+attachInfo.documentUID+'/attachments/'+encodeURIComponent(attachInfo.filename);
+							$scope.coverUpload('cover',$scope.cover)
+						}
 					}).catch(res_Error).finally(function() {
 
 							delete $scope.saving;
@@ -396,6 +391,9 @@ app.directive('editEvent', ['$http',"$rootScope", "Enumerable", "$filter", "$q",
 							$scope.document.everyCountry=true;
 
 						if(!doc.type)doc.type=[{"identifier": "60C32FAE-649C-4D33-B0E6-DDE1F8B06C55"}];
+
+						if($scope.document && $scope.document.images && _.find($scope.document.images,{name:'cover'}))
+							$scope.cover=_.find($scope.document.images,{name:'cover'}).url;
 						// if($scope.document && $scope.document.websites && _.find($scope.document.websites,{name:'Google Maps'}))
 						// 	$scope.mapsUrl=_.find($scope.document.websites,{name:'Google Maps'}).url;
 						// if($scope.document && $scope.document.relevantDocuments && _.find($scope.document.relevantDocuments,{name:'logo'}))

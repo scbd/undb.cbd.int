@@ -32,13 +32,16 @@ define(['app', 'text!./km-address.html','lodash', 'directives/controls/km-inputt
 						var killWatch = $scope.$watch("binding", function() {
 
 								if(!$scope.binding) return;
-								if($scope.binding && $scope.binding.websites && _.find($scope.binding.websites,{name:'Google Maps'} && $attr.embed ==='organization'))
+
+								if($scope.binding && $scope.binding.websites && _.find($scope.binding.websites,{name:'Google Maps'}) && $attr.embed ==='organization')
 									$scope.mapsUrl=_.find($scope.binding.websites,{name:'Google Maps'}).url;
 								killWatch();
-								if(!isEmpty)$scope.useGoogle=false;
-								else clearSlacesSearch ();
-						});
 
+								if($scope.binding.websites && $scope.embed!=='organization') delete($scope.binding.websites);
+								if(!isEmpty())$scope.useGoogle=false;
+								 else clearSlacesSearch ();
+						});
+						//
 						$scope.$watch("binding.websites", function() {
 									if($scope.binding && $scope.binding.websites && _.find($scope.binding.websites,{name:'Google Maps'} && $attr.embed ==='organization'))
 											$scope.mapsUrl=_.find($scope.binding.websites,{name:'Google Maps'}).url

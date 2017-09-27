@@ -98,12 +98,16 @@ body.modal-open div.modal-backdrop {
 }
 
 /* Styles for custom popover template */
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
 
 .popover-footer {
   padding: 6px 14px;
   background-color: #f7f7f7;
   border-top: 1px solid #ebebeb;
-  text-align: right;
+
 }
 .arrow {
   border-top-color: rgba(255, 255, 255, .25);

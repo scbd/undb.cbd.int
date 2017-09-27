@@ -625,18 +625,20 @@ var images=[];
 
                         switch ($scope.schema) {
                             case 'actions':
+                                if(moment(item.startDate_dt).isSame(moment(item.endDate_dt),'day'))
+                                    item.endDate_dt=null;
                                 return {
                                     // zoomLevel: 5,
                                     scale: 0.5,
                                     id:item.id,
                                     isCCC:item.isCCC,
                                     startDate_dt: item.startDate_dt,
+                                    endDate_dt: item.endDate_dt,
                                     logo_s: item.logo_s,
                                     facebook_s: item.facebook_s,
                                     twitter_s: item.twitter_s,
                                     youtube_s: item.youtube_s,
                                     website_s: item.website_s,
-                                    endDate_dt: item.endDate_dt,
                                     email_s: item.email_s,
                                     address_s: item.address_s,
                                     phone_s: item.phone_s,
@@ -649,6 +651,8 @@ var images=[];
                                     draft:item.draft,
                                     latitude: _.clone(item.lat_d),
                                     longitude: _.clone(item.lng_d),
+                                    thematicArea_ss:item.thematicArea_ss,
+                                    aichiTarget_ss:item.aichiTarget_ss,
                                     coordinates_s: {
                                         lat: _.clone(item.lat_d),
                                         lng: _.clone(item.lat_d)
@@ -684,7 +688,14 @@ var images=[];
                                 };
                             }//switch
                 } // aichiMap
-
+$scope.isEs = function(arr){
+    if(!arr)return false;
+    return !!(~arr.indexOf('BD8F75CA-32D4-427B-A9CE-55079989A0CC'));
+};
+$scope.isIbd = function(arr){
+    if(!arr)return false;
+    return !!(~arr.indexOf('CBD-SUBJECT-IBD'));
+};
 
                 // =======================================================================
                 //

@@ -1,14 +1,32 @@
-<div>
+<div >
 	<style>
+	/*.overlayOne{
 
-		@media (max-width: 767px){
+		position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+
+
+		Background:rgba(10, 10, 10,.2);
+
+		color:#fff;
+		z-index:10000;}
+	.overlayTwo{
+		width: 100%;
+		Background:rgba(10, 10, 10,.2);
+		position:absolute;top:240px;
+		color:#fff;
+		z-index:10000;}*/
+		/*@media (max-width: 767px){
 			.overlayOne{
 				width: 100%;
 				height:450px;
 
 				Background:rgba(10, 10, 10,.2);
 				position:absolute;
-				top:1px;
+				top:100px;
 				color:#fff;
 				z-index:10000;}
 			.overlayTwo{
@@ -19,27 +37,14 @@
 				top:1px;
 				color:#fff;
 				z-index:10000;}
-		}
+		}*/
 
-	.overlayOne{
-		width: 100%;
-		height:300px;
 
-		Background:rgba(10, 10, 10,.2);
-		position:absolute;
-		top:140px;
-		color:#fff;
-		z-index:10000;}
-	.overlayTwo{
-		width: 100%;
-		/*height:300px;*/
-		Background:rgba(10, 10, 10,.2);
-		position:absolute;top:240px;
-		color:#fff;
-		z-index:10000;}
-	
+
 	</style>
-	<section ng-show="isEmpty() || useGoogle">
+
+
+	<section >
 		<div class="col-md-12">
 			<div class="panel panel-default" style="padding:10ppx 10px 10px 10px; background:#ddd;">
 				<div class="form-group" style="padding:10px 10px 10px 10px;">
@@ -49,13 +54,13 @@
 						<input id="google-ac-input" name="placesSearch" class="form-control" ng-model="placeSearch" type="text" placeholder="Secretariat of the Convention on Biological Diversity" ng-change="placesSearch()">
 						<span class="input-group-addon pointer" ng-click="clearSlacesSearch();"><i class="fa fa-search" ng-if="!selectedPlace && (!placeSearch || placeSearch.length===0)"></i><i class="fa fa-close" ng-if="selectedPlace || placeSearch.length" ></i></span>
 					</div>
-					<div ng-if="noPredictions" style="color:#a94442;"><br> <strong>No results found for: {{placeSearch}}</strong><br><br> If you are having trouble finding the exact address please search: <br><ol><li>the closest land mark</li><li>or the city only</li></ol> then input the rest of the information manually. </div>
+					<div ng-if="noPredictions" style="color:#a94442;"><br> <strong>No results found for: {{placeSearch}}</strong><br><br> If you are having trouble finding the exact address please search: <br><br><ol><li>The closest land mark, or;</li><li>The city only</li></ol> then input the rest of the information manually. </div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<div class="col-md-12" ng-show="!isEmpty() && !useGoogle">
+	<div class="col-md-12" ng-show="false">
 		<div class="well well-sm">
 			<div class="control-group" name="useGoogle" caption="">
 
@@ -67,50 +72,50 @@
 	<div style="position:relative;overflow:hidden:">
 		<div class="col-md-12">
 			<div class="km-control-group" name="address" caption="Address">
-				<div km-textbox-ml ng-model="binding.address" rows="2" placeholder="example: 413 St-Jacques Ouest, Suite 800" locales="locales"></div>
+				<div ng-disabled="!binding.googlePlaceId" km-textbox-ml ng-model="binding.address" rows="2" placeholder="example: 413 St-Jacques Ouest, Suite 800" locales="locales"></div>
 			</div>
 		</div>
 
 		<div class="col-md-6 col-xs-12">
 			<div class="km-control-group" name="city" required caption="City">
-				<div km-textbox-ml required name="city" ng-model="binding.city" locales="locales" placeholder="example: Montreal"></div>
+				<div ng-disabled="!binding.googlePlaceId" km-textbox-ml required name="city" ng-model="binding.city" locales="locales" placeholder="example: Montreal"></div>
 			</div>
 		</div>
 
 		<div class="col-md-6 col-xs-12">
 			<div class="km-control-group" name="state" caption="State or province">
-				<div km-textbox-ml name="state" ng-model="binding.state" locales="locales" placeholder="example: Quebec"></div>
+				<div ng-disabled="!binding.googlePlaceId" km-textbox-ml name="state" ng-model="binding.state" locales="locales" placeholder="example: Quebec"></div>
 			</div>
 		</div>
 
 		<div class="col-md-6 col-xs-12">
 			<div class="km-control-group" name="country" required caption="Country">
-				<div km-select required name="country" ng-model="binding.country" items="options.countries()"></div>
+				<div ng-disabled="!binding.googlePlaceId" km-select required name="country" ng-model="binding.country" items="options.countries()"></div>
 				<span class="flag-icon flag-icon-{{binding.country.identifier}}"></span>
 			</div>
 		</div>
 		<div class="col-md-6 col-xs-12">
-			<div class="km-control-group" name="postalCode" caption="Postal or zip code">
-				<div km-textbox-ml name="postalCode" ng-model="binding.postalCode" locales="locales" placeholder="example: H2Y 1N9"></div>
+			<div n class="km-control-group" name="postalCode" caption="Postal or zip code">
+				<div ng-disabled="!binding.googlePlaceId" km-textbox-ml name="postalCode" ng-model="binding.postalCode" locales="locales" placeholder="example: H2Y 1N9"></div>
 			</div>
 		</div>
 		<section ng-if="embed==='event'">
 				<div class="col-xs-6">
 					<div class="km-control-group" name="mapsUrl" caption="">
 						<label><i class="fa fa-google" aria-hidden="true"></i> Maps link </label><span class="small pull-right" ng-if="binding.googleMapsUrl"><a ng-href="{{binding.googleMapsUrl}}" target="_blank">Test <i class="fa fa-external-link" aria-hidden="true"></i></a></span>
-						<input ng-change="updateWebsites('Google Maps',mapsUrl)" type="url" class="form-control" name="mapsUrl" id="mapsUrl" ng-model="binding.googleMapsUrl" placeholder="https://maps.google.com/?q=" on-focus-helper start="https://maps.google.com/?q=">
+						<input ng-disabled="!binding.googlePlaceId" ng-change="updateWebsites('Google Maps',mapsUrl)" type="url" class="form-control" name="mapsUrl" id="mapsUrl" ng-model="binding.googleMapsUrl" placeholder="https://maps.google.com/?q=" on-focus-helper start="https://maps.google.com/?q=">
 					</div>
 				</div>
 				<div class="col-xs-3">
 					<div class="km-control-group" name="lat" caption="Latitude">
-						<input type="number" class="form-control" name="lat" id="lat" ng-model="binding.geoLocation.lat">
+						<input ng-disabled="!binding.googlePlaceId" type="number" class="form-control" name="lat" id="lat" ng-model="binding.geoLocation.lat">
 					</div>
 				</div>
 
 				<div class="col-xs-3">
 					<div class="km-control-group" name="lng" caption="Longitude">
 
-						<input type="number" class="form-control" name="lng" id="lng" ng-model="binding.geoLocation.lng">
+						<input ng-disabled="!binding.googlePlaceId" type="number" class="form-control" name="lng" id="lng" ng-model="binding.geoLocation.lng">
 					</div>
 				</div>
 		</section>
@@ -118,12 +123,12 @@
 				<div class="col-xs-6">
 					<div class="km-control-group" name="mapsURL" caption="">
 						<label><i class="fa fa-google" aria-hidden="true"></i> Maps link </label><span class="small pull-right" ng-if="mapsUrl"><a ng-href="{{mapsUrl}}" target="_blank">Test <i class="fa fa-external-link" aria-hidden="true"></i></a></span>
-						<input ng-change="updateWebsites('Google Maps',mapsUrl)" type="url" class="form-control" name="mapsUrl" id="mapsUrl" ng-model="mapsUrl" placeholder="https://maps.google.com/?q=" on-focus-helper start="https://maps.google.com/?q=">
+						<input ng-disabled="!binding.googlePlaceId" ng-change="updateWebsites('Google Maps',mapsUrl)" type="url" class="form-control" name="mapsUrl" id="mapsUrl" ng-model="mapsUrl" placeholder="https://maps.google.com/?q=" on-focus-helper start="https://maps.google.com/?q=">
 					</div>
 				</div>
 				<div class="col-xs-3">
 					<div class="km-control-group" name="lat" caption="Latitude" required>
-						<input type="number" class="form-control" name="lat" id="lat" ng-model="binding.coordinates.lat" required>
+						<input ng-disabled="!binding.googlePlaceId" type="number" class="form-control" name="lat" id="lat" ng-model="binding.coordinates.lat" required>
 
 
 					</div>
@@ -131,15 +136,16 @@
 
 				<div class="col-xs-3">
 					<div class="km-control-group" required   name="lng" caption="Longitude">
-						<input type="number" class="form-control" name="lng" id="lng" ng-model="binding.coordinates.lng" required>
+						<input ng-disabled="!binding.googlePlaceId" type="number" class="form-control" name="lng" id="lng" ng-model="binding.coordinates.lng" required>
 
 					</div>
 				</div>
 		</section>
 		<div ng-if="isEmpty()" class="overlayOne" ng-class="{'overlayTwo':noPredictions}">
-			<div class="row">
+			<div style="height:100%;">
 				&nbsp;
 			</div>
 		</div>
 	</div>
+
 </div>
