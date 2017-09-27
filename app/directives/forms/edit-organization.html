@@ -42,24 +42,24 @@
 					<ul class="pagination hidden-xs">
 						<li ng-class="{ disabled: tab=='general' }"><a href="" ng-click="prevTab()">&laquo;</a></li>
 						<li ng-class="{ active  : tab=='general' }"><a href="" ng-click="tab='general'">General</a></li>
-						<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Detailed</a></li>
+						<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Details</a></li>
 						<li ng-class="{ active  : tab=='social' }"><a href="" ng-click="tab='social'">Social</a></li>
 						<li ng-class="{ active  : tab=='chm'     }"><a href="" ng-click="tab='chm'">Thematic Areas</a></li>
 						<li ng-class="{ active  : tab=='absch'   }" ng-show="isAbs(document)"><a href="" ng-click="tab='absch'">ABS-CH</a></li>
 						<li ng-class="{ active  : tab=='bch'     }" ng-show="isBCH()"><a href="" ng-click="tab='bch'" >BCH</a></li>
-						<li ng-class="{ active  : tab=='members' }"><a href="" ng-click="tab='members'">Members</a></li>
+						<!-- <li ng-class="{ active  : tab=='members' }"><a href="" ng-click="tab='members'">Members</a></li> -->
 						<li ng-class="{ active  : tab=='review'  }"><a href="" ng-click="tab='review';validate();">Review</a></li>
 						<li ng-class="{ disabled: tab=='review'  }"><a href="" ng-click="nextTab()">&raquo;</a></li>
 					</ul>
 					<ul class="pagination small visible-xs">
 						<li ng-class="{ disabled: tab=='general' }"><a href="" ng-click="prevTab()">&laquo;</a></li>
 						<li ng-class="{ active  : tab=='general' }"><a href="" ng-click="tab='general'">General</a></li>
-						<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Detailed</a></li>
+						<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Details</a></li>
 						<li ng-class="{ active  : tab=='social' }"><a href="" ng-click="tab='social'">Social</a></li>
 						<li ng-class="{ active  : tab=='chm'     }"><a href="" ng-click="tab='chm'">Thematic Areas</a></li>
 						<li ng-class="{ active  : tab=='absch'   }" ng-show="isAbs(document)"><a href="" ng-click="tab='absch'">ABS-CH</a></li>
 						<li ng-class="{ active  : tab=='bch'     }" ng-show="isBCH()"><a href="" ng-click="tab='bch'"> BCH</a></li>
-						<li ng-class="{ active  : tab=='members' }"><a href="" ng-click="tab='members'">Members</a></li>
+						<!-- <li ng-class="{ active  : tab=='members' }"><a href="" ng-click="tab='members'">Members</a></li> -->
 						<li ng-class="{ active  : tab=='review'  }"><a href="" ng-click="tab='review';validate();">Review</a></li>
 						<li ng-class="{ disabled: tab=='review'  }"><a href="" ng-click="nextTab()">&raquo;</a></li>
 					</ul>
@@ -181,6 +181,31 @@
 							</div>-->
 
 
+							<div class="col-md-6 col-xs-12">
+								<div class="form-group" ng-class="{ 'has-warning': !loading &&editForm.logo.$invalid, 'has-error' :editForm.$submitted &&editForm.logo.$invalid }">
+									<label for="logo" class="control-label" style="line-height:20px;">Logo or Profile Picture
+						  			</label>
+									<div  class="img-container">
+
+										<img ng-src="{{logo}}?thumbnail=true" style="padding-bottom:10px;max-width:200px;">
+									</div>
+									<input type="file" class="form-control" name="logo" id="logo" accept="image/*" placeholder="Logo" ng-model="logo" on-file="upload(files)" ng-disabled="disabled()">
+									<p class="help-block small">Please attach a logo or image of your Actor (max. 500KB). </p>
+								</div>
+							</div>
+								<div class="col-md-6 col-xs-12">
+									<div class="form-group" ng-class="{ 'has-warning': !loading && editForm.website.$invalid, 'has-error' : editForm.$submitted && editForm.profileLink.$invalid }">
+										<label for="webite" class="control-label">Website</label>
+										<input ng-change="updateWebsites('website',website);updateProfileLink('website',website);" type="url" class="form-control" name="website" id="website" ng-model="website" placeholder="Org. website" ng-disabled="disabled()" ng-model-options='{ debounce: 500 }' on-focus-helper start="http://" >
+										<p class="help-block error" ng-show="!loading &&editForm.website.$error.url">This is not a valid web address</p>
+
+									</div>
+									<section class="hide">
+									<div class="km-control-group" name="profileLink" caption="Website">
+										<div km-link name="profileLink" ng-model="document.profileLink" allow-link="true" allow-file="true" identifier="document.header.identifier" required></div>
+									</div>
+									</section>
+								</div>
 							<div class="col-md-6">
 								<div class="km-control-group" name="operationalLanguages" caption="Operational languages">
 									<div km-select required name="operationalLanguages" multiple="mulitple" ng-model="document.operationalLanguages" items="options.allLanguages()"></div>
@@ -195,7 +220,7 @@
 
 						<div class="row">
 							<div class="col-md-12">
-								<div class="km-control-group" name="address" caption="Any other relevant information">
+								<div class="km-control-group" name="address" caption="Description">
 									<div class="help-block">Please use this field to provide any other relevant information that may not have been addressed elsewhere in the record.</div>
 									<div km-textbox-ml ng-model="document.relevantInformation" rows="4" placeholder="" locales="document.header.languages"></div>
 								</div>
@@ -206,13 +231,16 @@
 
 
 						<div class="row">
-							<div class="col-md-6">
-								<div class="km-control-group" name="profileLink" caption="Organization’s profile">
+							<div class="col-md-6 hide">
+								<!-- <div class="km-control-group" name="profileLink" caption="Organization’s profile">
 									<div km-link name="profileLink" ng-model="document.profileLink" allow-link="true" allow-file="true" identifier="document.header.identifier"></div>
-								</div>
+								</div> -->
+								<pre>
+									{{document.profileLink | json}}
+								</pre>
 							</div>
 							<div class="col-md-6">
-								<div class="km-control-group" name="relevantDocuments" caption="Any other relevant documents">
+								<div class="km-control-group" name="relevantDocuments" caption="Any other relevant documents " hide-social="true">
 									<div km-link name="relevantDocuments" ng-model="document.relevantDocuments" allow-link="true" allow-file="true" identifier="document.header.identifier"></div>
 								</div>
 							</div>
@@ -224,62 +252,45 @@
 
 						<div class="row">
 
-							<div class="col-md-6 col-xs-12">
-								<div class="form-group" ng-class="{ 'has-warning': !loading && form.website.$invalid, 'has-error' : form.$submitted && form.website.$invalid }">
-									<label for="webite" class="control-label">Website</label>
-									<input ng-change="updateWebsites('website',website);updateProfileLink('website',website);" type="url" class="form-control" name="website" id="website" ng-model="website" placeholder="Org. website" ng-disabled="disabled()" on-focus-helper start="http://">
-									<p class="help-block error" ng-show="!loading && form.website.$error.url">This is not a valid web address</p>
-								</div>
-							</div>
+
 
 							<div class="col-md-6 col-xs-12">
-								<div class="form-group" ng-class="{ 'has-warning': !loading && form.facebook.$invalid, 'has-error' : form.$submitted && form.facebook.$invalid }">
+								<div class="form-group" ng-class="{ 'has-warning': !loading &&editForm.facebook.$invalid, 'has-error' :editForm.$submitted &&editForm.facebook.$invalid }">
 									<label for="facebook" class="control-label"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</label>
 
 									<input ng-change="updateWebsites('facebook',facebook)" ng-disabled="disabled()" type="url" class="form-control" name="facebook" id="facebook" ng-model="facebook" ng-pattern="patterns.facebook" placeholder="https://www.facebook.com/organization" on-focus-helper
 													start="https://www.facebook.com/">
-									<p class="help-block error" ng-show="!loading && form.facebook.$error.url">This is not a valid web address</p>
-									<p class="help-block error" ng-show="!loading && form.facebook.$error.pattern">Facebook address is invalid. It should look like: <em>https://www.facebook.com/your-facebook-page</em></p>
+									<p class="help-block error" ng-show="!loading &&editForm.facebook.$error.url">This is not a valid web address</p>
+									<p class="help-block error" ng-show="!loading &&editForm.facebook.$error.pattern">Facebook address is invalid. It should look like: <em>https://www.facebook.com/your-facebook-page</em></p>
 								</div>
 							</div>
 
 							<div class="col-md-6 col-xs-12">
-								<div class="form-group" ng-class="{ 'has-warning': !loading && form.twitter.$invalid, 'has-error' : form.$submitted && form.twitter.$invalid }">
+								<div class="form-group" ng-class="{ 'has-warning': !loading &&editForm.twitter.$invalid, 'has-error' :editForm.$submitted &&editForm.twitter.$invalid }">
 									<label for="twitter" class="control-label"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</label>
 									<input ng-change="updateWebsites('twitter',twitter)" ng-disabled="disabled()" type="url" class="form-control" name="twitter" id="twitter" ng-model="twitter" ng-pattern="patterns.twitter" placeholder="https://twitter.com/organization" on-focus-helper start="https://twitter.com/">
-									<p class="help-block error" ng-show="!loading && form.twitter.$error.url">This is not a valid web address</p>
-									<p class="help-block error" ng-show="!loading && form.twitter.$error.pattern">Twitter address is invalid. It should look like: <em>https://twitter.com/your-twitter-account</em></p>
+									<p class="help-block error" ng-show="!loading &&editForm.twitter.$error.url">This is not a valid web address</p>
+									<p class="help-block error" ng-show="!loading &&editForm.twitter.$error.pattern">Twitter address is invalid. It should look like: <em>https://twitter.com/your-twitter-account</em></p>
 
 								</div>
 							</div>
 
 							<div class="col-md-6 col-xs-12">
-								<div class="form-group" ng-class="{ 'has-warning': !loading && form.youtube.$invalid, 'has-error' : form.$submitted && form.youtube.$invalid }">
+								<div class="form-group" ng-class="{ 'has-warning': !loading &&editForm.youtube.$invalid, 'has-error' :editForm.$submitted &&editForm.youtube.$invalid }">
 									<label for="twitter" class="control-label"><i class="fa fa-youtube-square" aria-hidden="true"></i> Youtube</label>
 									<input ng-change="updateWebsites('youtube',youtube)" ng-disabled="disabled()" type="url" class="form-control" name="youtube" id="youtube" ng-model="youtube" ng-pattern="patterns.youtube" placeholder="https://www.youtube.com/channel/" on-focus-helper start="https://www.youtube.com/channel/">
-									<p class="help-block error" ng-show="!loading && form.youtube.$error.url">This is not a valid web address</p>
-									<p class="help-block error" ng-show="!loading && form.youtube.$error.pattern">Youtube address is invalid. It should look like: <em>https://www.youtube.com/channel/</em></p>
+									<p class="help-block error" ng-show="!loading &&editForm.youtube.$error.url">This is not a valid web address</p>
+									<p class="help-block error" ng-show="!loading &&editForm.youtube.$error.pattern">Youtube address is invalid. It should look like: <em>https://www.youtube.com/channel/</em></p>
 								</div>
 							</div>
 
 							<div class="col-md-6 col-xs-12">
 								<div class="control-group" name="websites" caption="Web Sites">
 									<label for="twitter" class="control-label">Additional Links</label>
-									<div km-link name="websites" ng-model="document.websites" allow-link="true" allow-file="false"></div>
+									<div km-link name="websites" ng-model="document.websites" allow-link="true" allow-file="false" hide-social="true"></div>
 								</div>
 							</div>
 
-							<div class="col-md-6 col-xs-12">
-								<div class="form-group" ng-class="{ 'has-warning': !loading && form.logo.$invalid, 'has-error' : form.$submitted && form.logo.$invalid }">
-									<label for="logo" class="control-label" style="line-height:20px;">Logo
-                          </label>
-									<div ng-if="logo" class="img-container">
-										<img ng-src="{{logo}}&thumbnail=true" style="padding-bottom:10px">
-									</div>
-									<input type="file" class="form-control" name="logo" id="logo" accept="image/*" placeholder="Logo" ng-model="logo" on-file="upload(files)" ng-disabled="disabled()">
-									<p class="help-block small">Please attach a logo or image of your Actor (max. 500KB). The image on the profile will be fitted into 200 x 200 px.</p>
-								</div>
-							</div>
 
 						</div>
 					</div>
@@ -397,7 +408,7 @@
 						<ul class="pagination hidden-xs">
 							<li ng-class="{ disabled: tab=='general' }"><a href="" ng-click="prevTab()">&laquo;</a></li>
 							<li ng-class="{ active  : tab=='general' }"><a href="" ng-click="tab='general'">General</a></li>
-							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Detailed</a></li>
+							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Details</a></li>
 							<li ng-class="{ active  : tab=='social' }"><a href="" ng-click="tab='social'">Social</a></li>
 							<li ng-class="{ active  : tab=='chm'     }"><a href="" ng-click="tab='chm'">Thematic Areas</a></li>
 							<li ng-class="{ active  : tab=='absch'   }" ng-show="isAbs(document)"><a href="" ng-click="tab='absch'">ABS-CH</a></li>
@@ -409,7 +420,7 @@
 						<ul class="pagination small visible-xs">
 							<li ng-class="{ disabled: tab=='general' }"><a href="" ng-click="prevTab()">&laquo;</a></li>
 							<li ng-class="{ active  : tab=='general' }"><a href="" ng-click="tab='general'">General</a></li>
-							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Detailed</a></li>
+							<li ng-class="{ active  : tab=='detail' }"><a href="" ng-click="tab='detail'">Details</a></li>
 							<li ng-class="{ active  : tab=='social' }"><a href="" ng-click="tab='social'">Social</a></li>
 							<li ng-class="{ active  : tab=='chm'     }"><a href="" ng-click="tab='chm'">Thematic Areas</a></li>
 							<li ng-class="{ active  : tab=='absch'   }" ng-show="isAbs(document)"><a href="" ng-click="tab='absch'">ABS-CH</a></li>
