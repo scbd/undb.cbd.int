@@ -20,7 +20,7 @@ define(['app', 'angular', 'jquery', 'text!./km-terms-check.html', 'linqjs'], fun
                 isAdmin: "&"
             },
             link: function($scope, $element, $attr, ngModelController) {
-console.log('isAdmin',$scope.isAdmin());
+
 				$scope.showDescription = $attr.showDescription == 'true';
                 $scope.identifiers = null;
                 $scope.terms = null;

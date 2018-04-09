@@ -125,12 +125,25 @@
 		<div class="col-md-10 col-xs-12" style="padding:0 0 0 0;margin-left:0px;">
 			<ammap3 ng-model='documents' loading="loading" schema='selectedSchema'></ammap3>
 			<div class="mapPopup" ng-class="{'mapPopupParties':message==='parties'}"   ng-show="toggleCaption " ng-click="goTo(link)">
+				<button type="button" style="position:absolute;right:5px;top:2px;" class="closeButton" ng-click="toggleCaption=!toggleCaption;$event.stopPropagation();"></button>
+				<div  ng-if="message==='actions'">
 
-				<p  ng-if="message==='actions'"><img src="app/img/pointer-undb-green.png" style="height:20px;"> Actions  and <img src="app/img/pointer-undb-orange.png" style="height:20px;"> Commitments: All around the world people are taking action to safeguard biodiversity. See how you can participate!</p>
+          <div class="row">
+            <div class="col-xs-12" style="margin-bottom:15px;">
+            Commitments: All around the world people are taking action to safeguard biodiversity. See how you can participate!
+            </div>
+            <div class="col-xs-3" style="line-height:1.5em;"><img src="app/img/pointer-undb-green.png" style="height:20px;"> Actions  <br><img src="app/img/pointer-undb-orange.png" style="height:20px;"> Commitments</div>
+            <div class="col-xs-9" style="line-height:1.5em;">
+              <img src="app/img/pointer-yellow-pin.png" style="height:20px;">  Success stories in the context of the 25th annaversary of the Contention on Biological Diversity
+
+            </div>
+          </div>
+
+        </div>
 				<p ng-if="message==='parties'">Parties to the CBD and other Governments: With 196 Parties, the Convention on Biological Diversity has near universal participation among countries.</p>
 				<p ng-if="message==='undbActor'"> <img src="app/img/pointer-undb-blue.png" style="height:20px;"> Actors: The UNDB Network includes a wide variety of Actors contributing to the implementation of the Strategic Plan for Biodiversity 2011-2020. </p>
 				<!-- <p ng-if="message==='aichi'"> Aichi Biodiversity Targets: Each party or government's best Aichi Biodiversity Target assessment. </p> -->
-				<button type="button" class="closeButton" ng-click="toggleCaption=!toggleCaption;$event.stopPropagation();"></button>
+
 			</div>
 		</div>
 	</div>
