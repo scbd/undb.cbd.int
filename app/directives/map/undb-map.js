@@ -89,7 +89,7 @@ define(['text!./undb-map.html',
                     $scope.actions = o.data.response.docs;
 
                    $scope.actions=$scope.actions.concat(ccc);
-
+                   has25th()
                     if ($attr.schema === 'actions') {
                         activateFilter();
                         $scope.message = "actions";
@@ -102,7 +102,31 @@ define(['text!./undb-map.html',
                     }, 750);
                 });
               }
+              //=======================================================================
+              //
+              //=======================================================================
+              function is25th(event) {
+                  if(event && event.thematicArea_ss)
+                    for (var theme of event.thematicArea_ss) {
+                      if(theme==='CBD-SUBJECT-25TH-ANN'){
+                        return true;
+                      }
+                    }
+                  return false
+              } //generateMarker
+              //=======================================================================
+              //
+              //=======================================================================
+              function has25th() {
 
+                  var actions = $scope.actions;
+                  for (var i = 0; i < actions.length; i++)
+                    if(is25th(actions[i])){
+                      $scope.has25thFlag = true;
+                      return true
+                    }
+                  $scope.has25thFlag = false;
+              } //generateMarker
                 //=======================================================================
                 //
                 //=======================================================================
