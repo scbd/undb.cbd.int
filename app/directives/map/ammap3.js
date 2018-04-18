@@ -256,6 +256,8 @@ var images=[];
                     if ($scope.schema === 'actions')
                         if($scope.map.dataProvider.images[imageIndex].isCCC)
                           return makeMarker(imageIndex, 'pin-ccc', 'pulse-', 'app/img/pointer-undb-orange.png');
+                        else if(is25th($scope.map.dataProvider.images[imageIndex]))
+                          return makeMarker(imageIndex, 'pin-action', 'pulse-', 'app/img/pointer-yellow-pin.png');
                         else
                           return makeMarker(imageIndex, 'pin-action', 'pulse-', 'app/img/pointer-undb-green.png');
 
@@ -264,7 +266,18 @@ var images=[];
 
                 } //generateMarker
 
-
+                //=======================================================================
+                //
+                //=======================================================================
+                function is25th(thematicArea) {
+                    if(thematicArea && thematicArea.thematicArea_ss)
+                      for (var theme of thematicArea.thematicArea_ss) {
+                        if(theme==='CBD-SUBJECT-25TH-ANN'){
+                          return true;
+                        }
+                      }
+                    return false
+                } //generateMarker
                 //=======================================================================
                 // this function creates and returns a new marker element
                 //=======================================================================

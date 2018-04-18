@@ -10,8 +10,32 @@
 			{{term.description}}
 		</div>
 		<ul style="list-style:none"  ng-if="(term.identifier ==='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A' && isAdmin() ) || (term.identifier !='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A') ">
-			<li ng:repeat="term in term.narrowerTerms" ng-include="'term-check-tree-renderer.html'">
+			<li ng:repeat="term in term.narrowerTerms" ng-include="'term-check-tree-renderer.html'"></li>
 		</ul>
+    <ul style="list-style:none"  ng-if="(term.identifier ==='CBD-SUBJECT-OUT+CEPA' && isAdmin() )">
+        <li ng-if="isAdmin()">
+          <label  >
+            <input type="checkbox" ng-model="identifiers['3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A']" ng-click="save()" ng-required="IsRequired()" value="3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A" />
+              Executive Secretary Featured
+          </label>
+        </li>
+    </ul>
+    <ul style="list-style:none"  ng-if="(term.identifier ==='CBD-SUBJECT-OUT+CEPA')">
+        <li>
+          <label>
+            <input type="checkbox" ng-model="identifiers['BD8F75CA-32D4-427B-A9CE-55079989A0CC']" ng-click="save()" ng-required="IsRequired()" value="BD8F75CA-32D4-427B-A9CE-55079989A0CC" />
+              Executive Secretary
+          </label>
+        </li>
+    </ul>
+    <ul style="list-style:none"  ng-if="(term.identifier ==='CBD-SUBJECT-OUT+CEPA')">
+        <li ng-if="isAdmin()">
+          <label>
+            <input type="checkbox" ng-model="identifiers['CBD-SUBJECT-25TH-ANN']" ng-click="save()" ng-required="IsRequired()" value="CBD-SUBJECT-25TH-ANN" />
+              25th Anniversary
+          </label>
+        </li>
+    </ul>
 	<!-- </span> -->
 	</script>
 

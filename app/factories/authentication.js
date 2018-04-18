@@ -177,6 +177,7 @@ define(['app', 'angular', 'jquery','utilities/editFormUtility'], function (app, 
 				}
 
 				return $http.get('/api/v2013/authentication/user', { headers: { Authorization: "Ticket " + token } }).then(function(r){
+
 					return r.data;
 				});
 

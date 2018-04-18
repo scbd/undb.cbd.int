@@ -89,7 +89,7 @@ define(['text!./undb-map.html',
                     $scope.actions = o.data.response.docs;
 
                    $scope.actions=$scope.actions.concat(ccc);
-
+                   has25th()
                     if ($attr.schema === 'actions') {
                         activateFilter();
                         $scope.message = "actions";
@@ -102,7 +102,31 @@ define(['text!./undb-map.html',
                     }, 750);
                 });
               }
+              //=======================================================================
+              //
+              //=======================================================================
+              function is25th(event) {
+                  if(event && event.thematicArea_ss)
+                    for (var theme of event.thematicArea_ss) {
+                      if(theme==='CBD-SUBJECT-25TH-ANN'){
+                        return true;
+                      }
+                    }
+                  return false
+              } //generateMarker
+              //=======================================================================
+              //
+              //=======================================================================
+              function has25th() {
 
+                  var actions = $scope.actions;
+                  for (var i = 0; i < actions.length; i++)
+                    if(is25th(actions[i])){
+                      $scope.has25thFlag = true;
+                      return true
+                    }
+                  $scope.has25thFlag = false;
+              } //generateMarker
                 //=======================================================================
                 //
                 //=======================================================================
@@ -315,7 +339,7 @@ define(['text!./undb-map.html',
                             'q': $scope.buildQuery(),
                             'sort': 'createdDate_dt desc',
                             'wt': 'json',
-                        'fl':'progress_EN_s,id,logo_s,startDate_dt,endDate_dt,identifier_s,country_s,title_s, description_s,lat_d,lng_d',
+                            'fl':'progress_EN_s,id,logo_s,startDate_dt,endDate_dt,identifier_s,country_s,title_s, description_s,lat_d,lng_d,thematicArea_ss',
                             'start': 0,
                             'rows': 1000000,
                         };
