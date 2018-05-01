@@ -635,8 +635,8 @@ app.directive('editOrganization', ['$http',"$rootScope", "Enumerable", "$filter"
 				if (/^\s*$/g.test(document.notes))
 					document.notes = undefined;
 
-				if (document.coordinates && document.coordinates.lat && document.coordinates.lng)
-					delete(document.coordinates);
+				// if (document.coordinates && document.coordinates.lat && document.coordinates.lng)
+				// 	delete(document.coordinates);
 				return $q.when(false);
 			};
 
