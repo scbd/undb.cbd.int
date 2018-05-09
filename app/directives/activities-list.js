@@ -13,6 +13,7 @@ define(['text!./activities-list.html', 'app','moment-timezone','filters/trunc','
                 month: '=?month',
                 search: '=?search',
                 count: '=?count',
+                onLine:'=?onLine'
             },
 
 
@@ -150,7 +151,8 @@ define(['text!./activities-list.html', 'app','moment-timezone','filters/trunc','
                   endD = moment('31-12-50', "DD-MM-YYYY").toISOString();
                    q= ' AND startDate_dt:['+startD+' TO '+endD+']';
                 }
-
+                if($scope.onLine)
+                  q= q+ 'AND onlineEvent_b:true'
                 return q;
               }
               $scope.generateDateQuery = generateDateQuery;
@@ -180,7 +182,7 @@ define(['text!./activities-list.html', 'app','moment-timezone','filters/trunc','
                   'start': $scope.currentPage * $scope.itemsPerPage,
   								'rows': $scope.itemsPerPage,
                 };
-
+console.log(queryParameters)
                   $http.get('/api/v2013/index/select', {
                     params: queryParameters,
                     cache: true
