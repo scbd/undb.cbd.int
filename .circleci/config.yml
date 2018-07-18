@@ -1,0 +1,125 @@
+﻿version: 2
+
+_defaults: &defaults
+  docker:
+    - image: docker:17.05.0-ce
+  working_directory: ~/scbd/undb.cbd.int
+  parallelism: 1
+
+_run:
+  buildDocker: &buildDocker
+    name: Build docker image
+    command: |
+      docker info
+      docker build -t output --build-arg COMMIT=$CIRCLE_SHA1 .
+  testImage: &testImage
+    name: Test docker image
+    command:  |
+      docker run --name undb -d -p 8000:8000 output;sleep 10;
+      docker exec undb curl --retry 10 --retry-delay 5 -v http://localhost:8000
+
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: *buildDocker
+      - run: *testImage
+
+  build-deploy-branches:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: *buildDocker
+      - run: *testImage
+      - deploy:
+          name: Deploy build to docker hub
+          command:  |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker tag output scbd/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
+            docker push scbd/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
+
+  build-deploy-staging:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: *buildDocker
+      - run: *testImage
+      - deploy:
+          name: Deploy build to docker hub
+          command:  |
+            docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+            docker tag output scbd/$CIRCLE_PROJECT_REPONAME:stg-${CIRCLE_BRANCH//stg\//}
+            docker push scbd/$CIRCLE_PROJECT_REPONAME:stg-${CIRCLE_BRANCH//stg\//}
+
+  build_and_deploy_releases:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: *buildDocker
+      - run: *testImage
+      - deploy:
+          name: Deploy release build to docker hub
+          command:  |
+            docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+            docker tag output scbd/$CIRCLE_PROJECT_REPONAME:release-${CIRCLE_BRANCH//release\//}
+            docker push scbd/$CIRCLE_PROJECT_REPONAME:release-${CIRCLE_BRANCH//release\//}
+
+  build_and_deploy_tags:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: *buildDocker
+      - run: *testImage
+      - deploy:
+          name: Deploy tag build to docker hub
+          command:  |
+            if [ "${CIRCLE_PROJECT_USERNAME}" == 'scbd' ]; then
+              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+              docker tag output scbd/$CIRCLE_PROJECT_REPONAME:${CIRCLE_TAG//v/}
+              docker tag output scbd/$CIRCLE_PROJECT_REPONAME:latest
+              docker push scbd/$CIRCLE_PROJECT_REPONAME:${CIRCLE_TAG//v/}
+              docker push scbd/$CIRCLE_PROJECT_REPONAME:latest
+            else
+              eval "echo Branch:"{$CIRCLE_BRANCH}" User:"{$CIRCLE_PROJECT_USERNAME}
+              echo "Invalid tag, only scbd tags allowed"
+            fi
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - /^(master|dev|stg)$/
+                - /^release\/.*/
+            tags:
+              ignore:
+                - /^v?[0-9]+(\.[0-9]+)*$/
+
+      - build-deploy-branches:
+          filters:
+            branches:
+              only: /^(master|dev|stg)$/
+      - build-deploy-staging:
+          filters:
+            branches:
+              only: /^stg\/.*/
+      - build_and_deploy_releases:
+          filters:
+            branches:
+                only:
+                  - /^release\/.*/
+      - build_and_deploy_tags:
+          filters:
+            branches:
+                ignore: /.*/
+            tags:
+              only: /^v?[0-9]+(\.[0-9]+)*$/
