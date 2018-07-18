@@ -20,10 +20,10 @@ define(['app','authentication', '../directives/map/undb-map'], function() { 'use
 											    imageUrl: "app/images/carousel/undb-slider-abttf.png",
 											    targetUrl: "https://www.cbd.int/undb-new/actors/abttf"
 											}, {
-											    title: "UN Biodiversity Conference, Cancun, Mexico, 2016",
+											    title: "UN Biodiversity Conference, Sharm El-Sheikh, Egypt, 2018",
 											    description: "The highest governing bodies of the CBD and its Protocols bring together government representatives to review and promote the implementation of the Convention.",
-											    imageUrl: "app/images/carousel/undb-slider-cop13.png",
-											    targetUrl: "https://www.cbd.int/cop2016/"
+											    imageUrl: "app/images/carousel/undb-slider-cop14.png",
+											    targetUrl: "https://www.cbd.int/conferences/2018"
 											}, {
 											    title: "Cancun Commitments and Coalitions for Enhanced Implementation",
 											    description: "Actions underway or commitments by Parties or group of Parties to achieve the Aichi Biodiversity Targets.",
@@ -38,7 +38,7 @@ define(['app','authentication', '../directives/map/undb-map'], function() { 'use
 											    title: "High-level Political Forum on Sustainable Development",
 											    description: '',
 											    imageUrl: "app/images/carousel/slider-1.jpg",
-											    targetUrl: "http://www.un.org/apps/news/story.asp?NewsID=54503#.V5J72PmANBc"
+											    targetUrl: "https://sustainabledevelopment.un.org/hlpf/2018"
 											}, {
 											    title: "Sustainable Development Goals",
 											    description: "Transforming our world: the 2030 Agenda for Sustainable Development.",
