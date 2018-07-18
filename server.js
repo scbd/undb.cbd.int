@@ -1,4 +1,3 @@
-'use strict'; // jshint node: true, browser: false, esnext: true
 var express     = require('express');
 var httpProxy   = require('http-proxy');
 
@@ -20,7 +19,6 @@ console.info(`info: API address: ${apiUrl}`);
 
 app.set('views', __dirname + '/app');
 app.set('view engine', 'ejs');
-app.use(require('morgan')('dev'));
 
 // CONFIGURE /APP/* ROUTES
 
@@ -30,7 +28,7 @@ app.use('/app',           express.static(__dirname + '/app',                    
 
 // CONFIGURE TEMPLATE
 app.all('/api/*', function(req, res) { proxy.web(req, res, { target: apiUrl, secure: false, changeOrigin:true } ); } );
-
+app.use('/app/libs',      express.static(__dirname + '/node_modules/@bower_components', { setHeaders: setCustomCacheControl }));
 app.get('/*',            function(req, res) { res.render('template', { baseUrl: req.headers.base_url || '/', gitVersion: gitVersion }); });
 
 app.all('/*',            function(req, res) { res.status(404).send(); } );
