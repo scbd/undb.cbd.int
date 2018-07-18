@@ -30,7 +30,6 @@
     "@bower_components/requirejs": "jrburke/requirejs-bower#2.1.18",
     "@bower_components/requirejs-plugins": "millermedeiros/requirejs-plugins#1.0.3",
     "@bower_components/requirejs-text": "requirejs/text#2.0.14",
-    "@bower_components/ui-guid-generator": "aki-russia/ui-guid-generator#*",
     "@bower_components/uri.js": "medialize/URI.js#1.13.x",
     "ejs": "2.5.8",
     "express": "4.16.3",

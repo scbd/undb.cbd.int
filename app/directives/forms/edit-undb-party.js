@@ -19,6 +19,7 @@ define(['text!./edit-undb-party.html', 'text!./undb-records-dialog.html','app', 
 'providers/locale',
 'directives/views/view-undb-party',
 'directives/controls/select-contact',
+'utilities/guid'
 ], function(template,bbiRecordsDialog, app, angular, _) { 'use strict';
 
 app.directive('editUndbParty', ['$http',"$rootScope", "Enumerable", "$filter", "$q", "guid", "$location", "Thesaurus", 'authentication', 'editFormUtility',  'IStorage', '$route','$timeout','locale','userSettings','ngDialog',  function ($http, $rootScope, Enumerable, $filter, $q, guid, $location, thesaurus, authentication, editFormUtility, storage, $route,$timeout,locale,userSettings,ngDialog) {

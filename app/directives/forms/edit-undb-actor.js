@@ -19,6 +19,7 @@ define(['text!./edit-undb-actor.html', 'text!./undb-records-dialog.html','app', 
 'providers/locale',
 'directives/views/view-undb-actor',
 'directives/controls/select-contact',
+'utilities/guid'
 ], function(template,bbiRecordsDialog, app, angular, _) { 'use strict';
 
 app.directive('editUndbActor', ['$http',"$rootScope", "Enumerable", "$filter", "$q", "guid", "$location", "Thesaurus", 'authentication', 'editFormUtility',  'IStorage', '$route', function ($http, $rootScope, Enumerable, $filter, $q, guid, $location, thesaurus, authentication, editFormUtility, storage, $route) {

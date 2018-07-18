@@ -20,7 +20,8 @@ define(['text!./edit-event.html', 'text!./undb-records-dialog.html','app', 'angu
 'providers/locale',
 'directives/views/view-event',
 'directives/bootstrap-date-time-picker',
-'filters/moment'
+'filters/moment',
+'utilities/guid'
 
 ], function(template,bbiRecordsDialog, app, angular, _,moment) { 'use strict';
 
