@@ -16,7 +16,6 @@ require.config({
         'lodash'                    : 'libs/lodash/lodash',
         'linqjs'                    : 'libs/linqjs/linq.min',
         'jquery'                    : 'libs/jquery/dist/jquery',
-        'guid'                      : 'libs/ui-guid-generator/dist/ui-guid-generator.min',
         'moment'                    : 'libs/moment/min/moment.min',
         'moment-timezone'           : 'libs/moment-timezone/builds/moment-timezone-with-data-2010-2020.min',
         'ngCookies'                 : 'libs/angular-cookies/angular-cookies.min',

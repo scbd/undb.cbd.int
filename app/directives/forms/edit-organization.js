@@ -17,7 +17,8 @@ define(['text!./edit-organization.html', 'text!./undb-records-dialog.html','app'
 'directives/controls/scbd-tab',
 'directives/controls/km-terms-check',
 'providers/locale',
-'directives/views/view-organization'
+'directives/views/view-organization',
+'utilities/guid'
 ], function(template,bbiRecordsDialog, app, angular, _) { 'use strict';
 
 app.directive('editOrganization', ['$http',"$rootScope", "Enumerable", "$filter", "$q", "guid", "$location", "Thesaurus", 'authentication', 'editFormUtility',  'IStorage', '$route','$timeout','locale','userSettings','ngDialog',  function ($http, $rootScope, Enumerable, $filter, $q, guid, $location, thesaurus, authentication, editFormUtility, storage, $route,$timeout,locale,userSettings,ngDialog) {

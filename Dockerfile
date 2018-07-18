@@ -1,21 +1,21 @@
-FROM node:8.3-alpine
+FROM node:10.6.0-alpine
 
 RUN apk update && apk upgrade && \
-    apk add --no-cache bash git
+    apk add --no-cache git curl yarn
 
 WORKDIR /usr/src/app
 
-COPY package.json bower.json .bowerrc .npmrc ./
+COPY package.json .npmrc ./
 
-RUN npm install
+RUN yarn install --flat --production
+
+ENV PORT 8000
+
+EXPOSE 8000
 
 COPY . ./
 
 ARG COMMIT
 ENV COMMIT $COMMIT
-
-ENV PORT 8000
-
-EXPOSE 8000
 
 CMD [ "node", "server" ]
