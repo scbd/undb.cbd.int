@@ -175,19 +175,20 @@ define(['text!./undb-map.html',
                 //
                 //=======================================================================
                 function progressToNumber(progress) {
-
-                  switch (progress.trim()) {
-                    case "On track to exceed target":
-                      return 5;
-                    case "On track to achieve target":
-                      return 4;
-                    case "Progress towards target but at an  insufficient rate":
-                      return 3;
-                    case "No significant change":
-                      return 2;
-                    case "Moving away from target":
-                      return 1;
-                  }
+                  if(progress)
+                    switch (progress.trim()) {
+                      case "On track to exceed target":
+                        return 5;
+                      case "On track to achieve target":
+                        return 4;
+                      case "Progress towards target but at an  insufficient rate":
+                        return 3;
+                      case "No significant change":
+                        return 2;
+                      case "Moving away from target":
+                        return 1;
+                    }
+                    return 1
                 } //progressToNumber(progress)
                 //=======================================================================
                 //
