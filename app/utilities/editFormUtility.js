@@ -81,36 +81,30 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-st
     };
 
     var _self = {
-        //==================================
-        //
-        //==================================
-        getRealm: function(identifier) {
+      //==================================
+      //
+      //==================================
+      getRealm: function(identifier, config) {
 
-          return storage.drafts.get(identifier, {
-            info: ""
-          }).then(
-            function(success) {
-              return success;
-            },
-            function(error) {
-              if (error.status == 404)
-                return storage.documents.get(identifier, {
-                  info: ""
-                });
-              throw error;
-            }).then(
-            function(success) {
-              var info = success.data;
-              if(!info.Realm) return false;
-              return info.Realm;
+        if(documentRealmCache[identifier])
+          return $q.when(documentRealmCache[identifier]);
 
-          },
-          function(error) {
-              if (error.status == 404)
-                return false;
-              throw error;
-          });
-        },
+        return storage.drafts.getRealm(identifier)
+        .then(function(success) {
+            if(!success.data) return false;
+
+            return documentRealmCache[identifier] = success.data;
+        })
+        .catch(function(error){
+          if (error.status == 404)
+            return storage.documents.getRealm(identifier)
+            .then(function(success) {
+                if(!success.data) return false;
+
+                return documentRealmCache[identifier] = success.data;
+            })
+        })
+      },
       //==================================
       //
       //==================================

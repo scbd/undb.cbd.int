@@ -35,7 +35,8 @@ app.all('/*',            function(req, res) { res.status(404).send(); } );
 // START SERVER
 
 app.listen(process.env.PORT || 2020, function () {
-	console.log('Server listening on %j', this.address());
+	console.log('Server listening: %j', this.address());
+  console.log(`http://localhost:${process.env.PORT || 2020}`);
 });
 // Handle proxy errors ignore
 

@@ -310,51 +310,29 @@ define(['app', 'angular', 'jquery','utilities/editFormUtility'], function (app, 
 	}]);
 
     app.factory('realmHttpIntercepter', ['realm','$injector', function(realm,$injector) {
+      return {
+          request: function(config) {
 
-        return {
-            request: function(config) {
+      if((config.headers || {}).hasOwnProperty('realm'))
+        return config;
 
+              var trusted = /^https:\/\/api.cbd.int\//i .test(config.url) ||
+                            /^https:\/\/localhost[:\/]/i.test(config.url) ||
+                            /^\/\w+/i                   .test(config.url);
 
-                if(config.method!=='PUT' && config.method!=='POST') return config; // no realm on gets
+              var hasRealmParam = !!(trusted && realm && config.params && config.params.realm && config.params.realm != realm);
 
-                var trusted = /^https:\/\/api.cbd.int\//i .test(config.url) ||
-                              /^https:\/\/localhost[:\/]/i.test(config.url) ||
-                              /^\/\w+/i                   .test(config.url);
+              if(hasRealmParam) {
+                  config.headers = angular.extend(config.headers || {}, { realm : config.params.realm });
+              }
+              else if(trusted && realm ) {
+                  config.headers = angular.extend(config.headers || {}, { realm : realm });
+              }
 
-                var hasRealmParam = !!(trusted && realm && config.params && config.params.realm && config.params.realm != realm);
+              return config;
+          }
+      };
 
-                if(hasRealmParam) {
-                    config.headers = angular.extend(config.headers || {}, { realm : config.params.realm });
-                }
-                else if(trusted && realm ) {
-                    config.headers = angular.extend(config.headers || {}, { realm : realm });
-                }
-
-                var docExists = !!(config.data && config.data.header && config.data.header.identifier);
-                var sharedRefRecord = !!(config.data && config.data.header && config.data.header.schema==='organization');
-
-                if(docExists && sharedRefRecord && !hasRealmParam) // share reference records between realms
-                    return $injector.get('editFormUtility').getRealm(config.data.header.identifier).then(function(res){
-
-                            if(res) {
-                                if(sameEnv(realm, res))
-                                    config.headers = angular.extend(config.headers || {}, { realm : res });
-                            }
-                            return config;
-                    });
-
-                return config;
-            }
-        };
     }]);
 
-    function sameEnv(realmOne, realmTwo){
-        var isRealmOneDev = !!(realmOne.indexOf('dev')>-1 || realmOne.indexOf('DEV')>-1);
-        var isRealmTwoDev = !!(realmTwo.indexOf('dev')>-1 || realmTwo.indexOf('DEV')>-1);
-
-        if(isRealmOneDev && isRealmTwoDev) return true;
-        if(!isRealmOneDev && !isRealmTwoDev) return true;
-
-        return false;
-    }
 });
