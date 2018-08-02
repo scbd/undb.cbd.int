@@ -96,13 +96,14 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-st
             return documentRealmCache[identifier] = success.data;
         })
         .catch(function(error){
-          if (error.status == 404)
+          if (error.status == 404 || error.status == 403){
             return storage.documents.getRealm(identifier)
             .then(function(success) {
                 if(!success.data) return false;
 
                 return documentRealmCache[identifier] = success.data;
             })
+          }
         })
       },
       //==================================
@@ -117,7 +118,7 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-st
             return success;
           },
           function(error) {
-            if (error.status == 404)
+            if (error.status == 404 || error.status == 403)
               return storage.documents.get(identifier, {
                 info: ""
               });
@@ -134,7 +135,7 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-st
                 status: "badSchema"
               };
 
-            var hasDraft = !!info.workingDocumentCreatedOn;
+            var hasDraft = !!info.workingDocumentCreatedOn || !!info.createdOn;
             var securityPromise = hasDraft ?
               storage.drafts.security.canUpdate(info.identifier, info.type) :
               storage.drafts.security.canCreate(info.identifier, info.type);
@@ -149,14 +150,7 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-st
                     status: "notAuthorized"
                   };
 
-                var documentPromise = hasDraft ?
-                  storage.drafts.get(identifier) :
-                  storage.documents.get(identifier);
-
-                return documentPromise.then(
-                  function(success) {
-                    return success.data;
-                  });
+                  return info.body;
               });
           });
       },
