@@ -100,7 +100,7 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-st
               return storage.documents.getRealm(identifier, {}, config)
               .then(function(success) {
                   if(!success.data) return false;
-  
+
                   return documentRealmCache[identifier] = success.data;
               })
             }
@@ -134,18 +134,25 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-st
               storage.drafts.security.canUpdate(info.identifier, info.type, undefined, config) :
               storage.drafts.security.canCreate(info.identifier, info.type, undefined, config);
 
-            return securityPromise.then(
-              function(isAllowed) {
-                if (!isAllowed)
-                  throw {
-                    data: {
-                      error: "Not allowed"
-                    },
-                    status: "notAuthorized"
-                  };
-                return info.body;
-                
-              });
+              return securityPromise.then(
+                function(isAllowed) {
+                  if (!isAllowed)
+                    throw {
+                      data: {
+                        error: "Not allowed"
+                      },
+                      status: "notAuthorized"
+                    };
+
+                  var documentPromise = hasDraft ?
+                    storage.drafts.get(identifier, undefined, config) :
+                    storage.documents.get(identifier, undefined, config);
+
+                  return documentPromise.then(
+                    function(success) {
+                      return success.data;
+                    });
+                });
           });
       },
 
@@ -154,13 +161,7 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-st
       //==================================
       draftExists: function(identifier, config) {
 
-        return storage.drafts.exists(identifier, null, config).then(function() {
-          return true;
-        }, function(error) {
-          if (error.status == 404)
-            return false;
-          throw error;
-        });
+        return storage.drafts.exists(identifier, null, config);
 
       },
 
@@ -224,13 +225,7 @@ define(['app','linqjs', 'utilities/realm','utilities/workflows','utilities/km-st
       //==================================
       documentExists: function(identifier, config) {
 
-        return storage.documents.exists(identifier, undefined, config).then(function() {
-          return true;
-        }, function(error) {
-          if (error.status == 404)
-            return false;
-          throw error;
-        });
+        return storage.documents.exists(identifier, undefined, config);
 
       },
 

@@ -615,7 +615,7 @@ app.directive('editOrganization', ['$http',"$rootScope", "Enumerable", "$filter"
 
 			}
       function getCustomConfig(document){
-        if(document && document.header && document.header.schema == 'organization'){
+        if(document && document.header && document.header.schema == 'organization' &&  $route.current.params.id!='new'){
           return editFormUtility.getRealm(document.header.identifier)
                     .then(function(realm){
                       if(realm && realm.trim()!=''){
