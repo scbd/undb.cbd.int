@@ -1,6 +1,6 @@
 /* jshint sub:true */
 
-define(['app', 'angular', 'jquery','utilities/editFormUtility'], function (app, ng, $) { 'use strict';
+define(['app', 'angular', 'jquery'], function (app, ng, $) { 'use strict';
 
     var accountsBaseUrl = (function(){
 
@@ -61,7 +61,7 @@ define(['app', 'angular', 'jquery','utilities/editFormUtility'], function (app, 
 
 				var defer = $q.defer();
 				var unauthorizedTimeout = $timeout(function(){
-					console.error('accounts is not available / call is made from an unauthorized domain',accountsBaseUrl,authenticationFrameQ);
+					console.error('accounts is not available / call is made from an unauthorized domain');
 					defer.resolve(null);
 				}, 1000);
 
@@ -310,29 +310,29 @@ define(['app', 'angular', 'jquery','utilities/editFormUtility'], function (app, 
 	}]);
 
     app.factory('realmHttpIntercepter', ['realm','$injector', function(realm,$injector) {
-      return {
-          request: function(config) {
 
-      if((config.headers || {}).hasOwnProperty('realm'))
-        return config;
+        return {
+            request: function(config) {
 
-              var trusted = /^https:\/\/api.cbd.int\//i .test(config.url) ||
-                            /^https:\/\/localhost[:\/]/i.test(config.url) ||
-                            /^\/\w+/i                   .test(config.url);
+				if((config.headers || {}).hasOwnProperty('realm'))
+					return config;
 
-              var hasRealmParam = !!(trusted && realm && config.params && config.params.realm && config.params.realm != realm);
+                var trusted = /^https:\/\/api.cbd.int\//i .test(config.url) ||
+                              /^https:\/\/localhost[:\/]/i.test(config.url) ||
+                              /^\/\w+/i                   .test(config.url);
 
-              if(hasRealmParam) {
-                  config.headers = angular.extend(config.headers || {}, { realm : config.params.realm });
-              }
-              else if(trusted && realm ) {
-                  config.headers = angular.extend(config.headers || {}, { realm : realm });
-              }
+                var hasRealmParam = !!(trusted && realm && config.params && config.params.realm && config.params.realm != realm);
 
-              return config;
-          }
-      };
+                if(hasRealmParam) {
+                    config.headers = angular.extend(config.headers || {}, { realm : config.params.realm });
+                }
+                else if(trusted && realm ) {
+                    config.headers = angular.extend(config.headers || {}, { realm : realm });
+                }
 
+                return config;
+            }
+        };
     }]);
 
 });
