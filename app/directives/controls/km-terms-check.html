@@ -33,15 +33,13 @@
           <label>
             <input type="checkbox" ng-model="identifiers['CBD-SUBJECT-25TH-ANN']" ng-click="save()" ng-required="IsRequired()" value="CBD-SUBJECT-25TH-ANN" />
               25th Anniversary
-              <pre>{{binding|json}}</pre>
           </label>
         </li>
     </ul>
-	<!-- </span> -->
+
 	</script>
 
 	<li ng:repeat="term in rootTerms" ng-include="'term-check-tree-renderer.html'" ></li>
-	<!-- //ng-if="(term.identifier ==='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A' && isAdmin() ) || (term.identifier !='3FEF79FF-9EA2-4E3A-BEC9-2991CCDD7F3A') " -->
 
 	<li ng-show="error">
 		<div class="alert">

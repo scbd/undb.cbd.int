@@ -142,7 +142,11 @@ define(['app', 'angular', 'jquery', 'text!./km-terms-check.html', 'linqjs'], fun
                             $scope.rootTerms = Enumerable.from(refTerms).select("o=>{identifier : o.identifier, name : o.name, title : o.title}").toArray();
                     }
 
-                    if($scope.rootTerms[3] && $scope.rootTerms[3].identifier==='CBD-SUBJECT-OUT+CEPA'){
+                    if($scope.rootTerms[3] && $scope.rootTerms[3].identifier==='CBD-SUBJECT-OUT+CEPA') {
+                      
+                      $scope.rootTerms[3]['narrowerTerms'].push({identifier: "CBD-SUBJECT-25TH-ANN", title: {en:'25th Anniversary'}, description: ""})
+                      $scope.terms.push({identifier: "CBD-SUBJECT-25TH-ANN", title: {en:'25th Anniversary'}, description: ""})
+                    }
                     $scope.load();
                 };
 
