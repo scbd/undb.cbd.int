@@ -142,6 +142,7 @@ define(['app', 'angular', 'jquery', 'text!./km-terms-check.html', 'linqjs'], fun
                             $scope.rootTerms = Enumerable.from(refTerms).select("o=>{identifier : o.identifier, name : o.name, title : o.title}").toArray();
                     }
 
+                    if($scope.rootTerms[3] && $scope.rootTerms[3].identifier==='CBD-SUBJECT-OUT+CEPA'){
                     $scope.load();
                 };
 

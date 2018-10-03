@@ -78,7 +78,7 @@ define(['text!./undb-map.html',
                   setLoading('event',true);
                 return $http.get("/api/v2013/index", {
                     params: {
-                        'q': 'schema_s:event',
+                        'q': 'schema_s:event AND lat_d:[* TO *] AND thematicArea_ss:CBD-SUBJECT-25TH-ANN',
                         'sort': 'createdDate_dt desc',
                         'fl':'logo*,id,identifier_s,country_s,title_s, description_s,lat_d,lng_d,endDate_dt,startDate_dt,aichiTarget_ss,thematicArea_ss',
                         'wt': 'json',
