@@ -147,6 +147,9 @@ body.modal-open div.modal-backdrop {
 .pin-action {
   /*background: #05483a;*/
 }
+.pin-action-25 {
+  z-index: 100;
+}
 .pin-ccc{
   margin: -37px 0 0 -22px;
 }

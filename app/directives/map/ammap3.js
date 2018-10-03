@@ -257,7 +257,7 @@ var images=[];
                         if($scope.map.dataProvider.images[imageIndex].isCCC)
                           return makeMarker(imageIndex, 'pin-ccc', 'pulse-', 'app/img/pointer-undb-orange.png');
                         else if(is25th($scope.map.dataProvider.images[imageIndex]))
-                          return makeMarker(imageIndex, 'pin-action', 'pulse-', 'app/img/pointer-yellow-pin.png');
+                          return makeMarker(imageIndex, 'pin-action pin-action-25', 'pulse-', 'app/img/pointer-yellow-pin.png');
                         else
                           return makeMarker(imageIndex, 'pin-action', 'pulse-', 'app/img/pointer-undb-green.png');
 
