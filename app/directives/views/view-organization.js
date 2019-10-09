@@ -134,7 +134,7 @@ app.directive('viewOrganization', ["IStorage","$location","locale","$sce", funct
 
 				angular.forEach(targets, function(ref){
 
-					storage.documents.get(ref.identifier, { cache : true})
+					storage.documents.get(ref.identifier, null, { cache : true, headers: {realm:undefined}})
 						.success(function(data){
 							ref.document = data;
 
@@ -143,7 +143,7 @@ app.directive('viewOrganization', ["IStorage","$location","locale","$sce", funct
 						.error(function(error, code){
 							if (code == 404 && $scope.allowDrafts == "true") {
 
-								storage.drafts.get(ref.identifier, { cache : true})
+								storage.drafts.get(ref.identifier, null, { cache : true, headers: {realm:undefined}})
 									.success(function(data){
 										ref.document = data;
 									})

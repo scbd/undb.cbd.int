@@ -56,8 +56,8 @@ function(template,app,_) {
                      return term.slice(-2);
                 };
             },
-            controller: ["$scope", "$http", "$window", "$filter", "underscore",   "$q",  'ngDialog','locale','$timeout',
-                function($scope, $http, $window, $filter, _,  $q,   ngDialog,locale,$timeout) {
+            controller: ["$scope", "$http", "$filter", "underscore",   "$q",  'ngDialog','locale','$timeout',
+                function($scope, $http, $filter, _,  $q,   ngDialog,locale,$timeout) {
 
                     $scope.locale=locale;
                     var workingContacts = null;
@@ -264,29 +264,42 @@ function(template,app,_) {
                     //
                     //
                     //============================================================
-                    function loadSelectedContact(identifier,selectedContacts) {
+                    function loadSelectedContact(identifier) {
                           $scope.loadingDocuments=true;
-                          return $http.get('/api/v2013/documents/'+identifier, {
-                          }).success(function(doc) {
-                              selectedContacts.push(doc);
-                              $scope.loadingDocuments=false;
-                              if(doc.organization && doc.organization.identifier)
-                                return loadOrgData(doc.organization.identifier,doc);
-                          }).catch(function(){
+                         
+                              var header = {headers: {realm:undefined}}
+                            return $http.get('/api/v2013/documents/'+identifier, header)
+                            .success(loadDocument)
+                            .catch(function(){
+                                return callDraft(identifier,header)
+                            });
+                     
 
-                            return $http.get('/api/v2013/documents/'+identifier+'/versions/draft', {
-                            }).success(function(doc) {
-                                doc.header.version='draft';
-                                selectedContacts.push(doc);
-                                $scope.loadingDocuments=false;
-                                if(doc.organization && doc.organization.identifier)
-                                  return loadOrgData(doc.organization.identifier,doc);
-                                else
-                                  return 'draft';
-                            }).catch(function(err){throw err;});
-                          });
 
                     }// loadSelectedContact
+
+                    function loadDocument(doc){
+                        $scope.selectedContacts.push(doc);
+                        $scope.loadingDocuments=false;
+                        if(doc.organization && doc.organization.identifier)
+                            return loadOrgData(doc.organization.identifier,doc);
+                    }
+
+                    function callDraft(identifier, headers){
+                        return $http.get('/api/v2013/documents/'+identifier+'/versions/draft', headers)
+                                    .success(loadDraft)
+                    }
+
+                    function loadDraft(doc){
+
+                        doc.header.version='draft';
+                        $scope.selectedContacts.push(doc);
+                        $scope.loadingDocuments=false;
+                        if(doc.organization && doc.organization.identifier)
+                            return loadOrgData(doc.organization.identifier,doc);
+                        else
+                            return 'draft';
+                    }
 
                     //============================================================
                     //
