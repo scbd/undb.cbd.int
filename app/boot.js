@@ -14,7 +14,7 @@ require.config({
         'bootstrap-datepicker'  : 'libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min',
         'css'                       : 'libs/require-css/css.min',
         'lodash'                    : 'libs/lodash/lodash',
-        'linqjs'                    : 'libs/linqjs/linq.min',
+        'linqjs'                    : 'libs/linqjs/linq',
         'jquery'                    : 'libs/jquery/dist/jquery',
         'moment'                    : 'libs/moment/min/moment.min',
         'moment-timezone'           : 'libs/moment-timezone/builds/moment-timezone-with-data-2010-2020.min',
