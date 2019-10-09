@@ -140,14 +140,14 @@ app.directive('viewUndbParty', ["IStorage","$location","locale","$sce", function
 
 			$scope.loadReference = function(ref) {
 
-					return storage.documents.get(ref.identifier, { cache : true})
+					return storage.documents.get(ref.identifier, null, { cache : true, headers: {realm:undefined}})
 						.success(function(data){
 							return ref= data;
 						})
 						.error(function(error, code){
 							if (code == 404 && $scope.allowDrafts == "true") {
 
-								return storage.drafts.get(ref.identifier, { cache : true})
+								return storage.drafts.get(ref.identifier, null, { cache : true, headers: {realm:undefined}})
 									.success(function(data){
 										return ref= data;
 									})

@@ -57,6 +57,7 @@ app.directive('viewEvent', ["IStorage","$location","locale","$sce", function (st
 
 				if($scope.organizations){
 					$scope.loadReferences($scope.organizations);
+					if($scope.contactOrganization)
 					$scope.loadReference($scope.contactOrganization).then(function(ref){
 							$scope.contactOrganization.document=ref.data;
 							$scope.contactOrganization.logo=_.find($scope.contactOrganization.document.relevantDocuments,{name:'logo'});
@@ -160,13 +161,13 @@ app.directive('viewEvent', ["IStorage","$location","locale","$sce", function (st
 
 			$scope.loadReference = function(ref) {
 
-					return storage.documents.get(ref.identifier, { cache : true})
+					return storage.documents.get(ref.identifier, null, { cache : true, headers: {realm:undefined}})
 						.success(function(data){
 							return ref= data;
 						}).error(function(error, code){
 							if (code == 404 && $scope.allowDrafts == "true") {
 
-								return storage.drafts.get(ref.identifier, { cache : true})
+								return storage.drafts.get(ref.identifier, null, { cache : true, headers: {realm:undefined}})
 									.success(function(data){
 										return ref= data;
 									}).error(function(draftError, draftCode){

@@ -6,10 +6,10 @@ define(['app', 'angular', 'jquery'], function (app, ng, $) { 'use strict';
 
         var domain = window.location.hostname.replace(/[^\.]+\./, '');
 
-        if(domain=='localhost')
-            domain = 'cbddev.xyz';
+        // if(domain=='localhost')
+        //     domain = 'cbddev.xyz';
 
-        return 'https://accounts.'+domain;
+        return 'https://accounts.cbd.int'//+domain;
 
     })();
 
@@ -335,4 +335,18 @@ define(['app', 'angular', 'jquery'], function (app, ng, $) { 'use strict';
         };
     }]);
 
+		app.factory('apiRebase', ["$location", function($location) {
+        
+			return {
+					request: function(config) {
+
+							var rewrite = /^\/api\//.test(config.url.toLowerCase());
+
+							if(rewrite)
+									config.url = 'https://api.cbd.int' + config.url;
+
+							return config;
+					}
+			};
+	}]);
 });

@@ -13,6 +13,7 @@ define(['angular'], function(angular) { 'use strict';
         $httpProvider.useApplyAsync(true);
         $httpProvider.interceptors.push('authenticationHttpIntercepter');
         $httpProvider.interceptors.push('realmHttpIntercepter');
+        $httpProvider.interceptors.push('apiRebase');
     }]);
 
   app.config(['toastrConfig',function(toastrConfig) {

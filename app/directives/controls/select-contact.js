@@ -3,7 +3,8 @@ define(['text!./select-contact.html','app','lodash','ngDialog',
 // 'directives/bbi/forms/edit-organization',
 'providers/locale',
 'filters/term',
-'ngInfiniteScroll'
+'ngInfiniteScroll',
+'utilities/km-storage'
 ],
 function(template,app,_) {
 
@@ -56,8 +57,8 @@ function(template,app,_) {
                      return term.slice(-2);
                 };
             },
-            controller: ["$scope", "$http", "$window", "$filter", "underscore",   "$q",  'ngDialog','locale','$timeout',
-                function($scope, $http, $window, $filter, _,  $q,   ngDialog,locale,$timeout) {
+            controller: ["$scope", "$http", "$window", "$filter", "underscore",   "$q",  'ngDialog','locale','$timeout','IStorage',
+                function($scope, $http, $window, $filter, _,  $q,   ngDialog,locale,$timeout, storage) {
 
                     $scope.locale=locale;
                     var workingContacts = null;
@@ -260,33 +261,50 @@ function(template,app,_) {
                         $scope.$broadcast('clearSelectSelection');
                     }
 
-                    //============================================================
-                    //
-                    //
-                    //============================================================
-                    function loadSelectedContact(identifier,selectedContacts) {
-                          $scope.loadingDocuments=true;
-                          return $http.get('/api/v2013/documents/'+identifier, {
-                          }).success(function(doc) {
-                              selectedContacts.push(doc);
-                              $scope.loadingDocuments=false;
-                              if(doc.organization && doc.organization.identifier)
-                                return loadOrgData(doc.organization.identifier,doc);
-                          }).catch(function(){
+                    function getRealm(identifier){
+                        return storage.documents.getRealm(identifier, {}, {headers: {realm:undefined}})
+                    }
 
-                            return $http.get('/api/v2013/documents/'+identifier+'/versions/draft', {
-                            }).success(function(doc) {
-                                doc.header.version='draft';
-                                selectedContacts.push(doc);
-                                $scope.loadingDocuments=false;
-                                if(doc.organization && doc.organization.identifier)
-                                  return loadOrgData(doc.organization.identifier,doc);
-                                else
-                                  return 'draft';
-                            }).catch(function(err){throw err;});
-                          });
+                    //============================================================
+                    //
+                    //
+                    //============================================================
+                    function loadSelectedContact(identifier) {
+                          $scope.loadingDocuments=true;
+                          return getRealm(identifier).then(function(realm){
+                              var header = {headers: {realm:realm.data}}
+                            return $http.get('/api/v2013/documents/'+identifier, header)
+                            .success(loadDocument)
+                            .catch(function(){
+                                return callDraft(identifier,header)
+                            });
+                          })
+
 
                     }// loadSelectedContact
+
+                    function loadDocument(doc){
+                        $scope.selectedContacts.push(doc);
+                        $scope.loadingDocuments=false;
+                        if(doc.organization && doc.organization.identifier)
+                            return loadOrgData(doc.organization.identifier,doc);
+                    }
+
+                    function callDraft(identifier, headers){
+                        return $http.get('/api/v2013/documents/'+identifier+'/versions/draft', headers)
+                                    .success(loadDraft)
+                    }
+
+                    function loadDraft(doc){
+
+                        doc.header.version='draft';
+                        $scope.selectedContacts.push(doc);
+                        $scope.loadingDocuments=false;
+                        if(doc.organization && doc.organization.identifier)
+                            return loadOrgData(doc.organization.identifier,doc);
+                        else
+                            return 'draft';
+                    }
 
                     //============================================================
                     //
