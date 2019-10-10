@@ -1,52 +1,52 @@
 (function(document) { 'use strict';
 
 var gitVersion = document.documentElement.attributes['git-version'].value;
+var cdnHost = 'https://cdn.cbd.int/';
 
 require.config({
     waitSeconds: 120,
     baseUrl : 'app/',
     paths: {
-        'angular'                   : 'libs/angular-flex/angular-flex',
-        'angular-route'             : 'libs/angular-route/angular-route',
-        'angular-sanitize'          : 'libs/angular-sanitize/angular-sanitize.min',
+        'angular'                   : cdnHost + 'angular@1.5.9/angular.min',
+        'angular-route'             : cdnHost + 'angular-route@1.5.9/angular-route.min',
+        'ngCookies'                 : cdnHost + 'angular-cookies@1.5.9/angular-cookies.min',
+        'angular-sanitize'          : cdnHost + 'angular-sanitize@1.5.9/angular-sanitize.min',
         'authentication'            : 'factories/authentication',
-        'bootstrap'                 : 'libs/bootstrap/dist/js/bootstrap.min',
-        'bootstrap-datepicker'  : 'libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min',
-        'css'                       : 'libs/require-css/css.min',
-        'lodash'                    : 'libs/lodash/lodash',
-        'linqjs'                    : 'libs/linqjs/linq.min',
-        'jquery'                    : 'libs/jquery/dist/jquery',
-        'moment'                    : 'libs/moment/min/moment.min',
-        'moment-timezone'           : 'libs/moment-timezone/builds/moment-timezone-with-data-2010-2020.min',
-        'ngCookies'                 : 'libs/angular-cookies/angular-cookies.min',
-        'ngSmoothScroll'            : 'libs/ngSmoothScroll/lib/angular-smooth-scroll',
+        'bootstrap'                 : cdnHost + 'bootstrap@3.3.5/dist/js/bootstrap.min',
+        'bootstrap-datepicker'      : cdnHost + 'bootstrap-datepicker@1.8.0/js/bootstrap-datepicker',
+        'eonasdan-bootstrap-datetimepicker' : cdnHost + 'eonasdan-bootstrap-datetimepicker@4.17.47',
+        'css'                       : cdnHost + 'require-css@0.1.8/css.min',
+        'lodash'                    : cdnHost + 'lodash@3.10.1/index',
+        'linqjs'                    : cdnHost + 'linq@3.1.0/linq.min',
+        'jquery'                    : cdnHost + 'jquery@2.2.4/dist/jquery.min',
+        'moment'                    : cdnHost + 'moment@2.10.5/min/moment.min',
+        'moment-timezone'           : cdnHost + 'moment-timezone@0.5.4/builds/moment-timezone-with-data-2010-2020.min',
+        'ngSmoothScroll'            : cdnHost + 'ngSmoothScroll@2.0.0/dist/angular-smooth-scroll.min',
         'realm'                     : 'utilities/realm',
         'shim'                      : 'libs/require-shim/src/shim',
-        'text'                      : 'libs/requirejs-text/text',
-        'toastr'                    : 'libs/angular-toastr/dist/angular-toastr.tpls.min',
-        'URIjs'                     : 'libs/uri.js/src',
-        'ng-ckeditor'               : 'libs/ng-ckeditor/ng-ckeditor',
-        'ckeditor'                  : 'libs/ng-ckeditor/libs/ckeditor/ckeditor',
-        'ngDialog'                  : 'libs/ng-dialog/js/ngDialog.min',
-        'ngInfiniteScroll'          : 'libs/ngInfiniteScroll/build/ng-infinite-scroll',
-'eonasdan-bootstrap-datetimepicker' :'libs/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min'
+        'text'                      : cdnHost + 'requirejs-text@2.0.15/text',
+        'toastr'                    : cdnHost + 'angular-toastr@1.7.0/dist/angular-toastr.tpls.min',
+        'URIjs'                     : cdnHost + 'URIjs@1.13.2/src',
+        'ng-ckeditor'               : cdnHost + 'ng-ckeditor@2.0.5/dist/ng-ckeditor.min',
+        'ngDialog'                  : cdnHost + 'ng-dialog@0.6.2/js/ngDialog.min',
+        'ngInfiniteScroll'          : cdnHost + 'ng-infinite-scroll@1.3.0/build/ng-infinite-scroll.min',
+        'angular-flex'              : 'libs/angular-flex/angular-flex',
     },
     shim: {
-        'libs/angular/angular'     : { deps: ['jquery'] },
-        'jquery-ui'                : { deps: ['jquery'] },
-        'angular'                  : { deps: ['libs/angular/angular'] },
-        'angular-route'            : { deps: ['angular'] },
-        'ngCookies'                : { deps : ['angular'] },
+      'angular'              : { deps : ['jquery'], exports: 'angular' },
+      'angular-flex'         : { deps : ['angular', 'jquery'] },
+        'angular-route'            : { deps: ['angular-flex'] },
+        'ngCookies'                : { deps : ['angular-flex'] },
         'bootstrap'                : { deps: ['jquery'] },
-        'ngSmoothScroll'           : { deps: [ 'angular']},
+        'ngSmoothScroll'           : { deps: [ 'angular-flex']},
         'guid'                     : { exports: 'ui_guid_generator' },
-        'toastr'                   : { deps: ['angular']},
-        'angular-sanitize'         : { deps: ['angular'] },
-        'ng-ckeditor'              : { deps: ['angular','ckeditor']},
-        'ngDialog'                 : { deps: ['angular' ]},
-        'bootstrap-datepicker'     : { deps: ['css!libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'] },
-        'eonasdan-bootstrap-datetimepicker': { deps: ['jquery','moment','bootstrap','css!libs/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'] },
-    },
+        'toastr'                   : { deps: ['angular-flex']},
+        'angular-sanitize'         : { deps: ['angular-flex'] },
+        'ng-ckeditor'              : { deps: ['angular-flex']},
+        'ngDialog'                 : { deps: ['angular-flex' ]},
+        'bootstrap-datepicker'     : { deps: ['css!bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'] },
+        'eonasdan-bootstrap-datetimepicker': { deps: ['jquery','moment','bootstrap','css!eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'] }
+        },
     packages: [
         { name: 'ammap', main: 'ammap', location : 'libs/ammap3/ammap' }
     ],
@@ -58,7 +58,6 @@ if (!require.defined('_slaask'))
     define("_slaask", window._slaask);
 
 require(['angular', 'app', 'bootstrap', 'authentication', 'routes', 'template'], function(ng, app) {
-
     ng.element(document).ready(function () {
          ng.bootstrap(document, [app.name]);
     });

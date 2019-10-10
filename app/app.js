@@ -1,4 +1,4 @@
-define(['angular'], function(angular) { 'use strict';
+define(['angular-flex'], function(angular) { 'use strict';
 
     var deps = ['ngRoute','smoothScroll','toastr','ngCkeditor','ngSanitize','ngDialog','ngCookies'];
 
