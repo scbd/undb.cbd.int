@@ -40,7 +40,6 @@ define(['app', 'text!./toast.html', 'lodash','angular', 'authentication','provid
 
                 if(!_slaask.initialized) {
                     _slaask.init('45333ce83b22e400b1528f2bf51993df');
-                    _slaask.initialized = true;
                     killWatch();
                 }
             });
