@@ -38,11 +38,11 @@ define(['app','authentication', '../directives/map/undb-map'], function() { 'use
 											    title: "High-level Political Forum on Sustainable Development",
 											    description: '',
 											    imageUrl: "app/images/carousel/slider-1.jpg",
-											    targetUrl: "https://sustainabledevelopment.un.org/hlpf/2018"
+											    targetUrl: "https://sustainabledevelopment.un.org/hlpf/2019"
 											}, {
 											    title: "Sustainable Development Goals",
 											    description: "Transforming our world: the 2030 Agenda for Sustainable Development.",
-											    imageUrl: "app/images/carousel/undb-slider-sdg.png",
+											    imageUrl: "http://attachments.cbd.int/undb-slider-sdg-un.png",
 											    targetUrl: "https://sustainabledevelopment.un.org/sdgs"
 											}, {
 											    title: "Participate!",
