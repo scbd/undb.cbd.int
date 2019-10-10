@@ -2,7 +2,7 @@
 
 _defaults: &defaults
   docker:
-    - image: 18.06.0-ce
+    - image: docker:18.06.0-ce
   working_directory: ~/scbd/undb.cbd.int
   parallelism: 1
 
