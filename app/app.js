@@ -1,4 +1,4 @@
-define(['angular'], function(angular) { 'use strict';
+define(['angular-flex'], function(angular) { 'use strict';
 
     var deps = ['ngRoute','smoothScroll','toastr','ngCkeditor','ngSanitize','ngDialog','ngCookies'];
 
@@ -13,6 +13,7 @@ define(['angular'], function(angular) { 'use strict';
         $httpProvider.useApplyAsync(true);
         $httpProvider.interceptors.push('authenticationHttpIntercepter');
         $httpProvider.interceptors.push('realmHttpIntercepter');
+        $httpProvider.interceptors.push('apiRebase');
     }]);
 
   app.config(['toastrConfig',function(toastrConfig) {
