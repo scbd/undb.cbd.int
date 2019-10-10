@@ -2,7 +2,7 @@
 
 _defaults: &defaults
   docker:
-    - image: docker:17.05.0-ce
+    - image: 18.06.0-ce
   working_directory: ~/scbd/undb.cbd.int
   parallelism: 1
 
@@ -23,6 +23,7 @@ jobs:
   build:
     <<: *defaults
     steps:
+      - run: apk -U add git curl make openssh
       - checkout
       - setup_remote_docker
       - run: *buildDocker
