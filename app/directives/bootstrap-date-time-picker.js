@@ -1,4 +1,4 @@
-define(['app', 'moment', 'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min'], function(app, moment) {
+define(['app', 'moment', 'eonasdan-bootstrap-datetimepicker'], function(app, moment) {
     'use strict';
 
     app.directive('dateTimePicker', ['$timeout', function($timeout) {
