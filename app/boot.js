@@ -14,7 +14,6 @@ require.config({
         'authentication'            : 'factories/authentication',
         'bootstrap'                 : cdnHost + 'bootstrap@3.3.5/dist/js/bootstrap.min',
         'bootstrap-datepicker'      : cdnHost + 'bootstrap-datepicker@1.8.0/js/bootstrap-datepicker',
-        'eonasdan-bootstrap-datetimepicker' : cdnHost + 'eonasdan-bootstrap-datetimepicker@4.17.47',
         'css'                       : cdnHost + 'require-css@0.1.8/css.min',
         'lodash'                    : cdnHost + 'lodash@3.10.1/index',
         'linqjs'                    : cdnHost + 'linq@3.1.0/linq.min',
@@ -31,6 +30,7 @@ require.config({
         'ngDialog'                  : cdnHost + 'ng-dialog@0.6.2/js/ngDialog.min',
         'ngInfiniteScroll'          : cdnHost + 'ng-infinite-scroll@1.3.0/build/ng-infinite-scroll.min',
         'angular-flex'              : 'libs/angular-flex/angular-flex',
+        'eonasdan-bootstrap-datetimepicker' : cdnHost + 'eonasdan-bootstrap-datetimepicker@4.17.47/build/js/bootstrap-datetimepicker.min'
     },
     shim: {
       'angular'              : { deps : ['jquery'], exports: 'angular' },
@@ -45,7 +45,7 @@ require.config({
         'ng-ckeditor'              : { deps: ['angular-flex']},
         'ngDialog'                 : { deps: ['angular-flex' ]},
         'bootstrap-datepicker'     : { deps: ['css!bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'] },
-        'eonasdan-bootstrap-datetimepicker': { deps: ['jquery','moment','bootstrap','css!eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'] }
+        'eonasdan-bootstrap-datetimepicker': { deps: ['jquery','moment','bootstrap','css!'+ cdnHost + 'eonasdan-bootstrap-datetimepicker@4.17.47/build/css/bootstrap-datetimepicker.min.css'] }
         },
     packages: [
         { name: 'ammap', main: 'ammap', location : 'libs/ammap3/ammap' }
