@@ -335,4 +335,18 @@ define(['app', 'angular', 'jquery'], function (app, ng, $) { 'use strict';
         };
     }]);
 
+		app.factory('apiRebase', ["$location", function($location) {
+        
+			return {
+					request: function(config) {
+
+							var rewrite = /^\/api\//.test(config.url.toLowerCase());
+
+							if(rewrite)
+									config.url = 'https://api.cbd.int' + config.url;
+
+							return config;
+					}
+			};
+	}]);
 });
