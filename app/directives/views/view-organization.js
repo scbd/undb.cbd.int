@@ -1,7 +1,7 @@
 define(['app',  'lodash', 'text!./view-organization.html',
-	'filters/mark-down', 'utilities/km-storage','filters/trust-as-resource-url'], function(app,  _, template){
+	'filters/mark-down', 'utilities/organization-storage','filters/trust-as-resource-url'], function(app,  _, template){
 
-app.directive('viewOrganization', ["IStorage","$location","locale","$sce", function (storage,$location,locale,$sce) {
+app.directive('viewOrganization', ["OrganizationStorage","$location", function (storage,$location) {
 	return {
 		restrict   : 'E',
 		template   : template,
@@ -134,31 +134,14 @@ app.directive('viewOrganization', ["IStorage","$location","locale","$sce", funct
 
 				angular.forEach(targets, function(ref){
 
-					storage.documents.get(ref.identifier, { cache : true})
-						.success(function(data){
-							ref.document = data;
+					storage.get(ref.identifier, { cache : true})
+					.success(function(data){ return ref= data; })
+					.error(function(error, code){
+						ref.document  = undefined;
+						ref.error     = error;
+						ref.errorCode = code;
+					});
 
-							ref.logo=_.find(ref.document.relevantDocuments,{name:'logo'});
-						})
-						.error(function(error, code){
-							if (code == 404 && $scope.allowDrafts == "true") {
-
-								storage.drafts.get(ref.identifier, { cache : true})
-									.success(function(data){
-										ref.document = data;
-									})
-									.error(function(draftError, draftCode){
-										ref.document  = undefined;
-										ref.error     = draftError;
-										ref.errorCode = draftCode;
-									});
-							}
-
-							ref.document  = undefined;
-							ref.error     = error;
-							ref.errorCode = code;
-
-						});
 				});
 			};
 		}

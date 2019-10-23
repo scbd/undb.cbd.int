@@ -1,7 +1,7 @@
 define(['app', 'angular', 'lodash', 'text!./view-undb-actor.html',
-	'filters/mark-down', 'utilities/km-storage','filters/trust-as-resource-url'], function(app, angular, _, template){
+	'filters/mark-down', 'utilities/organization-storage','filters/trust-as-resource-url'], function(app, angular, _, template){
 
-app.directive('viewUndbActor', ["IStorage","$location","locale","$sce", function (storage,$location,locale,$sce) {
+app.directive('viewUndbActor', ["OrganizationStorage","$location", function (storage,$location) {
 	return {
 		restrict   : 'E',
 		template   : template,
@@ -28,7 +28,7 @@ app.directive('viewUndbActor', ["IStorage","$location","locale","$sce", function
 					if($scope.document)
 							$scope.organization = angular.fromJson(angular.toJson($scope.document.organization));
 					if($scope.organization)
-							$scope.loadReference($scope.organization).then(function(data){
+							$scope.loadOrgReference($scope.organization).then(function(data){
 									$scope.organization = data.data;
 
 									$scope.organization.logo=$scope.getLogo($scope.organization);
@@ -117,54 +117,21 @@ app.directive('viewUndbActor', ["IStorage","$location","locale","$sce", function
 					return links.length;
 			};
 
-			//====================
-			//
-			//====================
-			$scope.goTo= function() {
 
-					$location.path('/submit/organization/'+$scope.document.header.identifier);
-			};
+			$scope.loadOrgReference = function(ref) {
 
-			//====================
-			//
-			//====================
-			$scope.loadReferences = function(targets) {
+				return storage.get(ref.identifier, { cache : true})
+					.success(function(data){
+						return ref= data;
+					})
+					.error(function(error, code){
 
-				return angular.forEach(targets, function(ref){
+						ref.document  = undefined;
+						ref.error     = error;
+						ref.errorCode = code;
+					});
 
-					if(!ref) return;
-					return $scope.loadReference(ref);
-
-				});
-			};
-
-			$scope.loadReference = function(ref) {
-
-					return storage.documents.get(ref.identifier, { cache : true})
-						.success(function(data){
-							return ref= data;
-						})
-						.error(function(error, code){
-							if (code == 404 && $scope.allowDrafts == "true") {
-
-								return storage.drafts.get(ref.identifier, { cache : true})
-									.success(function(data){
-										return ref= data;
-									})
-									.error(function(draftError, draftCode){
-										ref.document  = undefined;
-										ref.error     = draftError;
-										ref.errorCode = draftCode;
-									});
-							}
-
-							ref.document  = undefined;
-							ref.error     = error;
-							ref.errorCode = code;
-
-						});
-
-			};
+		};
 
 		}
 	};

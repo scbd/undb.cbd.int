@@ -1,13 +1,12 @@
 define(['text!./select-contact.html','app','lodash','ngDialog',
-// 'directives/bbi/forms/edit-bbi-contact',
-// 'directives/bbi/forms/edit-organization',
 'providers/locale',
 'filters/term',
+'utilities/organization-storage',
 'ngInfiniteScroll'
 ],
 function(template,app,_) {
 
-    app.directive("selectContact", ['realm',function(realm) {
+    app.directive("selectContact", ['realm', "OrganizationStorage", function(realm, storage) {
 
         return {
             restrict: "E",
@@ -266,25 +265,31 @@ function(template,app,_) {
                     //============================================================
                     function loadSelectedContact(identifier,selectedContacts) {
                           $scope.loadingDocuments=true;
-                          return $http.get('/api/v2013/documents/'+identifier, {
-                          }).success(function(doc) {
-                              selectedContacts.push(doc);
-                              $scope.loadingDocuments=false;
-                              if(doc.organization && doc.organization.identifier)
-                                return loadOrgData(doc.organization.identifier,doc);
-                          }).catch(function(){
+                          storage.get(identifier)
+                          .success(function(doc) {
+                            selectedContacts.push(doc);
+                            $scope.loadingDocuments=false;
+    
+                          })
+                        //   return $http.get('/api/v2013/documents/'+identifier, {
+                        //   }).success(function(doc) {
+                        //       selectedContacts.push(doc);
+                        //       $scope.loadingDocuments=false;
+                        //       if(doc.organization && doc.organization.identifier)
+                        //         return loadOrgData(doc.organization.identifier,doc);
+                        //   }).catch(function(){
 
-                            return $http.get('/api/v2013/documents/'+identifier+'/versions/draft', {
-                            }).success(function(doc) {
-                                doc.header.version='draft';
-                                selectedContacts.push(doc);
-                                $scope.loadingDocuments=false;
-                                if(doc.organization && doc.organization.identifier)
-                                  return loadOrgData(doc.organization.identifier,doc);
-                                else
-                                  return 'draft';
-                            }).catch(function(err){throw err;});
-                          });
+                        //     return $http.get('/api/v2013/documents/'+identifier+'/versions/draft', {
+                        //     }).success(function(doc) {
+                        //         doc.header.version='draft';
+                        //         selectedContacts.push(doc);
+                        //         $scope.loadingDocuments=false;
+                        //         if(doc.organization && doc.organization.identifier)
+                        //           return loadOrgData(doc.organization.identifier,doc);
+                        //         else
+                        //           return 'draft';
+                        //     }).catch(function(err){throw err;});
+                        //   });
 
                     }// loadSelectedContact
 

@@ -1,7 +1,7 @@
 define(['app',  'lodash', 'text!./view-event.html',
-	'filters/mark-down', 'utilities/km-storage','filters/trust-as-resource-url','filters/moment'], function(app,  _, template){
+	'filters/mark-down', 'utilities/organization-storage','filters/trust-as-resource-url','filters/moment'], function(app,  _, template){
 
-app.directive('viewEvent', ["IStorage","$location","locale","$sce", function (storage,$location,locale,$sce) {
+app.directive('viewEvent', ["OrganizationStorage","$location","locale","$sce", function (storage,$location,locale,$sce) {
 	return {
 		restrict   : 'E',
 		template   : template,
@@ -56,11 +56,12 @@ app.directive('viewEvent', ["IStorage","$location","locale","$sce", function (st
 				}
 
 				if($scope.organizations){
-					$scope.loadReferences($scope.organizations);
-					$scope.loadReference($scope.contactOrganization).then(function(ref){
-							$scope.contactOrganization.document=ref.data;
-							$scope.contactOrganization.logo=_.find($scope.contactOrganization.document.relevantDocuments,{name:'logo'});
-					});
+					$scope.loadOrgReferences($scope.organizations);
+					if($scope.contactOrganization)
+						$scope.loadOrgReference($scope.contactOrganization).then(function(ref){
+								$scope.contactOrganization.document=ref.data;
+								$scope.contactOrganization.logo=_.find($scope.contactOrganization.document.relevantDocuments,{name:'logo'});
+						});
 				}
 
 			});
@@ -147,42 +148,31 @@ app.directive('viewEvent', ["IStorage","$location","locale","$sce", function (st
 			//====================
 			//
 			//====================
-			$scope.loadReferences = function(targets) {
+			$scope.loadOrgReferences = function(targets) {
 
 				return angular.forEach(targets, function(ref){
 					if(!ref) return;
-					return $scope.loadReference(ref).then(function(r){
+					return $scope.loadOrgReference(ref).then(function(r){
 								ref.document=r.data;
 								ref.logo=_.find(ref.document.relevantDocuments,{name:'logo'});
 					});
 				});
 			};
 
-			$scope.loadReference = function(ref) {
+			$scope.loadOrgReference = function(ref) {
 
-					return storage.documents.get(ref.identifier, { cache : true})
-						.success(function(data){
-							return ref= data;
-						}).error(function(error, code){
-							if (code == 404 && $scope.allowDrafts == "true") {
+				return storage.get(ref.identifier, { cache : true})
+					.success(function(data){
+						return ref= data;
+					})
+					.error(function(error, code){
 
-								return storage.drafts.get(ref.identifier, { cache : true})
-									.success(function(data){
-										return ref= data;
-									}).error(function(draftError, draftCode){
-										ref.document  = undefined;
-										ref.error     = draftError;
-										ref.errorCode = draftCode;
-									});
-							}
+						ref.document  = undefined;
+						ref.error     = error;
+						ref.errorCode = code;
+					});
 
-							ref.document  = undefined;
-							ref.error     = error;
-							ref.errorCode = code;
-
-						});
-
-			};
+		};
 
 		}
 	};
