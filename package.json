@@ -18,7 +18,6 @@
     "yarn": ">= 1.0.0"
   },
   "devDependencies":{
-    
     "@bower_components/angular": "angular/bower-angular#1.5.9",
     "@bower_components/angular-cookies": "angular/bower-angular-cookies#1.5.9",
     "@bower_components/angular-route": "angular/bower-angular-route#1.5.9",
