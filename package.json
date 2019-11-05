@@ -6,6 +6,7 @@
     "express": "4.16.3",
     "http-proxy": "1.17",
     "serve-static": "1.13.2",
+    "@bower_components/bootstrap": "twbs/bootstrap#3.4.1",
     "@bower_components/ammap3": "amcharts/ammap3#3.17.1",
     "@bower_components/angular-flex": "scbd/angular-flex.git#2.2.0",
     "@bower_components/require-shim": "zetlen/require-shim#95b5aaea4530fb2861cc475497c7b4c62204628d"
@@ -23,7 +24,7 @@
     "@bower_components/angular-route": "angular/bower-angular-route#1.5.9",
     "@bower_components/angular-sanitize": "angular/bower-angular-sanitize#1.5.9",
     "@bower_components/angular-toastr": "Foxandxss/angular-toastr#1.7.0",
-    "@bower_components/bootstrap": "twbs/bootstrap#3.4.1",
+   
     "@bower_components/bootstrap-datepicker": "eternicode/bootstrap-datepicker#1.6.1",
     "@bower_components/eonasdan-bootstrap-datetimepicker": "Eonasdan/bootstrap-datetimepicker#4.17.47",
     "@bower_components/flag-icon-css": "lipis/flag-icon-css#2.8.0",
