@@ -410,7 +410,7 @@ define(['lodash',
                 // Add Schema
 
                 query.push("schema_s:" + escape(options.schema));
-                // query.push(["realm_ss:" + realm, "(*:* NOT realm_ss:*)"]);
+                query.push(["realm_ss:" + realm, "(*:* NOT realm_ss:*)"]);
                 //
                 // Apply ownership/contributor
 
@@ -675,8 +675,8 @@ define(['lodash',
             //======================================================
             function viewWorkflow(record) {
                 var baseUrl = 'https://chm.cbd.int';
-                if(realm == 'CHM-DEV')
-                    baseUrl = 'https://chm.staging.cbd.int';
+                // if(realm == 'CHM-DEV')
+                //     baseUrl = 'https://chm.staging.cbd.int';
 
                 window.open(baseUrl + "/management/requests/" + record._workflow_s.replace(/^workflow-/i, "") + "/publishRecord",'_blank');
             }
