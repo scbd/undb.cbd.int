@@ -3,3 +3,5 @@ node_modules
 app/libs
 app_build
 .DS_Store
+
+.vscode/launch.json
