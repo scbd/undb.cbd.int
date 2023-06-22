@@ -7,8 +7,9 @@ define(['app', 'text!./toast.html', 'lodash','angular', 'authentication','provid
         var basePath = (ng.element('base').attr('href')||'').replace(/\/+$/g, '');
         $scope.$on("$routeChangeSuccess", function() {
             $scope.routeLoaded = true;
-            $window.ga('set',  'page', basePath+$location.path());
-            $window.ga('send', 'pageview');
+            $window.gtag('event', 'page_view', {
+                'page_location' : basePath+$location.path()
+            });
             if($route.current.$$route)
             $scope.$root.breadcrumb = getPage($route.current.$$route.originalPath);
             $scope.path = $location.path();

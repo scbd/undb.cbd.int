@@ -2,21 +2,9 @@
 <html lang="en" git-version="<%=gitVersion%>">
 <head>
     <base href="<%=baseUrl%>">
-    <script> //Analytics
-    if(~document.location.hostname.indexOf('cbd.int')){
-        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-        ga('create', 'UA-1996573-1', 'auto');//RCPUA-1996573-15
-      //  ga('create', 'RCPUA-1996573-15  ', 'auto');//     test analytics
-        ga('set',    'hostname', window.location.hostname);
-        ga('set',    'location', undefined);
-        //tag manager
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-NL82D37');
-    }
-    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7S1TPRE7F5"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments) }; gtag("js", new Date()); gtag("set", "developer_id.dMDhkMT", true); gtag("config", "G-7S1TPRE7F5", { "groups": "default", "page_placeholder": "PLACEHOLDER_page_location", "allow_ad_personalization_signals": false });</script>
+
     <script src="https://cdn.slaask.com/chat.js"></script>
     <script>
         //patch slaask to works with requireJS
